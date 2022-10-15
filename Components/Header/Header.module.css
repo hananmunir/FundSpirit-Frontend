@@ -1,0 +1,30 @@
+.header {
+    height: 85vh;
+    position: relative;
+
+}
+
+.headerImg {
+    height: 90%;
+    width: 100%;
+    object-fit: contain;
+    margin-top: 2rem;
+
+}
+
+.headerTextContainer {
+    width: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    top: 4%;
+
+}
+
+.headerText {
+    font-size: 3rem;
+    font-weight: 600;
+
+    text-align: center;
+}

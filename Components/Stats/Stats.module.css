@@ -1,0 +1,33 @@
+.headingContainer {
+    margin: auto;
+    text-align: center;
+}
+
+.heading {
+    color: #1D1CE5;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.subText {
+    opacity: .7;
+    font-size: .9rem;
+}
+
+.charityIcon {
+    width: 2rem;
+    height: 2rem;
+
+
+}
+
+.statFigure {
+    font-size: 2rem;
+    font-weight: 600;
+
+}
+
+.statSubText {
+    opacity: .7;
+    font-size: .9rem;
+}
