@@ -1,0 +1,152 @@
+.footerSection {
+  background-color: #1f2829;
+  padding: 4rem;
+  color: #fff;
+}
+
+.footerContainer {
+  padding: 3rem 0;
+}
+.footerAbout,
+.footerNavigation,
+.footerSubsLetter {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerAboutTitle,
+.footerNavigationTitle,
+.footerSubsLetterTitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.footerAboutDescription,
+.navLink,
+.footerSubsLetterDescription {
+  font-size: 1rem;
+  font-weight: 200;
+  color: var(--secondaryText);
+}
+
+.navLinksContainer {
+  display: flex;
+  padding-right: 7rem;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navigationLinks {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navigationLink {
+  color: #eee !important;
+  margin-bottom: 0.8rem;
+  padding: 0;
+  list-style-type: none;
+  cursor: pointer;
+}
+.footerSubsLetterDescription {
+  width: 78%;
+}
+.footerEmail {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.footerEmailInput {
+  padding: 0.35rem;
+  width: 60%;
+
+  background-color: transparent;
+  border: 0.5px solid #eee;
+  color: #eee;
+}
+
+.footerEmailInput:focus {
+  outline: none;
+}
+.footerEmailButton {
+  padding: 0.36rem 1rem;
+
+  background-color: #1d1ce5;
+  border: 1px solid #1d1ce5;
+  color: #eee;
+
+  transition: 0.6s all ease-out;
+}
+
+.footerEmailButton:hover {
+  background-color: transparent;
+  color: #eee;
+  border: 1px solid #eee;
+}
+
+.footerSocialLinks {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  margin-top: 4rem;
+  justify-content: center;
+}
+
+.footerSocialIcon {
+  font-size: 3rem;
+  margin: 0 1rem;
+  color: #eee;
+  transition: 0.6s all ease-out;
+  cursor: pointer;
+}
+
+.footerSocialIcon:hover {
+  transform: translateY(-3px);
+}
+
+.fb:hover {
+  color: #4267b2;
+}
+.insta:hover {
+  color: #fd1d1d;
+}
+.tw:hover {
+  color: #1da1f2;
+}
+
+.pint:hover {
+  color: #e60023;
+}
+
+.clickableLink {
+  text-decoration: none;
+  color: var(--secondaryText);
+  font-weight: 200;
+}
+.clickableLink:hover {
+  color: var(--secondaryText);
+}
+@media screen and (max-width: 998px) {
+  .footerNavigation,
+  .footerSubsLetter {
+    margin-top: 1.5rem;
+  }
+  .navLinksContainer {
+    padding-right: 8rem;
+  }
+  .footerEmailInput {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navLinksContainer {
+    width: 100%;
+  }
+  .rightNavigationLinks {
+    margin-left: 2rem;
+  }
+}
