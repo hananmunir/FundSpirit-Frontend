@@ -7,6 +7,7 @@
 .footerContainer {
   padding: 3rem 0;
 }
+
 .footerAbout,
 .footerNavigation,
 .footerSubsLetter {
@@ -50,9 +51,11 @@
   list-style-type: none;
   cursor: pointer;
 }
+
 .footerSubsLetterDescription {
   width: 78%;
 }
+
 .footerEmail {
   margin-top: 0.6rem;
   display: flex;
@@ -71,6 +74,7 @@
 .footerEmailInput:focus {
   outline: none;
 }
+
 .footerEmailButton {
   padding: 0.36rem 1rem;
 
@@ -110,9 +114,11 @@
 .fb:hover {
   color: #4267b2;
 }
+
 .insta:hover {
   color: #fd1d1d;
 }
+
 .tw:hover {
   color: #1da1f2;
 }
@@ -126,17 +132,60 @@
   color: var(--secondaryText);
   font-weight: 200;
 }
+
 .clickableLink:hover {
   color: var(--secondaryText);
 }
+
+.ownNavbar {
+  background-color: #fff !important;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 24vw;
+
+  background-color: 'red' !important;
+}
+
+.btn {
+  width: 9rem;
+  padding: .5rem 0;
+  border: 1px solid #1d1ce5;
+  background-color: #fff;
+  color: #1d1ce5;
+  border-radius: 5px;
+  font-size: 1.01rem;
+  transition: .6s all ease-out;
+
+}
+
+.walletBtn {
+  background-color: #1d1ce5;
+  color: #fff;
+}
+
+.btn:hover {
+  letter-spacing: 1.1px;
+}
+
+
+
+
 @media screen and (max-width: 998px) {
+
   .footerNavigation,
   .footerSubsLetter {
     margin-top: 1.5rem;
   }
+
   .navLinksContainer {
     padding-right: 8rem;
   }
+
   .footerEmailInput {
     width: 90%;
   }
@@ -146,6 +195,7 @@
   .navLinksContainer {
     width: 100%;
   }
+
   .rightNavigationLinks {
     margin-left: 2rem;
   }

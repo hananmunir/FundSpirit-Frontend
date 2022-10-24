@@ -15,7 +15,7 @@ export default function Header() {
         <img
           src='/Images/headerImg.jpg'
           alt='Header'
-          className={styles.headerImg + " border "}
+          className={styles.headerImg}
         />
       </div>
     </Container>
