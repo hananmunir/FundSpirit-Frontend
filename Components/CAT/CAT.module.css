@@ -1,0 +1,35 @@
+.container {
+    box-shadow: 2px 1px 5px 6px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 2px 1px 5px 6px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 2px 1px 5px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.btn {
+    background-color: #1d1ce5;
+    color: #fff;
+    border: 1px solid #1d1ce5;
+    align-self: center;
+    width: 50%;
+    padding: .4rem 1.5rem;
+
+    margin-top: 1rem;
+    border-radius: 5px;
+    margin-left: .2rem;
+    transition: .5s ease-in-out;
+}
+
+
+.btn:hover {
+    background-color: #fff;
+    color: #1d1ce5;
+    border: 1px solid #1d1ce5;
+
+}

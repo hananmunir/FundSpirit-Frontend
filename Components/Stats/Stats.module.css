@@ -5,13 +5,11 @@
 
 .heading {
     color: #1D1CE5;
-    font-size: 2rem;
-    font-weight: 600;
+
 }
 
 .subText {
-    opacity: .7;
-    font-size: .9rem;
+    color: #808080;
 }
 
 .charityIcon {

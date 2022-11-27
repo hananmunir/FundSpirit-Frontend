@@ -146,13 +146,13 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 24vw;
+  width: 22vw;
 
   background-color: 'red' !important;
 }
 
 .btn {
-  width: 9rem;
+  width: 8.5rem;
   padding: .5rem 0;
   border: 1px solid #1d1ce5;
   background-color: #fff;

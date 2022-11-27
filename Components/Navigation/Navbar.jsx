@@ -56,7 +56,7 @@ export default function Navigationbar() {
 
   return (
     <>
-      <Navbar bg='light' expand='lg' className={styles.ownNavbar}>
+      <Navbar expand='lg' className={styles.ownNavbar}>
         <Container className='p-3'>
           <Navbar.Brand href='#home'>Fund Spirit</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -69,6 +69,7 @@ export default function Navigationbar() {
 
               <Nav.Link href='#link'>About</Nav.Link>
 
+              <Nav.Link href='#link'>Contact</Nav.Link>
               <div className={[styles.btnContainer]}>
                 <button
                   className={styles.btn + " " + styles.walletBtn}
