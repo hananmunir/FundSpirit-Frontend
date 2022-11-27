@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,6 +8,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 import styles from "./Navigation.module.css";
 import { useEffect } from "react";
+import Modal from "./Model.js";
 
 const providerOptions = {
   binancechainwallet: {
@@ -28,6 +29,7 @@ const providerOptions = {
 };
 
 export default function Navigationbar() {
+  const [show, setShow] = useState(false);
   const [account, setAccount] = React.useState("");
   const [connected, setConnected] = React.useState(false);
   let web3Modal;
@@ -53,32 +55,43 @@ export default function Navigationbar() {
   }
 
   return (
-    <Navbar bg='light' expand='lg' className={styles.ownNavbar}>
-      <Container className='p-3'>
-        <Navbar.Brand href='#home'>Fund Spirit</Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ms-auto'>
-            <Nav.Link href='#home'>Home</Nav.Link>
-            <Nav.Link href='#link'>Campaigns</Nav.Link>
+    <>
+      <Navbar bg='light' expand='lg' className={styles.ownNavbar}>
+        <Container className='p-3'>
+          <Navbar.Brand href='#home'>Fund Spirit</Navbar.Brand>
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Collapse id='basic-navbar-nav'>
+            <Nav className='ms-auto'>
+              <Nav.Link href='#home'>Home</Nav.Link>
+              <Nav.Link href='#link'>Campaigns</Nav.Link>
 
-            <Nav.Link href='#link'>Organizations</Nav.Link>
+              <Nav.Link href='#link'>Organizations</Nav.Link>
 
-            <Nav.Link href='#link'>About</Nav.Link>
+              <Nav.Link href='#link'>About</Nav.Link>
 
-            <div className={[styles.btnContainer]}>
-              <button
-                className={styles.btn + " " + styles.walletBtn}
-                onClick={connected ? () => {} : () => connectWallet()}
-              >
-                {connected ? "Disconnect" : "Connect Wallet"}
-              </button>
+              <div className={[styles.btnContainer]}>
+                <button
+                  className={styles.btn + " " + styles.walletBtn}
+                  onClick={connected ? () => {} : () => connectWallet()}
+                >
+                  {connected ? "Disconnect" : "Connect Wallet"}
+                </button>
 
-              <button className={[styles.btn]}>Login</button>
-            </div>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+                <button
+                  className={[styles.btn]}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShow(true);
+                  }}
+                >
+                  Login
+                </button>
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Modal show={show} setShow={setShow} />
+    </>
   );
 }
