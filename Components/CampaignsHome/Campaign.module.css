@@ -15,10 +15,9 @@
 .overlay {
     position: absolute;
     top: 0;
-
     height: 100%;
     background: rgb(47, 45, 37);
-    background: linear-gradient(0deg, rgba(0, 0, 0, .6) 9%, rgba(0, 0, 0, 0.1) 60%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, .7) 9%, rgba(0, 0, 0, 0) 60%);
 
 
 }
@@ -36,12 +35,13 @@
 }
 
 .heading {
-    font-size: 2rem;
+    font-size: 1.7rem;
+    font-weight: 600;
 
 }
 
 .subHeading {
-    margin: 0.5rem 0;
+    margin: 0.8rem 0;
 }
 
 .btn {
@@ -51,4 +51,5 @@
     width: 120px;
     padding: .3rem 1rem;
     border-radius: 5px;
+    margin-top: .3rem;
 }

@@ -57,7 +57,7 @@ export default function Navigationbar() {
   return (
     <>
       <Navbar expand='lg' className={styles.ownNavbar}>
-        <Container className='p-3'>
+        <Container fluid className='p-3'>
           <Navbar.Brand href='#home'>Fund Spirit</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>

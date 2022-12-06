@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col } from "react-bootstrap";
 import styles from "./Campaign.module.css";
+import { gsap } from "gsap";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 export default function CampaignCard({ lg }) {
   const ref = React.useRef(null);
+  const [show, setShow] = React.useState(false);
+  const descRef = React.useRef(null);
+
+  useEffect(() => {
+    if (show) {
+      // show desc
+      gsap.to(descRef.current, {
+        duration: 0.4,
+        height: "auto",
+        opacity: 1,
+        ease: "power3.easeOut",
+      });
+    } else {
+      // hide desc
+      gsap.to(descRef.current, {
+        duration: 0.4,
+        height: 0,
+        opacity: 0,
+        ease: "power3.easeOut",
+      });
+    }
+  }, [show]);
 
   return (
     <Col
@@ -15,12 +39,21 @@ export default function CampaignCard({ lg }) {
         style={{ width: lg ? "95.8%" : "94%" }}
       ></div>
       <div className={styles.campaignTextContainer}>
-        <span className={styles.heading}>Campaign Title</span>
-        <span className={styles.subHeading}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla
-          voluptates impedi ...
+        <span className={styles.heading}>
+          Campaign{" "}
+          {show ? (
+            <BsChevronDown className='pointer' onClick={() => setShow(false)} />
+          ) : (
+            <BsChevronUp className='pointer' onClick={() => setShow(true)} />
+          )}
         </span>
-        <button className={styles.btn}>View More</button>
+        <div className='d-flex flex-column' ref={descRef}>
+          <span className={styles.subHeading}>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla
+            voluptates impedi ...
+          </span>
+          <button className={styles.btn}>View More</button>
+        </div>
       </div>
     </Col>
   );
