@@ -1,0 +1,18 @@
+.headerImg {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.editBtn {
+    position: absolute;
+    top: 5%;
+    width: 8%;
+    padding: .2rem 0;
+    border: none;
+    background-color: #1d1ce5;
+    color: #fff;
+    border-radius: 5px;
+    right: 8%;
+
+}

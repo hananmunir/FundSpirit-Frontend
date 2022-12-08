@@ -1,0 +1,22 @@
+.amountField {
+    background-color: #F3F3EC;
+}
+
+.currencyText {
+    font-size: .6rem;
+    margin-left: .2rem;
+}
+
+.btn {
+    background-color: #1d1ce5;
+    color: #fff;
+    padding: .4rem 2rem;
+    border: 1px solid #1d1ce5;
+
+    border-radius: 5px;
+    width: 60%;
+    margin: auto;
+    margin-top: .2rem;
+    margin-bottom: 1rem;
+
+}

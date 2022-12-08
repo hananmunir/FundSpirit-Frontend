@@ -28,7 +28,7 @@ export default function Stats() {
           Lorem ipsum some text exists here Lorem ipsum some text exists here
         </span>
       </div>
-      <Row>
+      <Row className='align-items-center justify-content-center'>
         {statCards.map((statCard, index) => (
           <StatCard
             key={index}

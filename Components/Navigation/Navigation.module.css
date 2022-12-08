@@ -1,11 +1,11 @@
 .footerSection {
   background-color: #1f2829;
-  padding: 4rem;
+  padding: 2rem;
   color: #fff;
 }
 
 .footerContainer {
-  padding: 3rem 0;
+  padding: 2rem 0;
 }
 
 .footerAbout,
@@ -26,16 +26,17 @@
 .footerAboutDescription,
 .navLink,
 .footerSubsLetterDescription {
-  font-size: 1rem;
-  font-weight: 200;
+  font-size: .9rem !important;
+  font-weight: 200 !important;
   color: var(--secondaryText);
 }
 
 .navLinksContainer {
   display: flex;
-  padding-right: 7rem;
+  padding-right: 3rem;
   flex-direction: row;
   justify-content: space-between;
+
 }
 
 .navigationLinks {
@@ -49,6 +50,8 @@
   margin-bottom: 0.8rem;
   padding: 0;
   list-style-type: none;
+  font-size: .9rem;
+  font-weight: 300;
   cursor: pointer;
 }
 
@@ -64,11 +67,12 @@
 
 .footerEmailInput {
   padding: 0.35rem;
-  width: 60%;
+  width: 70%;
 
   background-color: transparent;
   border: 0.5px solid #eee;
   color: #eee;
+
 }
 
 .footerEmailInput:focus {
@@ -92,15 +96,17 @@
 }
 
 .footerSocialLinks {
-  width: 100%;
+  width: 18%;
   align-items: center;
   display: flex;
-  margin-top: 4rem;
-  justify-content: center;
+  margin: auto;
+  margin-top: 2rem;
+  justify-content: space-around;
+
 }
 
 .footerSocialIcon {
-  font-size: 3rem;
+  font-size: 1rem;
   margin: 0 1rem;
   color: #eee;
   transition: 0.6s all ease-out;
@@ -128,14 +134,12 @@
 }
 
 .clickableLink {
-  text-decoration: none;
-  color: var(--secondaryText);
+  text-decoration: none !important;
+
   font-weight: 200;
 }
 
-.clickableLink:hover {
-  color: var(--secondaryText);
-}
+.clickableLink:hover {}
 
 .ownNavbar {
   background-color: #fff !important;
@@ -152,13 +156,13 @@
 }
 
 .btn {
-  width: 8.5rem;
+  width: 9rem;
   padding: .5rem 0;
   border: 1px solid #1d1ce5;
   background-color: #fff;
   color: #1d1ce5;
   border-radius: 5px;
-  font-size: 1.01rem;
+
   transition: .6s all ease-out;
 
 }
@@ -170,6 +174,10 @@
 
 .btn:hover {
   letter-spacing: 1.1px;
+}
+
+.rightNavigationLinks {
+  margin-left: 2rem;
 }
 
 
@@ -194,9 +202,10 @@
 @media screen and (max-width: 600px) {
   .navLinksContainer {
     width: 100%;
+    flex-direction: column;
   }
 
   .rightNavigationLinks {
-    margin-left: 2rem;
+    margin-left: 0;
   }
 }

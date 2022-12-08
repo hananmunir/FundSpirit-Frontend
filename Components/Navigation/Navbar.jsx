@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 import styles from "./Navigation.module.css";
 import { useEffect } from "react";
 import Modal from "./Model.js";
+import Link from "next/link";
 
 const providerOptions = {
   binancechainwallet: {
@@ -48,7 +49,7 @@ export default function Navigationbar() {
       const signer = web3Provider.getSigner();
       const address = await signer.getAddress();
       // setAccount(address);
-      // setConnected(true);
+      setConnected(true);
     } catch (e) {
       console.log(e);
     }
@@ -58,18 +59,42 @@ export default function Navigationbar() {
     <>
       <Navbar expand='lg' className={styles.ownNavbar}>
         <Container fluid className='p-3'>
-          <Navbar.Brand href='#home'>Fund Spirit</Navbar.Brand>
+          <Navbar.Brand>
+            <Link href='/'>
+              <span className='link pointer'>Fund Spirit</span>
+            </Link>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
-              <Nav.Link href='#home'>Home</Nav.Link>
-              <Nav.Link href='#link'>Campaigns</Nav.Link>
+            <Nav className='ms-auto align-items-center justify-content-between'>
+              <Nav className='ms-3'>
+                <Link href='/'>
+                  <span className='link pointer'>Home</span>
+                </Link>
+              </Nav>
+              <Nav className='ms-3'>
+                <Link href='/campaigns'>
+                  <span className='link pointer'>Campaigns</span>
+                </Link>
+              </Nav>
 
-              <Nav.Link href='#link'>Organizations</Nav.Link>
+              <Nav className='ms-3'>
+                <Link href='/'>
+                  <span className='link pointer'>Organizations</span>
+                </Link>
+              </Nav>
 
-              <Nav.Link href='#link'>About</Nav.Link>
+              <Nav className='ms-3'>
+                <Link href='/about'>
+                  <span className='link pointer'>About</span>
+                </Link>
+              </Nav>
 
-              <Nav.Link href='#link'>Contact</Nav.Link>
+              <Nav className='mx-3'>
+                <Link href='/contact'>
+                  <span className='link pointer'>Contact</span>
+                </Link>
+              </Nav>
               <div className={[styles.btnContainer]}>
                 <button
                   className={styles.btn + " " + styles.walletBtn}

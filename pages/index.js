@@ -5,6 +5,7 @@ import Navbar from "../Components/Navigation/Navbar";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import Error from "../Components/404/404";
 
 const DynamicHeader = dynamic(() => import("../Components/Header/Header"), {
   suspense: true,

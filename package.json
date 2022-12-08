@@ -19,6 +19,8 @@
     "react-bootstrap": "^2.5.0",
     "react-icons": "^4.6.0",
     "react-leaf-carousel": "^3.0.0",
+    "react-tsparticles": "^2.6.0",
+    "tsparticles": "^2.6.0",
     "web3modal": "^1.9.9"
   },
   "devDependencies": {

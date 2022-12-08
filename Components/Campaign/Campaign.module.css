@@ -25,3 +25,24 @@
     border-radius: 5px;
     padding: .4rem 1.5rem;
 }
+
+.cardImage {
+
+    object-fit: fill;
+    border-radius: 20px;
+}
+
+.cardDesc {
+    font-size: .9rem;
+    font-weight: 300;
+    color: grey;
+    text-align: left;
+}
+
+.fadeColor {
+    color: grey;
+}
+
+.cardStats {
+    font-size: .8rem;
+}

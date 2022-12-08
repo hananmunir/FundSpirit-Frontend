@@ -29,20 +29,19 @@ function Footer() {
               <span className={styles.footerNavigationTitle}>Navigation</span>
               <div className={styles.navLinksContainer}>
                 <ul className={styles.navigationLinks}>
-                  <li className={styles.navigationLink}></li>
-                  <li className={styles.navigationLink}></li>
-                  <li className={styles.navigationLink}></li>
-                  <li className={styles.navigationLink}></li>
+                  <li className={styles.navigationLink}>Home</li>
+                  <li className={styles.navigationLink}>Campaigns</li>
+                  <li className={styles.navigationLink}>Organizations</li>
+                  <li className={styles.navigationLink}>Track Funds</li>
                 </ul>
                 <ul
-                  className={[
-                    styles.navigationLinks,
-                    styles.rightNavigationLinks,
-                  ]}
+                  className={
+                    styles.navigationLinks + " " + styles.rightNavigationLinks
+                  }
                 >
-                  <li className={styles.navigationLink}></li>
-                  <li className={styles.navigationLink}></li>
-                  <li className={styles.navigationLink}></li>
+                  <li className={styles.navigationLink}>About Us</li>
+                  <li className={styles.navigationLink}>Contact Us</li>
+                  <li className={styles.navigationLink}>Privacy Policy</li>
                   <li className={styles.navigationLink}></li>
                 </ul>
               </div>
@@ -68,10 +67,14 @@ function Footer() {
           </Col>
         </Row>
         <div className={styles.footerSocialLinks}>
-          <FaFacebookF className={[styles.footerSocialIcon, styles.fb]} />
-          <FaTwitter className={[styles.footerSocialIcon, styles.tw]} />
-          <FaInstagram className={[styles.footerSocialIcon, styles.insta]} />
-          <FaPinterestP className={[styles.footerSocialIcon, styles.pint]} />
+          <FaFacebookF className={styles.footerSocialIcon + " " + styles.fb} />
+          <FaTwitter className={styles.footerSocialIcon + " " + styles.tw} />
+          <FaInstagram
+            className={styles.footerSocialIcon + " " + styles.insta}
+          />
+          <FaPinterestP
+            className={styles.footerSocialIcon + " " + styles.pint}
+          />
         </div>
       </Container>
     </div>

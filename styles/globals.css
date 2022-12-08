@@ -35,3 +35,8 @@ a {
 .pointer {
   cursor: pointer;
 }
+
+.link {
+  text-decoration: none;
+  color: #808080;
+}

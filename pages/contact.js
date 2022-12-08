@@ -24,6 +24,7 @@ export default function Contact() {
       <Suspense>
         <DynamicContact />
       </Suspense>
+      
     </div>
   );
 }

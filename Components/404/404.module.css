@@ -1,0 +1,53 @@
+.container {
+
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 99;
+}
+
+.heading {
+    font-size: 8rem;
+    font-weight: 300;
+    color: #fff;
+
+}
+
+.subheading {
+    font-weight: 200;
+    color: #fff;
+}
+
+.btnContainer {
+
+    width: 24%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    flex-direction: row;
+}
+
+.btn {
+    background-color: #1d1ce5;
+    color: #fff;
+    padding: .4rem 2rem;
+    border: 1px solid #1d1ce5;
+
+    margin-top: .4rem;
+    border-radius: 5px;
+    float: left;
+
+}
+
+.homeBtn {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+
+}
