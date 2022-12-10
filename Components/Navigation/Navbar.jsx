@@ -80,7 +80,7 @@ export default function Navigationbar() {
 
               <Nav className='ms-3'>
                 <Link href='/'>
-                  <span className='link pointer'>Organizations</span>
+                  <span className='link pointer'>NPO Partners</span>
                 </Link>
               </Nav>
 

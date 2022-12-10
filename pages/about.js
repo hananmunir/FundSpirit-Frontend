@@ -1,5 +1,10 @@
 import React from "react";
+import Highlights from "../Components/WhyUs/Highlights";
 
 export default function about() {
-  return <div>about</div>;
+  return (
+    <div>
+      <Highlights />
+    </div>
+  );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col, Row } from "react-bootstrap";
 
 //const user = { name: "", email: "", password: "" };
@@ -44,14 +44,16 @@ function Model({ show, setShow }) {
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
-            Close
+
+        <div className=' d-flex flex-column align-items-center p-4 pt-2'>
+          <Button
+            variant='primary'
+            onClick={(e) => handleClose()}
+            className='w-25 align-self-end mb-3'
+          >
+            {login ? "Login" : "Register"}
           </Button>
-          <Button variant='primary' onClick={(e) => handleClose()}>
-            Login
-          </Button>
-          <div className='span-text flex-direction-col'>
+          <div className='span-text flex-column'>
             <Row className='mt-1'>
               <Col>
                 {login ? (
@@ -78,7 +80,7 @@ function Model({ show, setShow }) {
               </Col>
             </Row>
           </div>
-        </Modal.Footer>
+        </div>
       </Modal>
     </div>
   );

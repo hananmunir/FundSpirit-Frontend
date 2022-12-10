@@ -19,9 +19,7 @@ const AmountField = ({ amount }) => {
 export default function Fund() {
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    setShow(true);
-  }, []);
+
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);

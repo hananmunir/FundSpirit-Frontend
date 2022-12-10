@@ -27,12 +27,11 @@ const ItemContent = [
 
 const Item = ({ title, description, svg }) => {
   return (
-    <Col className='d-flex flex-column align-items-center text-center px-5'>
+    <Col className='d-flex flex-column align-items-center text-center px-5 mt-2'>
       <div className={styles.svg}>
-        {" "}
         <img loading='lazy' src={svg} />
       </div>
-      <span className='fs-5 my-3'>{title}</span>
+      <span className='fs-5 my-2'>{title}</span>
       <span className={styles.homeDesc}>{description}</span>
     </Col>
   );
@@ -40,7 +39,7 @@ const Item = ({ title, description, svg }) => {
 
 export default function Home() {
   return (
-    <Container fluid className={styles.homeContainer}>
+    <Container fluid className={styles.homeContainer + " px-2"}>
       <center>
         <span className='fs-1'>Why Us?</span>
       </center>
