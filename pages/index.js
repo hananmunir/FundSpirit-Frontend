@@ -30,6 +30,10 @@ const DynamicCAT = dynamic(() => import("../Components/CAT/CAT"), {
   suspense: true,
 });
 
+const DynamicWhyUs = dynamic(() => import("../Components/WhyUs/Home"), {
+  suspense: true,
+});
+
 export default function Home() {
   return (
     <div className={styles.container} style={{ overflowX: "hidden" }}>
@@ -44,6 +48,7 @@ export default function Home() {
         <DynamicStats />
         <DynamicCampaigns />
         {/* <DynamicOrgCarousel /> */}
+        <DynamicWhyUs />
         <DynamicCAT />
       </Suspense>
     </div>
