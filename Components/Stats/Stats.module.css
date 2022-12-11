@@ -22,8 +22,9 @@
 }
 
 .charityIcon {
-  width: 2rem;
-  height: 2rem;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
 .statFigure {

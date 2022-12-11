@@ -1,11 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
-import Footer from "../Components/Navigation/Footer";
-import Navbar from "../Components/Navigation/Navbar";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import Error from "../Components/404/404";
 
 const DynamicHeader = dynamic(() => import("../Components/Header/Header"), {
   suspense: true,
@@ -19,14 +15,14 @@ const DynamicCampaigns = dynamic(
     suspense: true,
   }
 );
-// const DynamicOrgCarousel = dynamic(
-//   () => import("../Components/OrganizationsCarousel/Carousel"),
-//   {
-//     suspense: true,
-//   }
-// );
+const DynamicOrgCarousel = dynamic(
+  () => import("../Components/OrganizationsCarousel/Carousel"),
+  {
+    suspense: true,
+  }
+);
 
-const DynamicCAT = dynamic(() => import("../Components/CAT/CAT"), {
+const DynamicCTA = dynamic(() => import("../Components/CTA/CTA"), {
   suspense: true,
 });
 
@@ -47,9 +43,9 @@ export default function Home() {
         <DynamicHeader />
         <DynamicStats />
         <DynamicCampaigns />
-        {/* <DynamicOrgCarousel /> */}
+        <DynamicCTA />
+        <DynamicOrgCarousel />
         <DynamicWhyUs />
-        <DynamicCAT />
       </Suspense>
     </div>
   );

@@ -11,7 +11,7 @@ export default function StatCard({ src, figure, text }) {
       className='d-flex flex-column  align-items-center p-4 mt-5'
     >
       <img src={src} alt='charity-icon' className={styles.charityIcon} />
-      <span className={styles.statFigure + " mt-2 mb-1"}>
+      <span className={styles.statFigure + " mt-4 mb-2"}>
         {figure.toLocaleString()}
       </span>
       <span className={styles.statSubText}>{text}</span>

@@ -16,11 +16,9 @@
   top: 0;
   height: 100%;
   background: rgb(47, 45, 37);
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.7) 9%,
-    rgba(0, 0, 0, 0) 60%
-  );
+  background: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.7) 9%,
+      rgba(0, 0, 0, 0) 60%);
 }
 
 .campaignTextContainer {
@@ -50,4 +48,19 @@
   padding: 0.3rem 1rem;
   border-radius: 5px;
   margin-top: 0.3rem;
+}
+
+
+.campaignsHeading {
+  color: #474747;
+}
+
+.campaignsHeading::after {
+  content: "";
+  display: block;
+  border-radius: 20px;
+  width: 25%;
+  height: 5px;
+  background-color: #1d1ce5;
+  margin: 1rem auto;
 }
