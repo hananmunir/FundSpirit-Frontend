@@ -27,7 +27,12 @@ const ItemContent = [
 
 const Item = ({ title, description, svg }) => {
   return (
-    <Col className='d-flex flex-column align-items-center text-center px-5 mt-2'>
+    <Col
+      lg={4}
+      md={6}
+      sm={12}
+      className='d-flex flex-column align-items-center text-center px-5 mt-2'
+    >
       <div className={styles.svg}>
         <img loading='lazy' src={svg} />
       </div>
