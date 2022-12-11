@@ -1,55 +1,53 @@
 .campaignContainer {
-    height: 40vh;
+  height: 40vh;
 
-    position: relative;
+  position: relative;
 }
 
 .img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
-
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    background: rgb(47, 45, 37);
-    background: linear-gradient(0deg, rgba(0, 0, 0, .7) 9%, rgba(0, 0, 0, 0) 60%);
-
-
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgb(47, 45, 37);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7) 9%,
+    rgba(0, 0, 0, 0) 60%
+  );
 }
 
 .campaignTextContainer {
-
-
-    position: absolute;
-    bottom: 0;
-    z-index: 99;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    color: #fff
+  position: absolute;
+  bottom: 0;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  color: #fff;
 }
 
 .heading {
-    font-size: 1.7rem;
-    font-weight: 600;
-
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 
 .subHeading {
-    margin: 0.8rem 0;
+  margin: 0.8rem 0;
 }
 
 .btn {
-    border: 1px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    width: 120px;
-    padding: .3rem 1rem;
-    border-radius: 5px;
-    margin-top: .3rem;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  width: 120px;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  margin-top: 0.3rem;
 }

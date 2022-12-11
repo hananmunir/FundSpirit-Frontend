@@ -1,31 +1,37 @@
 .headingContainer {
-    margin: auto;
-    text-align: center;
+  margin: auto;
+  text-align: center;
 }
 
 .heading {
-    color: #1D1CE5;
+  color: #474747;
+}
 
+.heading::after {
+  content: "";
+  display: block;
+  border-radius: 20px;
+  width: 20%;
+  height: 5px;
+  background-color: #1d1ce5;
+  margin: 1rem auto;
 }
 
 .subText {
-    color: #808080;
+  color: #808080;
 }
 
 .charityIcon {
-    width: 2rem;
-    height: 2rem;
-
-
+  width: 2rem;
+  height: 2rem;
 }
 
 .statFigure {
-    font-size: 2rem;
-    font-weight: 600;
-
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .statSubText {
-    opacity: .7;
-    font-size: .9rem;
+  opacity: 0.7;
+  font-size: 0.9rem;
 }

@@ -24,9 +24,6 @@ export default function Stats() {
     <Container className={styles.stats + " d-flex flex-column mt-5"}>
       <div className={styles.headingContainer + " d-flex flex-column"}>
         <span className={styles.heading + " fs-1"}>Donation Statistics</span>
-        <span className={styles.subText}>
-          Lorem ipsum some text exists here Lorem ipsum some text exists here
-        </span>
       </div>
       <Row className='align-items-center justify-content-center'>
         {statCards.map((statCard, index) => (

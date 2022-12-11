@@ -1,0 +1,13 @@
+.headingCampaignHomeSection {
+  color: #474747;
+}
+
+.headingCampaignHomeSection::after {
+  content: "";
+  display: block;
+  border-radius: 20px;
+  width: 25%;
+  height: 5px;
+  background-color: #1d1ce5;
+  margin: 1rem auto;
+}

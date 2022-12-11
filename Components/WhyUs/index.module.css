@@ -1,34 +1,47 @@
 .homeContainer {
-    background-color: #eff5f580;
-    padding: 50px 0;
+  background-color: #eff5f580;
+  padding: 50px 0;
 }
 
 .homeDesc {
-    font-size: .85rem;
-    font-weight: 400;
-    color: #2d2d2d;
-    text-align: center;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #2d2d2d;
+  text-align: center;
+}
 
+.headingWhyUsHome {
+  color: #474747;
+}
+
+.headingWhyUsHome::after {
+  content: "";
+  display: block;
+  border-radius: 20px;
+  width: 3%;
+  height: 5px;
+  background-color: #1d1ce5;
+  margin: 1rem auto;
 }
 
 .highlightsDesc {
-    font-size: 1rem;
-    font-weight: 300;
-    color: #2d2d2d;
-    text-align: center;
-    margin-top: 20px;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #2d2d2d;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .sectionHeading {
-    border-top: 1px solid #dedede;
-    margin-top: 5em;
-    display: flex;
-    justify-content: center;
+  border-top: 1px solid #dedede;
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
 }
 
 .sectionHeading h4 {
-    position: absolute;
-    margin: -.5em 0;
-    background-color: #fff;
-    padding: 0 1em;
+  position: absolute;
+  margin: -0.5em 0;
+  background-color: #fff;
+  padding: 0 1em;
 }
