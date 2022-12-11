@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import styles from "./Carousel.module.css";
+const imagesArray = [
+  "/Logos/akhuwat.png",
+  "/Logos/jdc.png",
+  "/Logos/darul.png",
+  "/Logos/ansar.png",
+  "/Logos/tsf.svg",
+  "/Logos/war.png",
+];
 
 function OrgCarousel() {
-  const imagesArray = [
-    "/Logos/akhuwat.png",
-    "/Logos/jdc.png",
-    "/Logos/darul.png",
-    "/Logos/ansar.png",
-    "/Logos/tsf.svg",
-    "/Logos/war.png",
-  ];
+  const [windowWidth, setWindowWidth] = React.useState(0);
 
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  });
   const renderLogos = () =>
     imagesArray.map((image) => (
       <div className={styles.carouselItemContainer}>
@@ -23,16 +27,22 @@ function OrgCarousel() {
 
   return (
     <div className={styles.carouselContainer}>
-      <center>
-        <span className={styles.carouselHeading + " fs-1"}>
-          Our Tursted Organisations
-        </span>
+      <center className={styles.carouselHeading + " fs-1"}>
+        <span>Our Tursted Organisations</span>
       </center>
 
       <Slider
         dots={false}
-        slidesToShow={3}
-        slidesToScroll={3}
+        slidesToShow={
+          windowWidth < 480
+            ? 1
+            : windowWidth < 768
+            ? 2
+            : windowWidth < 1000
+            ? 3
+            : 4
+        }
+        slidesToScroll={1}
         autoplay={true}
         autoplaySpeed={3000}
       >

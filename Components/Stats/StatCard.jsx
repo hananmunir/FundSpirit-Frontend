@@ -5,7 +5,7 @@ import styles from "./Stats.module.css";
 export default function StatCard({ src, figure, text }) {
   return (
     <Col
-      sm={6}
+      sm={12}
       md={6}
       lg={4}
       className='d-flex flex-column  align-items-center p-4 mt-5'

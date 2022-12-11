@@ -55,3 +55,101 @@
     background-color: #1d1ce5;
     margin: 1rem auto;
 }
+
+@media screen and (max-width: 1420px) {
+
+    .desc {
+        width: 50%;
+
+    }
+
+    .btn {
+        width: 35%;
+
+    }
+
+}
+
+@media screen and (max-width: 1290px) {
+
+    .desc {
+        width: 55%;
+
+    }
+
+    .btn {
+        width: 45%;
+
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    .desc {
+        width: 60%;
+
+    }
+
+    .btn {
+        width: 60%;
+
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .desc {
+        width: 50%;
+
+    }
+
+    .btn {
+        width: 35%;
+
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .desc {
+        width: 60%;
+
+    }
+
+    .btn {
+        width: 50%;
+
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .desc {
+        width: 80%;
+
+    }
+
+    .btn {
+        width: 60%;
+
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+
+    .desc {
+        width: 100%;
+
+    }
+
+    .btn {
+        width: 80%;
+
+    }
+
+}
