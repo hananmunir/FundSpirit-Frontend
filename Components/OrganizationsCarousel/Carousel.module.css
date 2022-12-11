@@ -1,9 +1,10 @@
 .carouselContainer {
-  width: 100%;
+  width: 90%;
   height: 45vh;
   text-align: center;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 .carouselItemContainer {

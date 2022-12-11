@@ -10,6 +10,8 @@ function OrgCarousel() {
     "/Logos/jdc.png",
     "/Logos/darul.png",
     "/Logos/ansar.png",
+    "/Logos/tsf.svg",
+    "/Logos/war.png",
   ];
 
   const renderLogos = () =>
@@ -29,8 +31,8 @@ function OrgCarousel() {
 
       <Slider
         dots={false}
-        slidesToShow={2}
-        slidesToScroll={2}
+        slidesToShow={3}
+        slidesToScroll={3}
         autoplay={true}
         autoplaySpeed={3000}
       >
