@@ -28,10 +28,10 @@ const ItemContent = [
 const Item = ({ title, description, svg }) => {
   return (
     <Col
-      lg={4}
+      lg={3}
       md={6}
       sm={12}
-      className='d-flex flex-column align-items-center text-center px-5 mt-2'
+      className='d-flex flex-column align-items-center text-center px-5 mt-4'
     >
       <div className={styles.svg}>
         <img loading='lazy' src={svg} />
