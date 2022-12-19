@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import styles from "./Carousel.module.css";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 const imagesArray = [
   "/Logos/akhuwat.png",
   "/Logos/jdc.png",

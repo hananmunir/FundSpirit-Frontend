@@ -33,7 +33,7 @@ export default function Will() {
   return (
     <Container fluid className='mb-4'>
       <div className={styles.sectionWillHeading}>
-        <h4>FUNDSPIRIT Will</h4>
+        <h4>FUNDSPIRIT WILL</h4>
       </div>
       <Row>
         {ItemContent.map((item) => (

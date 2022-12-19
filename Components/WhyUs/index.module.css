@@ -45,3 +45,28 @@
   background-color: #fff;
   padding: 0 1em;
 }
+
+
+.aboutList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+}
+
+.icon {
+
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 40%;
+}
+
+.aboutListItems {
+
+  margin: .11em 0;
+}
