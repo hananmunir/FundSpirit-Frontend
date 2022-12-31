@@ -3,6 +3,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useRouter } from "next/router";
 import styles from "./Header.module.css";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Header() {
   const router = useRouter();
@@ -22,7 +23,17 @@ export default function Header() {
           <div className={styles.headerTextContainer}>
             <span className={styles.headerText}>
               We Believe in{" "}
-              <span style={{ color: "#1D1CE5" }}> Transparency </span>
+              <span style={{ color: "#1d1ce5" }}>
+                <Typewriter
+                  words={["Transparency", "Traceability", "Trust"]}
+                  loop={5}
+                  cursor
+                  cursorStyle='_'
+                  typeSpeed={80}
+                  deleteSpeed={60}
+                  delaySpeed={1100}
+                />
+              </span>
             </span>
             <span className={styles.headerSubText}>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque

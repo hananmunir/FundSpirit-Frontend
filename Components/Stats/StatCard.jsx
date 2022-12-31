@@ -1,7 +1,7 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import styles from "./Stats.module.css";
-
+import CountUp from "react-countup";
 export default function StatCard({ src, figure, text }) {
   return (
     <Col
@@ -12,7 +12,16 @@ export default function StatCard({ src, figure, text }) {
     >
       <img src={src} alt='charity-icon' className={styles.charityIcon} />
       <span className={styles.statFigure + " mt-4 mb-2"}>
-        {figure.toLocaleString()}
+        <CountUp
+          start={0}
+          end={parseInt(figure)}
+          duration={2.75}
+          separator=','
+          prefix='$'
+          // suffix='k'
+          onEnd={() => console.log("Ended! 👏")}
+          onStart={() => console.log("Started! 💨")}
+        />
       </span>
       <span className={styles.statSubText}>{text}</span>
     </Col>

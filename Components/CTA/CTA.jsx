@@ -1,23 +1,30 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./CTA.module.css";
+import { useRouter } from "next/router";
 
 const ItemContent = [
   {
     title: "Donate",
     description: "Explore projects to contribute to around the world.",
     svg: "/SVG/donate.svg",
-    btnText: "Discover Projects",
+    btnText: "Discover",
+    url: "/campaigns",
   },
   {
     title: "Raise",
     description: "Nonprofits ready to fundraise can start a project here",
     svg: "/SVG/raise.svg",
     btnText: "Fundraise",
+    url: "/campaigns",
   },
 ];
 
-const Item = ({ title, description, svg, btnText }) => {
+const Item = ({ title, description, svg, btnText, url }) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(url);
+  };
   return (
     <Col
       lg={6}
@@ -30,7 +37,9 @@ const Item = ({ title, description, svg, btnText }) => {
       </div>
       <span className='fs-4 my-3'>{title}</span>
       <span className={styles.desc}>{description}</span>
-      <button className={styles.btn + "  mt-3"}>{btnText}</button>
+      <button className={styles.btn + "  mt-3"} onClick={handleClick}>
+        {btnText}
+      </button>
     </Col>
   );
 };

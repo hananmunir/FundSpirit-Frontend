@@ -5,17 +5,17 @@ import styles from "./Stats.module.css";
 const statCards = [
   {
     src: "/Images/donationRecieved.png",
-    figure: 21000,
+    figure: 27000,
     text: "Donations Recieved",
   },
   {
     src: "/Images/donationTransferred.png",
-    figure: 2121000,
+    figure: 25000,
     text: "Donations Transferred",
   },
   {
     src: "/Images/totalCampaigns.png",
-    figure: 1000,
+    figure: 30,
     text: "Total Campaigns",
   },
 ];
