@@ -43,7 +43,7 @@ export default function Navigationbar() {
 
   async function connectWallet() {
     try {
-      web3Modal.clearCachedProvider();
+      //web3Modal.clearCachedProvider();
       const web3ModalInstance = await web3Modal.connect();
       const web3Provider = new ethers.providers.Web3Provider(web3ModalInstance);
       const signer = web3Provider.getSigner();
@@ -79,7 +79,7 @@ export default function Navigationbar() {
               </Nav>
 
               <Nav className='ms-3'>
-                <Link href='/'>
+                <Link href='/npos'>
                   <span className='link pointer'>NPO Partners</span>
                 </Link>
               </Nav>

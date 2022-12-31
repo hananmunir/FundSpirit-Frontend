@@ -16,18 +16,12 @@ const AmountField = ({ amount }) => {
   );
 };
 
-export default function Fund() {
-  const [show, setShow] = useState(false);
-
-
+export default function Fund({ show, setShow }) {
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant='primary' onClick={handleShow}>
-        Show
-      </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className='d-flex justify-content-center align-items-center'>
           <span className='fs-4'> Choose an amount to give</span>

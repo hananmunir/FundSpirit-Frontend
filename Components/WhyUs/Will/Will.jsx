@@ -36,8 +36,8 @@ export default function Will() {
         <h4>FUNDSPIRIT WILL</h4>
       </div>
       <Row>
-        {ItemContent.map((item) => (
-          <Item {...item} />
+        {ItemContent.map((item, index) => (
+          <Item {...item} key={index} />
         ))}
       </Row>
     </Container>

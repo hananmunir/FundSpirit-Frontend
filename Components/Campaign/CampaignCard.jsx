@@ -1,21 +1,41 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Col } from "react-bootstrap";
-import Image from "next/image";
-import styles from "./Campaign.module.css";
+import styles from "./index.module.css";
+import Fund from "./Fund/Fund";
+import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 
-export default function CampaignCard() {
+export default function CampaignCard({ liked, isBacked }) {
+  const [showFundModal, setShowFundModal] = useState(false);
+  const [isLiked, setIsLiked] = useState(liked);
+  const handleFundClick = () => {
+    setShowFundModal(true);
+  };
   return (
-    <Col md={6} lg={4} className='d-flex flex-column mt-3 p-3 '>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Image
-          src='/Images/Campaign-2.jpg'
-          style={styles.cardImage}
-          height={200}
-          width={150}
-          blurDataURL='data:...'
-          placeholder='blur'
+    <Col
+      md={6}
+      lg={4}
+      className='d-flex flex-column mt-3 p-3'
+      style={{ position: "relative" }}
+    >
+      {isLiked ? (
+        <FaHeart
+          className={styles.heartIcon}
+          color='#e31b23'
+          size={30}
+          onClick={() => setIsLiked(!isLiked)}
         />
-      </Suspense>
+      ) : (
+        <FiHeart
+          className={styles.heartIcon}
+          color='#fff'
+          size={30}
+          onClick={() => setIsLiked(!isLiked)}
+        />
+      )}
+
+      <img src='/Images/Campaign-2.jpg' className={styles.cardImage} />
+
       <span className='fs-3 mt-2'>Card Title</span>
       <span className={styles.cardDesc}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
@@ -37,7 +57,10 @@ export default function CampaignCard() {
           <span>$ 17,000</span>
         </div>
       </div>
-      <button className={styles.btn + " mx-1 mt-3"}>Fund Now</button>
+      <button className={styles.btn + " mx-1 mt-3"} onClick={handleFundClick}>
+        {isBacked ? "Fund Again" : "Fund Now"}
+      </button>
+      <Fund show={showFundModal} setShow={setShowFundModal} />
     </Col>
   );
 }

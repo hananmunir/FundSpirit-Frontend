@@ -10,7 +10,7 @@ const DynamicStats = dynamic(() => import("../Components/Stats/Stats"), {
   suspense: true,
 });
 const DynamicCampaigns = dynamic(
-  () => import("../Components/CampaignsHome/CampaignCards"),
+  () => import("../Components/Campaign/CampaignsHome/CampaignCards"),
   {
     suspense: true,
   }

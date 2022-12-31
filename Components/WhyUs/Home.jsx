@@ -49,8 +49,8 @@ export default function Home() {
         <span className={styles.headingWhyUsHome + " fs-1"}>Why Us?</span>
       </center>
       <Row className='mt-5 pt-2'>
-        {ItemContent.map((item) => (
-          <Item {...item} />
+        {ItemContent.map((item, index) => (
+          <Item {...item} key={index} />
         ))}
       </Row>
     </Container>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import styles from "./Campaign.module.css";
+import styles from "./index.module.css";
 
 export default function Campaign() {
   return (

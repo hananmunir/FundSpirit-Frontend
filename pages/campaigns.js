@@ -1,8 +1,6 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import CampaignCard from "../Components/Campaign/CampaignCard";
 import CampaignHeader from "../Components/Campaign/CampaignHeader";
-import Fund from "../Components/Fund/Fund";
 import dynamic from "next/dynamic";
 
 const DynamicCampaignCard = dynamic(
@@ -11,6 +9,7 @@ const DynamicCampaignCard = dynamic(
     ssr: true,
   }
 );
+
 
 export default function Campaigns() {
   return (
@@ -25,7 +24,6 @@ export default function Campaigns() {
           <DynamicCampaignCard />
           <DynamicCampaignCard />
         </Row>
-        <Fund />
       </Container>
     </>
   );
