@@ -8,8 +8,13 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 import styles from "./Navigation.module.css";
 import { useEffect } from "react";
-import Modal from "./Model.js";
+import Modal from "./Auth.js";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const DynamicAuth = dynamic(() => import("./Auth.js"), {
+  ssr: false,
+});
 
 const providerOptions = {
   binancechainwallet: {
@@ -117,7 +122,7 @@ export default function Navigationbar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Modal show={show} setShow={setShow} />
+      <DynamicAuth show={show} setShow={setShow} />
     </>
   );
 }

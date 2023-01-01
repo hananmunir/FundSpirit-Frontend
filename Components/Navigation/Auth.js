@@ -1,20 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col, Row } from "react-bootstrap";
+import { useRouter } from "next/router";
 
-//const user = { name: "", email: "", password: "" };
+const userData = { name: "", email: "", password: "" };
 
-function Model({ show, setShow }) {
+function Auth({ show, setShow }) {
+  const router = useRouter();
   const handleClose = () => setShow(false);
-  //boolean var
+  const [user, setUser] = useState(userData);
   const [login, setLogin] = useState(true);
-  //function to change boolean var
+
   const handleLogin = () => {
+    router.push("/user/1");
+    console.log("Here");
+    setShow(false);
+  };
+
+  //function to change boolean var
+  const handleLoginLink = () => {
     setLogin(false);
   };
-  const handleRegister = () => {
+  const handleRegisterLink = () => {
     setLogin(true);
   };
-  //const [formData, setFormData] = useState(user); //states
+
+  const isLoginValid = () => {
+    return user.email === "" || user.password === "";
+  };
+  const isRegisterValid = () => {
+    return user.name === "" || user.email === "" || user.password === "";
+  };
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -28,19 +43,34 @@ function Model({ show, setShow }) {
             ) : (
               <Form.Group className='mb-3' controlId='formBasicEmail'>
                 <Form.Label>Name</Form.Label>
-                <Form.Control type='name' placeholder='Enter name' />
+                <Form.Control
+                  type='name'
+                  placeholder='Enter name'
+                  onChange={(e) => setUser({ ...user, name: e.target.value })}
+                  value={user.name}
+                />
                 <Form.Text className='text-muted'></Form.Text>
               </Form.Group>
             )}
             <Form.Group className='mb-3' controlId='formBasicEmail'>
               <Form.Label>Email address</Form.Label>
-              <Form.Control type='email' placeholder='Enter email' />
+              <Form.Control
+                type='email'
+                placeholder='Enter email'
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                value={user.email}
+              />
               <Form.Text className='text-muted'></Form.Text>
             </Form.Group>
 
             <Form.Group className='mb-3' controlId='formBasicPassword'>
               <Form.Label>Password</Form.Label>
-              <Form.Control type='password' placeholder='Password' />
+              <Form.Control
+                type='password'
+                placeholder='Password'
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
+                value={user.password}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -48,8 +78,9 @@ function Model({ show, setShow }) {
         <div className=' d-flex flex-column align-items-center p-4 pt-2'>
           <Button
             variant='primary'
-            onClick={(e) => handleClose()}
+            onClick={handleLogin}
             className='w-25 align-self-end mb-3'
+            disabled={login ? isLoginValid() : isRegisterValid()}
           >
             {login ? "Login" : "Register"}
           </Button>
@@ -60,7 +91,7 @@ function Model({ show, setShow }) {
                   <span>
                     Don't have an account?{" "}
                     <span
-                      onClick={() => handleLogin()}
+                      onClick={() => handleLoginLink()}
                       style={{ color: "blue", cursor: "pointer" }}
                     >
                       Register Here
@@ -70,7 +101,7 @@ function Model({ show, setShow }) {
                   <span>
                     Already have an account?{" "}
                     <span
-                      onClick={() => handleRegister()}
+                      onClick={() => handleRegisterLink()}
                       style={{ color: "blue", cursor: "pointer" }}
                     >
                       Login Here
@@ -86,4 +117,4 @@ function Model({ show, setShow }) {
   );
 }
 
-export default Model;
+export default Auth;

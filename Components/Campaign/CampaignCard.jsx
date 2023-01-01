@@ -4,19 +4,25 @@ import styles from "./index.module.css";
 import Fund from "./Fund/Fund";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
-
+import { useRouter } from "next/router";
 export default function CampaignCard({ liked, isBacked }) {
+  const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
   const [isLiked, setIsLiked] = useState(liked);
   const handleFundClick = () => {
     setShowFundModal(true);
+  };
+  const handleNavigate = () => {
+    //redirect
+    router.push("/campaign/1");
   };
   return (
     <Col
       md={6}
       lg={4}
       className='d-flex flex-column mt-3 p-3'
-      style={{ position: "relative" }}
+      style={{ position: "relative", cursor: "pointer" }}
+      onClick={handleNavigate}
     >
       {isLiked ? (
         <FaHeart

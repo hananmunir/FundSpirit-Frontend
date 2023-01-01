@@ -3,10 +3,17 @@ import { Col } from "react-bootstrap";
 import styles from "./Campaign.module.css";
 import { gsap } from "gsap";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { useRouter } from "next/router";
+
 export default function CampaignCard({ lg }) {
+  const router = useRouter();
   const ref = React.useRef(null);
   const [show, setShow] = React.useState(false);
   const descRef = React.useRef(null);
+  const handeClick = () => {
+    //redirect
+    router.push("/campaigns");
+  };
 
   useEffect(() => {
     if (show) {
@@ -52,7 +59,9 @@ export default function CampaignCard({ lg }) {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla
             voluptates impedi ...
           </span>
-          <button className={styles.btn}>View More</button>
+          <button className={styles.btn} onClick={handeClick}>
+            View More
+          </button>
         </div>
       </div>
     </Col>
