@@ -26,7 +26,6 @@ function Updates() {
             className='w-50'
             style={{
               marginTop: "1rem",
-              marginBottom: "1rem",
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
@@ -38,6 +37,15 @@ function Updates() {
             elit. Velit beatae cupiditate, eligendi ex, eius perspiciatis
             suscipit consectetur consequatur architecto expedita consequuntur
             aut quae cumque nostrum minima accusamus tempora fuga quo!
+          </span>
+          <span
+            style={{
+              color: "#1d1ce5",
+              fontSize: "1.2rem",
+              marginBottom: "1rem",
+            }}
+          >
+            Read more...
           </span>
           <div className='d-flex flex-row align-items-center'>
             <RiShareBoxFill color='#474747' className='me-1' size={30} />{" "}

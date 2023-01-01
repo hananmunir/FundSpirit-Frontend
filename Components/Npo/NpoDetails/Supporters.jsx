@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import SupporterCard from "./SupporterCard";
 import styles from "./index.module.css";
 
 function Supporters() {
@@ -10,6 +11,10 @@ function Supporters() {
           <div className='d-flex flex-row align-items-center justifty-content-center mb-2'>
             <span className={styles.orgGoals}>Our Supporters</span>
           </div>
+          <Row>
+            <SupporterCard />
+            <SupporterCard />
+          </Row>
         </Col>
       </Row>
     </Container>

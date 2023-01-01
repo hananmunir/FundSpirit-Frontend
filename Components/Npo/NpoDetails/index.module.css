@@ -71,3 +71,9 @@
 .projectSubtitle {
   font-size: 1.5rem;
 }
+
+.roundedSupporterImage {
+  border-radius: 50%;
+  width: 60%;
+  height: 140%;
+}
