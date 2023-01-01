@@ -48,7 +48,11 @@
     width: 25%;
     margin-top: .2rem;
     margin-bottom: 1rem;
+    transition: .5s ease-out;
+}
 
+.btn:hover {
+    letter-spacing: 1.2px;
 }
 
 
@@ -81,4 +85,10 @@
 .projectSubtitle {
     font-size: 1.5rem;
 
+}
+
+.roundedSupporterImage {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
 }

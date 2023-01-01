@@ -2,31 +2,31 @@ import React from "react";
 import { Col } from "react-bootstrap";
 import styles from "./index.module.css";
 
-function SupporterCard() {
+export default function PurchaseCard() {
   return (
     <Col lg={2} className='d-flex flex-column'>
-      <div className='d-flex flex-column align-items-center mb-5 mt-4'>
-        <img src='/Images/shawn.jpg' className={styles.roundedSupporterImage} />
+      <div className='d-flex flex-column align-items-center mb-2 mt-2 border p-2 rounded pointer'>
+        <img
+          src='/Images/Daraz-logo.png'
+          className={styles.roundedSupporterImage}
+        />
         <span
           style={{
             color: "#474747",
-            fontSize: "1.2rem",
+            fontSize: ".8rem",
           }}
         >
-          Shawn
+          Order 9323...2
         </span>
         <span
           style={{
             color: "#1d1ce5",
-            fontSize: "1.2rem",
-            fontWeight: "bold",
+            fontSize: ".9rem",
           }}
         >
-          200 USD
+          1000 USD
         </span>
       </div>
     </Col>
   );
 }
-
-export default SupporterCard;

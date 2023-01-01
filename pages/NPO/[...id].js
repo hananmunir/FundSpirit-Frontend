@@ -17,8 +17,8 @@ const DynamicUpdates = dynamic(
   }
 );
 
-const DynamicSupporters = dynamic(
-  () => import("../../Components/Npo/NpoDetails/Supporters"),
+const DynamicPurchases = dynamic(
+  () => import("../../Components/Npo/NpoDetails/RecentPurchases"),
   {
     suspense: true,
   }
@@ -26,22 +26,21 @@ const DynamicSupporters = dynamic(
 
 export default function NPO() {
   return (
-    <div>
+    <Container fluid className='m-0 p-0 overflow-hidden'>
       <Row>
         <img
-          src='/Images/shaukatk.jpg'
+          src='/Images/shaukatk.png'
           className='w-100'
           style={{
-            height: "50vh",
-            objectFit: "cover",
+            objectFit: "contain",
           }}
         />
       </Row>
       <Suspense>
         <DynamicGoals />
         <DynamicUpdates />
-        <DynamicSupporters />
+        <DynamicPurchases />
       </Suspense>
-    </div>
+    </Container>
   );
 }

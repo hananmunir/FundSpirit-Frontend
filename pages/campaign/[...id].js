@@ -13,6 +13,12 @@ const DynamicOverview = dynamic(
     suspense: true,
   }
 );
+const DynamicSupporters = dynamic(
+  () => import("../../Components/Campaign/Details/Supporters"),
+  {
+    suspense: true,
+  }
+);
 export default function Campaign() {
   return (
     <div>
@@ -29,6 +35,7 @@ export default function Campaign() {
           </div>
         </div>
         <DynamicOverview />
+        <DynamicSupporters />
       </Suspense>
     </div>
   );
