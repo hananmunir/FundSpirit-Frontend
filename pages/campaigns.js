@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import CampaignHeader from "../Components/Campaign/CampaignHeader";
+import CampaignHeader from "../Components/Campaign/SearchContainer";
 import dynamic from "next/dynamic";
 
 const DynamicCampaignCard = dynamic(
@@ -9,7 +9,6 @@ const DynamicCampaignCard = dynamic(
     ssr: true,
   }
 );
-
 
 export default function Campaigns() {
   return (

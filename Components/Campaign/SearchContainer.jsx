@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
 
-function CampaignHeader({ npo }) {
+function SearchContainer({ npo }) {
   const [searchQuery, setSearchQuery] = React.useState("");
   return (
     <Container fluid className={styles.campaignHeader}>
@@ -31,4 +31,4 @@ function CampaignHeader({ npo }) {
   );
 }
 
-export default CampaignHeader;
+export default SearchContainer;

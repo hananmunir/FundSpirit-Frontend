@@ -1,0 +1,84 @@
+.headerContainer {
+    background-color: #333333;
+    padding: 20px;
+
+    height: 62vh;
+    color: #fff;
+}
+
+.headerImage {
+    width: 100%;
+    height: 75%;
+    border-radius: 20px;
+}
+
+
+.headerContentContainer {
+    height: 52vh;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.subHeading {
+    color: #eee;
+    font-size: .9rem;
+}
+
+.CTA {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+
+}
+
+
+.btn {
+    background-color: #1d1ce5;
+    color: #fff;
+    padding: .4rem 2rem;
+    border: 1px solid #1d1ce5;
+    border-radius: 5px;
+    width: 25%;
+    margin-top: .2rem;
+    margin-bottom: 1rem;
+
+}
+
+
+
+.shareLinks {
+    border-left: 1px solid #676767;
+    padding-left: 15px;
+}
+
+.linkIcon {
+    cursor: pointer;
+}
+
+
+.projectTitle {
+    font-size: 2rem;
+}
+
+.projectTitle::after {
+    content: '';
+    display: block;
+    width: 5%;
+    height: 5px;
+    background-color: #1d1ce5;
+    border-radius: 5px;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+}
+
+.projectSubtitle {
+    font-size: 1.5rem;
+
+}
