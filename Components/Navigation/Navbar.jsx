@@ -66,7 +66,8 @@ export default function Navigationbar() {
         <Container fluid className='p-3'>
           <Navbar.Brand>
             <Link href='/'>
-              <span className='link pointer'>Fund Spirit</span>
+              <img style = {{height: '50px', objectFit:'contain'}}  className='link pointer' src = {'/SiteLogo/logo-no-background.png'} />
+            
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />

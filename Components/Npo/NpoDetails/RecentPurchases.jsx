@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import SupporterCard from "./SupporterCard";
 import PurchaseCard from "./PurchaseCard";
 import styles from "./index.module.css";
 

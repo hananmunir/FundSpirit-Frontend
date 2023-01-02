@@ -31,7 +31,7 @@ const Item = ({ title, description, svg }) => {
 };
 export default function Will() {
   return (
-    <Container fluid className='mb-4'>
+    <Container fluid className='mb-5 pb-3'>
       <div className={styles.sectionWillHeading}>
         <h4>FUNDSPIRIT WILL</h4>
       </div>

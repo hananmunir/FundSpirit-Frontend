@@ -5,6 +5,133 @@ import Fund from "./Fund/Fund";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
+
+const campaign = [{
+  name:'',
+  subTitle: '',
+  description:'',
+  goals:'',
+  categories: ['category1','category2']
+  currentFunds: 1,
+  totalFunds:1,
+  isLiked: true
+  imageUrl: ''
+
+},{
+  name:'',
+  subTitle: '',
+  description:'',
+  goals:'',
+  categories: ['category1','category2']
+  currentFunds: 1,
+  totalFunds:1,
+  isLiked: true
+  imageUrl: ''
+
+},{
+  name:'',
+  subTitle: '',
+  description:'',
+  goals:'',
+  categories: ['category1','category2']
+  currentFunds: 1,
+  totalFunds:1,
+  isLiked: true
+  imageUrl: ''
+
+},{
+  name:'',
+  subTitle: '',
+  description:'',
+  goals:'',
+  categories: ['category1','category2']
+  currentFunds: 1,
+  totalFunds:1,
+  isLiked: true
+  imageUrl: ''
+
+},{
+  name:'',
+  subTitle: '',
+  description:'',
+  goals:'',
+  categories: ['category1','category2']
+  currentFunds: 1,
+  totalFunds:1,
+  isLiked: true
+  imageUrl: ''
+
+},{
+  name:'',
+  subTitle: '',
+  description:'',
+  goals:'',
+  categories: ['category1','category2']
+  currentFunds: 1,
+  totalFunds:1,
+  isLiked: true
+  imageUrl: ''
+
+},
+]
+
+const organization = [{
+  name:'',
+  description:'',
+  goals:'',
+  currentFunds: 1,
+  totalFunds:1,
+  address: '',
+  imageUrl: '',
+  categories: ['category1', 'category2']
+},
+{
+  name:'',
+  description:'',
+  goals:'',
+  currentFunds: 1,
+  totalFunds:1,
+  address: '',
+  imageUrl: '',
+  categories: ['category1', 'category2']
+}{
+  name:'',
+  description:'',
+  goals:'',
+  currentFunds: 1,
+  totalFunds:1,
+  address: '',
+  imageUrl: '',
+  categories: ['category1', 'category2']
+}{
+  name:'',
+  description:'',
+  goals:'',
+  currentFunds: 1,
+  totalFunds:1,
+  address: '',
+  imageUrl: '',
+  categories: ['category1', 'category2']
+}{
+  name:'',
+  description:'',
+  goals:'',
+  currentFunds: 1,
+  totalFunds:1,
+  address: '',
+  imageUrl: '',
+  categories: ['category1', 'category2']
+}{
+  name:'',
+  description:'',
+  goals:'',
+  currentFunds: 1,
+  totalFunds:1,
+  address: '',
+  imageUrl: '',
+  categories: ['category1', 'category2']
+}
+]
 export default function CampaignCard({ liked, isBacked }) {
   const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
@@ -45,8 +172,10 @@ export default function CampaignCard({ liked, isBacked }) {
             eveniet sapiente, sunt, sequi accusamus vero qui earum quas
             provident perspiciatis deserunt suscip
             <span
-              style={{ color: "#1d1ce5", fontWeight: 400 }}
+              style={{ color: "#1d1ce5", fontWeight: 400, cursor: 'pointer'}}
               onClick={handleNavigate}
+           
+
             >
               {" "}
               read more ...

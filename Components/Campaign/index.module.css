@@ -61,13 +61,12 @@
 
 .cardContainer {
     position: relative;
-    cursor: pointer;
     border-radius: 20px;
     z-index: 9;
 }
 
 .campaignHeader {
-    background-color: #333333;
+    background-color: #1f2829;
     height: 55vh;
     color: #fff !important;
     display: flex;
@@ -120,6 +119,8 @@
 
 .campaignHeaderSearchBtn:hover {
     cursor: pointer;
+    letter-spacing:1.1px;
+    transform:scale(1.1)
 
 }
 

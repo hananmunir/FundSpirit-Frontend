@@ -14,7 +14,7 @@ export default function Campaigns() {
   return (
     <>
       <CampaignHeader />
-      <Container>
+      <Container className = 'mb-5'>
         <Row className='gx-5'>
           <DynamicCampaignCard />
           <DynamicCampaignCard />

@@ -22,7 +22,7 @@ function NpoCard() {
       }}
       onClick={handleNavigate}
     >
-      <img src='/Images/shaukatk.jpg' className={styles.NpoCardImage} />
+      <img src='/Images/shaukatk.png' className={styles.NpoCardImage} />
       <span className='fs-3 mt-2'>Card Title</span>
       <div className='NpoDetails'>
         <div>
