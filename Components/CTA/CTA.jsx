@@ -16,7 +16,7 @@ const ItemContent = [
     description: "Nonprofits ready to fundraise can start a project here",
     svg: "/SVG/raise.svg",
     btnText: "Fundraise",
-    url: "/campaigns",
+    url: "/npo",
   },
 ];
 

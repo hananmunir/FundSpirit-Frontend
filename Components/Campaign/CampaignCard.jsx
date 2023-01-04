@@ -6,9 +6,8 @@ import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
 
-
 export default function CampaignCard({ liked, isBacked, campaign }) {
-  console.log(campaign, "Data of Campaign")
+  console.log(campaign, "Data of Campaign");
   const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
   const [isLiked, setIsLiked] = useState(liked);
@@ -16,13 +15,15 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
     setShowFundModal(true);
   };
   const handleNavigate = () => {
-    router.push("/campaign/"+campaign.id);
+    router.push("/campaign/" + campaign.id);
   };
   return (
     <>
-      <Col md={6} lg={4} className='mt-3 h-100' onClick={handleNavigate}>
+      <Col md={6} lg={4} className='mt-3 h-100'>
         <div
-          className={"d-flex flex-column p-3 border h-100 " + styles.cardContainer}
+          className={
+            "d-flex flex-column p-3 border h-100 " + styles.cardContainer
+          }
         >
           {isLiked ? (
             <FaHeart
@@ -41,15 +42,13 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
           )}
 
           <img src={campaign.imageUrl} className={styles.cardImage} />
-          
+
           <span className='fs-4 mt-2'>{campaign.name}</span>
           <span className={styles.cardDesc}>
             {campaign.description.slice(0, 130)}
             <span
-              style={{ color: "#1d1ce5", fontWeight: 400, cursor: 'pointer'}}
+              style={{ color: "#1d1ce5", fontWeight: 400, cursor: "pointer" }}
               onClick={handleNavigate}
-           
-
             >
               {" "}
               read more ...
@@ -62,7 +61,7 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
             }
           >
             <div>
-                  {/* currentFunds: "$86,000",
+              {/* currentFunds: "$86,000",
     totalFunds: "$86,000", */}
               <span className={styles.fadeColor + " me-1"}>Current</span>
               <span>$ {campaign.currentFunds}</span>

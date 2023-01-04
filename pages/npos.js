@@ -11,8 +11,8 @@ export default function NPOs() {
   return (
     <div>
       <CampaignHeader npo />
-      <Container className='mb-5 pb-3'>
-        <Row>
+      <Container className='mb-5 pb-3 h-100'>
+        <Row className='h-100'>
           {DummyOrganizations.map((organization) => (
             <DynamicNpoCard organization={organization} />
           ))}

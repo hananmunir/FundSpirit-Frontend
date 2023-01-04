@@ -12,32 +12,33 @@ function NpoCard({ organization }) {
     router.push("/npo/" + organization.id);
   };
   return (
-    <Col
-      md={6}
-      lg={4}
-      className='d-flex flex-column mt-3 p-3 '
-      style={{
-        position: "relative",
-        cursor: "pointer",
-      }}
-      onClick={handleNavigate}
-    >
-      <img src={organization.imageUrl} className={styles.NpoCardImage} />
-      <span className='fs-4 mt-2'>{organization.name}</span>
-      <div className='NpoDetails'>
-        <div>
-          <span className='fadeColor me-1'>
-            <GoLocation />
-          </span>
-          <span style={{ fontSize: ".8rem" }}>{organization.address}</span>
-        </div>
-        <div className='d-flex flex-row '>
-          <span className='fadeColor me-1'>
-            <AiOutlineTag />
-          </span>
-          <div className={styles.tagList}>
-            <span>Education, </span>
-            <span>Health</span>
+    <Col md={6} lg={4} className='h-100'>
+      <div
+        className='d-flex flex-column mt-3 p-3  border h-100  '
+        style={{
+          position: "relative",
+          cursor: "pointer",
+        }}
+        onClick={handleNavigate}
+      >
+        <img src={organization.imageUrl} className={styles.NpoCardImage} />
+        <div className='mt-3'>
+          <span className='fs-4 mt-2'>{organization.name}</span>
+          <div className='NpoDetails'>
+            <div>
+              <span className='fadeColor me-1'>
+                <GoLocation color='#808080' />
+              </span>
+              <span className={styles.address}>{organization.address}</span>
+            </div>
+            <div className='d-flex flex-row '>
+              <span className='fadeColor me-1'>
+                <AiOutlineTag color='#808080' />
+              </span>
+              <div className={styles.tagList}>
+                <span className='me-1'>Education, </span> <span>Health</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
