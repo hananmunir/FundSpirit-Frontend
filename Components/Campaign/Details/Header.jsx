@@ -6,14 +6,14 @@ import { AiFillTag, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 import { SlShareAlt } from "react-icons/sl";
 import Fund from "../Fund/Fund";
-function Header() {
+function Header({campaign}) {
   const [showFund, setShowFund] = useState(false);
   return (
     <Container fluid className={styles.headerContainer}>
       <Row>
         <Col lg={6}>
           <img
-            src='/Images/Campaign-1.jpg'
+            src={campaign?.imageUrl}
             loading='lazy'
             className={styles.headerImage}
           />
@@ -44,11 +44,10 @@ function Header() {
         >
           <div className={styles.headerContent + " mt-4"}>
             <span className={styles.heading + " fs-1"}>
-              Education for all children
+              {campaign?.name}
             </span>
             <span className={styles.subHeading}>
-              Help young children get educated. Help young children get
-              educated.
+             {campaign?.subTitle}
             </span>
           </div>
           <div className={styles.CTA}>

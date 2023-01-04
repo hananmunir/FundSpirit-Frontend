@@ -1,8 +1,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-
+import { DummyOrganizations } from "../../constants/DummyData/Organization";
+import { useRouter } from "next/router";
 const DynamicGoals = dynamic(
   () => import("../../Components/Npo/NpoDetails/Goals"),
   {
@@ -25,21 +26,30 @@ const DynamicPurchases = dynamic(
 );
 
 export default function NPO() {
+  const [organization, setOrganization] = useState();
+  const router = useRouter();
+  const { id } = router.query;
+  useEffect(() => {
+    setOrganization(
+      DummyOrganizations?.filter((org) => org.id === parseInt(id))[0]
+    );
+  });
   return (
     <Container fluid className='m-0 p-0 overflow-hidden'>
       <Row>
         <img
-          src='/Images/shaukatk.png'
+          src={organization?.imageUrl}
           className='w-100'
           style={{
-            objectFit: "contain",
+            height: "60vh",
+            objectFit: "cover",
           }}
         />
       </Row>
       <Suspense>
-        <DynamicGoals />
-        <DynamicUpdates />
-        <DynamicPurchases />
+        <DynamicGoals organization={organization} />
+        <DynamicUpdates organization={organization} />
+        <DynamicPurchases organization={organization} />
       </Suspense>
     </Container>
   );

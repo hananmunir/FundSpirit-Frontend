@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
 import { TbFileDescription } from "react-icons/tb";
 import { GiBullseye } from "react-icons/gi";
-function Overview() {
+function Overview({campaign}) {
   return (
     <>
       <Container>
@@ -15,14 +15,7 @@ function Overview() {
               <span className={styles.projectSubtitle}>Summary</span>
             </div>
             <span className='w-50'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              aperiam officiis adipisci qui commodi. Blanditiis sint rerum
-              laudantium! Delectus nemo cum commodi earum dolorem perferendis
-              accusantium corporis nihil, quia corrupti? Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Velit beatae cupiditate,
-              eligendi ex, eius perspiciatis suscipit consectetur consequatur
-              architecto expedita consequuntur aut quae cumque nostrum minima
-              accusamus tempora fuga quo!
+         {campaign?.description}
             </span>
           </Col>
           <Col className='d-flex flex-column mt-5 mb-3'>
@@ -31,14 +24,7 @@ function Overview() {
               <span className={styles.projectSubtitle}>Goals</span>
             </div>
             <span className='w-50'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              aperiam officiis adipisci qui commodi. Blanditiis sint rerum
-              laudantium! Delectus nemo cum commodi earum dolorem perferendis
-              accusantium corporis nihil, quia corrupti? Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Velit beatae cupiditate,
-              eligendi ex, eius perspiciatis suscipit consectetur consequatur
-              architecto expedita consequuntur aut quae cumque nostrum minima
-              accusamus tempora fuga quo!
+             {campaign?.goals}
             </span>
           </Col>
         </Row>

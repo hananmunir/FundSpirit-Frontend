@@ -1,6 +1,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { DummyCampaigns } from "../../constants/DummyData/Campaigns";
+
 const DyanmicHeader = dynamic(
   () => import("../../Components/Campaign/Details/Header"),
   {
@@ -20,10 +23,19 @@ const DynamicSupporters = dynamic(
   }
 );
 export default function Campaign() {
+  const [campaign, setCampaign] = useState();
+  const router = useRouter();
+  const { id } = router.query;
+  useEffect(() => {
+    setCampaign(
+      DummyCampaigns?.filter((campaign) => campaign.id === parseInt(id))[0]
+    );
+  });
+
   return (
     <div>
       <Suspense>
-        <DyanmicHeader />
+        <DyanmicHeader campaign={campaign} />
         <div
           className='d-flex justify-content-center align-items-center'
           style={{ backgroundColor: "#EDECEC" }}
@@ -34,8 +46,8 @@ export default function Campaign() {
             <span className='pointer'>Supporters</span>
           </div>
         </div>
-        <DynamicOverview />
-        <DynamicSupporters />
+        <DynamicOverview campaign={campaign} />
+        <DynamicSupporters campaign={campaign} />
       </Suspense>
     </div>
   );

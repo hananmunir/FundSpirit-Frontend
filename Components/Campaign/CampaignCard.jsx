@@ -6,133 +6,9 @@ import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
 
-const campaign = [{
-  name:'',
-  subTitle: '',
-  description:'',
-  goals:'',
-  categories: ['category1','category2']
-  currentFunds: 1,
-  totalFunds:1,
-  isLiked: true
-  imageUrl: ''
 
-},{
-  name:'',
-  subTitle: '',
-  description:'',
-  goals:'',
-  categories: ['category1','category2']
-  currentFunds: 1,
-  totalFunds:1,
-  isLiked: true
-  imageUrl: ''
-
-},{
-  name:'',
-  subTitle: '',
-  description:'',
-  goals:'',
-  categories: ['category1','category2']
-  currentFunds: 1,
-  totalFunds:1,
-  isLiked: true
-  imageUrl: ''
-
-},{
-  name:'',
-  subTitle: '',
-  description:'',
-  goals:'',
-  categories: ['category1','category2']
-  currentFunds: 1,
-  totalFunds:1,
-  isLiked: true
-  imageUrl: ''
-
-},{
-  name:'',
-  subTitle: '',
-  description:'',
-  goals:'',
-  categories: ['category1','category2']
-  currentFunds: 1,
-  totalFunds:1,
-  isLiked: true
-  imageUrl: ''
-
-},{
-  name:'',
-  subTitle: '',
-  description:'',
-  goals:'',
-  categories: ['category1','category2']
-  currentFunds: 1,
-  totalFunds:1,
-  isLiked: true
-  imageUrl: ''
-
-},
-]
-
-const organization = [{
-  name:'',
-  description:'',
-  goals:'',
-  currentFunds: 1,
-  totalFunds:1,
-  address: '',
-  imageUrl: '',
-  categories: ['category1', 'category2']
-},
-{
-  name:'',
-  description:'',
-  goals:'',
-  currentFunds: 1,
-  totalFunds:1,
-  address: '',
-  imageUrl: '',
-  categories: ['category1', 'category2']
-}{
-  name:'',
-  description:'',
-  goals:'',
-  currentFunds: 1,
-  totalFunds:1,
-  address: '',
-  imageUrl: '',
-  categories: ['category1', 'category2']
-}{
-  name:'',
-  description:'',
-  goals:'',
-  currentFunds: 1,
-  totalFunds:1,
-  address: '',
-  imageUrl: '',
-  categories: ['category1', 'category2']
-}{
-  name:'',
-  description:'',
-  goals:'',
-  currentFunds: 1,
-  totalFunds:1,
-  address: '',
-  imageUrl: '',
-  categories: ['category1', 'category2']
-}{
-  name:'',
-  description:'',
-  goals:'',
-  currentFunds: 1,
-  totalFunds:1,
-  address: '',
-  imageUrl: '',
-  categories: ['category1', 'category2']
-}
-]
-export default function CampaignCard({ liked, isBacked }) {
+export default function CampaignCard({ liked, isBacked, campaign }) {
+  console.log(campaign, "Data of Campaign")
   const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
   const [isLiked, setIsLiked] = useState(liked);
@@ -140,13 +16,13 @@ export default function CampaignCard({ liked, isBacked }) {
     setShowFundModal(true);
   };
   const handleNavigate = () => {
-    router.push("/campaign/1");
+    router.push("/campaign/"+campaign.id);
   };
   return (
     <>
-      <Col md={6} lg={4} className='mt-3' onClick={handleNavigate}>
+      <Col md={6} lg={4} className='mt-3 h-100' onClick={handleNavigate}>
         <div
-          className={"d-flex flex-column p-3 border " + styles.cardContainer}
+          className={"d-flex flex-column p-3 border h-100 " + styles.cardContainer}
         >
           {isLiked ? (
             <FaHeart
@@ -164,13 +40,11 @@ export default function CampaignCard({ liked, isBacked }) {
             />
           )}
 
-          <img src='/Images/Campaign-2.jpg' className={styles.cardImage} />
-
-          <span className='fs-3 mt-2'>Card Title</span>
+          <img src={campaign.imageUrl} className={styles.cardImage} />
+          
+          <span className='fs-4 mt-2'>{campaign.name}</span>
           <span className={styles.cardDesc}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            eveniet sapiente, sunt, sequi accusamus vero qui earum quas
-            provident perspiciatis deserunt suscip
+            {campaign.description.slice(0, 130)}
             <span
               style={{ color: "#1d1ce5", fontWeight: 400, cursor: 'pointer'}}
               onClick={handleNavigate}
@@ -188,12 +62,14 @@ export default function CampaignCard({ liked, isBacked }) {
             }
           >
             <div>
+                  {/* currentFunds: "$86,000",
+    totalFunds: "$86,000", */}
               <span className={styles.fadeColor + " me-1"}>Current</span>
-              <span>$ 17,000</span>
+              <span>$ {campaign.currentFunds}</span>
             </div>
             <div>
               <span className={styles.fadeColor + " me-1"}>All Time</span>
-              <span>$ 17,000</span>
+              <span>$ {campaign.totalFunds}</span>
             </div>
           </div>
           <button
