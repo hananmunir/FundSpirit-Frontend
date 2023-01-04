@@ -63,11 +63,14 @@ export default function Navigationbar() {
   return (
     <>
       <Navbar expand='lg' className={styles.ownNavbar}>
-        <Container fluid className='p-3'>
+        <Container fluid className='p-1'>
           <Navbar.Brand>
             <Link href='/'>
-              <img style = {{height: '50px', objectFit:'contain'}}  className='link pointer' src = {'/SiteLogo/logo-no-background.png'} />
-            
+              <img
+                style={{ height: "50px", objectFit: "contain" }}
+                className='link pointer'
+                src={"/SiteLogo/logo-no-background.png"}
+              />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />

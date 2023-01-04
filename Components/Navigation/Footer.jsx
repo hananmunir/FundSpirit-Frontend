@@ -7,15 +7,19 @@ import {
   FaPinterestP,
 } from "react-icons/fa";
 import styles from "./Navigation.module.css";
-
+import { useRouter } from "next/router";
 function Footer() {
+  const router = useRouter();
+  const handleNavigation = (path) => {
+    router.push(path);
+  };
   return (
     <div className={styles.footerSection}>
       <Container>
         <Row className={styles.footerContainer}>
           <Col lg>
             <div className={styles.footerAbout}>
-              <span className={styles.footerAboutTitle}>About TotheStars</span>
+              <span className={styles.footerAboutTitle}>About FundSpirit</span>
               <span className={styles.footerAboutDescription}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
                 dolorem magnam nam architecto quod aliquid, et officia, quis,
@@ -29,18 +33,48 @@ function Footer() {
               <span className={styles.footerNavigationTitle}>Navigation</span>
               <div className={styles.navLinksContainer}>
                 <ul className={styles.navigationLinks}>
-                  <li className={styles.navigationLink}>Home</li>
-                  <li className={styles.navigationLink}>Campaigns</li>
-                  <li className={styles.navigationLink}>Organizations</li>
-                  <li className={styles.navigationLink}>Track Funds</li>
+                  <li
+                    className={styles.navigationLink}
+                    onClick={() => handleNavigation("/")}
+                  >
+                    Home
+                  </li>
+                  <li
+                    className={styles.navigationLink}
+                    onClick={() => handleNavigation("/campaigns")}
+                  >
+                    Campaigns
+                  </li>
+                  <li
+                    className={styles.navigationLink}
+                    onClick={() => handleNavigation("/npo")}
+                  >
+                    NPO Partners
+                  </li>
+                  <li
+                    className={styles.navigationLink}
+                    onClick={() => handleNavigation("/user/1")}
+                  >
+                    Track Funds
+                  </li>
                 </ul>
                 <ul
                   className={
                     styles.navigationLinks + " " + styles.rightNavigationLinks
                   }
                 >
-                  <li className={styles.navigationLink}>About Us</li>
-                  <li className={styles.navigationLink}>Contact Us</li>
+                  <li
+                    className={styles.navigationLink}
+                    onClick={() => handleNavigation("/about")}
+                  >
+                    About Us
+                  </li>
+                  <li
+                    className={styles.navigationLink}
+                    onClick={() => handleNavigation("/contact")}
+                  >
+                    Contact Us
+                  </li>
                   <li className={styles.navigationLink}>Privacy Policy</li>
                   <li className={styles.navigationLink}></li>
                 </ul>
