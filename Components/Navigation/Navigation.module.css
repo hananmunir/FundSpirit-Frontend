@@ -199,6 +199,14 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .btn {
+    width: 60%;
+  }
+
+
+}
+
 @media screen and (max-width: 600px) {
   .navLinksContainer {
     width: 100%;

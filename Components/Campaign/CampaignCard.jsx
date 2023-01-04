@@ -41,11 +41,11 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
             />
           )}
 
-          <img src={campaign.imageUrl} className={styles.cardImage} />
+          <img src={campaign?.imageUrl} className={styles.cardImage} />
 
-          <span className='fs-4 mt-2'>{campaign.name}</span>
+          <span className='fs-4 mt-2'>{campaign?.name}</span>
           <span className={styles.cardDesc}>
-            {campaign.description.slice(0, 130)}
+            {campaign?.description.slice(0, 130)}
             <span
               style={{ color: "#1d1ce5", fontWeight: 400, cursor: "pointer" }}
               onClick={handleNavigate}
@@ -64,11 +64,11 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
               {/* currentFunds: "$86,000",
     totalFunds: "$86,000", */}
               <span className={styles.fadeColor + " me-1"}>Current</span>
-              <span>$ {campaign.currentFunds}</span>
+              <span>$ {campaign?.currentFunds}</span>
             </div>
             <div>
               <span className={styles.fadeColor + " me-1"}>All Time</span>
-              <span>$ {campaign.totalFunds}</span>
+              <span>$ {campaign?.totalFunds}</span>
             </div>
           </div>
           <button
