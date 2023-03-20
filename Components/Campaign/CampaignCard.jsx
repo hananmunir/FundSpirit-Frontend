@@ -7,7 +7,6 @@ import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
 
 export default function CampaignCard({ liked, isBacked, campaign }) {
-  console.log(campaign, "Data of Campaign");
   const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
   const [isLiked, setIsLiked] = useState(liked);

@@ -3,6 +3,17 @@ import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { DummyCampaigns } from "../../constants/DummyData/Campaigns";
+import CampaignFactory from "../../artifacts/contracts/CampaignFactory.sol/CampaignFactory.json";
+import Campain from "../../artifacts/contracts/Campaign.sol/Campaign.json";
+import Web3 from "web3";
+import { useWeb3Contract, useMoralis } from "react-moralis";
+
+const web3 = new Web3("http://localhost:8545");
+const provider = new Web3.providers.HttpProvider("http://localhost:8545");
+const myContract = new web3.eth.Contract(
+  CampaignFactory.abi,
+  "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+);
 
 const DyanmicHeader = dynamic(
   () => import("../../Components/Campaign/Details/Header"),
@@ -26,11 +37,23 @@ export default function Campaign() {
   const [campaign, setCampaign] = useState();
   const router = useRouter();
   const { id } = router.query;
+  const [state, setState] = useState();
+
   useEffect(() => {
     setCampaign(
       DummyCampaigns?.filter((campaign) => campaign.id === parseInt(id))[0]
     );
-  });
+    const getCampaigns = async () => {
+      const address = await myContract.methods.getAllCampaigns().call();
+
+      setState(new web3.eth.Contract(Campain.abi, address[0]));
+      console.log(
+        //convert to ether
+        web3.utils.fromWei(await state?.methods.getBalance().call())
+      );
+    };
+    getCampaigns();
+  }, []);
 
   return (
     <div>
