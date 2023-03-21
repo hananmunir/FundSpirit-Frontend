@@ -1,14 +1,17 @@
-import React, { Suspense, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import styles from "./index.module.css";
 import Fund from "./Fund/Fund";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
-
-export default function CampaignCard({ liked, isBacked, campaign }) {
+import { getCampaign, getBalance } from "../../Web3/Campaign";
+import Web3 from "web3";
+export default function CampaignCard({ liked, isBacked, campaign, address }) {
   const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
+  const [campaignData, setCampaignData] = useState();
+  const [funds, setFunds] = useState(0);
   const [isLiked, setIsLiked] = useState(liked);
   const handleFundClick = () => {
     setShowFundModal(true);
@@ -16,6 +19,26 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
   const handleNavigate = () => {
     router.push("/campaign/" + campaign.id);
   };
+
+  useEffect(() => {
+    if (address) {
+      getCampaign(address).then((res) => {
+        setCampaignData({
+          name: res.name,
+          description: res.description,
+          // imageUrl: res.imageUrl,
+          // currentFunds: res.currentFunds,
+          // totalFunds: res.totalFunds,
+          tags: res.tags,
+          tagline: res.tagline,
+        });
+      });
+      getBalance(address).then((res) => {
+        //still have to make conversion dynamic
+        setFunds(Web3.utils.fromWei(res.toString(), "ether") * 1800.2);
+      });
+    }
+  }, [address]);
   return (
     <>
       <Col md={6} lg={4} className='mt-3 h-100'>
@@ -42,9 +65,9 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
 
           <img src={campaign?.imageUrl} className={styles.cardImage} />
 
-          <span className='fs-4 mt-2'>{campaign?.name}</span>
+          <span className='fs-4 mt-2'>{campaignData?.name}</span>
           <span className={styles.cardDesc}>
-            {campaign?.description.slice(0, 130)}
+            {campaignData?.description.slice(0, 130)}
             <span
               style={{ color: "#1d1ce5", fontWeight: 400, cursor: "pointer" }}
               onClick={handleNavigate}
@@ -60,10 +83,8 @@ export default function CampaignCard({ liked, isBacked, campaign }) {
             }
           >
             <div>
-              {/* currentFunds: "$86,000",
-    totalFunds: "$86,000", */}
               <span className={styles.fadeColor + " me-1"}>Current</span>
-              <span>$ {campaign?.currentFunds}</span>
+              <span>$ {funds}</span>
             </div>
             <div>
               <span className={styles.fadeColor + " me-1"}>All Time</span>

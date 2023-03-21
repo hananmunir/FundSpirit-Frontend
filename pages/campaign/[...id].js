@@ -6,7 +6,6 @@ import { DummyCampaigns } from "../../constants/DummyData/Campaigns";
 import CampaignFactory from "../../artifacts/contracts/CampaignFactory.sol/CampaignFactory.json";
 import Campain from "../../artifacts/contracts/Campaign.sol/Campaign.json";
 import Web3 from "web3";
-import { useWeb3Contract, useMoralis } from "react-moralis";
 
 const web3 = new Web3("http://localhost:8545");
 const provider = new Web3.providers.HttpProvider("http://localhost:8545");
@@ -46,14 +45,20 @@ export default function Campaign() {
     const getCampaigns = async () => {
       const address = await myContract.methods.getAllCampaigns().call();
 
-      setState(new web3.eth.Contract(Campain.abi, address[0]));
-      console.log(
-        //convert to ether
-        web3.utils.fromWei(await state?.methods.getBalance().call())
-      );
+      //this code can be improved, contains technical debt
+      if (!state) setState(new web3.eth.Contract(Campain.abi, address[0]));
+
+      if (state)
+        console.log(
+          //convert to ether
+          web3.utils.fromWei(
+            (await state?.methods?.getBalance().call()) || 0,
+            "ether"
+          )
+        );
     };
     getCampaigns();
-  }, []);
+  }, [state]);
 
   return (
     <div>
