@@ -21,7 +21,6 @@ export default function Campaigns() {
     };
     getAllCampaigns();
   }, []);
-  console.log(campaigns);
   return (
     <>
       <CampaignHeader />
