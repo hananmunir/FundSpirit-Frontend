@@ -1,5 +1,6 @@
 .amountField {
     background-color: #F3F3EC;
+    cursor: pointer;
 }
 
 .currencyText {
@@ -18,5 +19,22 @@
     margin: auto;
     margin-top: .2rem;
     margin-bottom: 1rem;
+
+}
+
+.input[type=number]::-webkit-inner-spin-button,
+.input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    outline: none !important;
+
+}
+
+.input:focus {
+    outline: none !important;
+    border: 1px solid lightgray;
+    box-shadow: none;
+    /* no focused outline */
+
 
 }

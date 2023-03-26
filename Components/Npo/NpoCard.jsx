@@ -5,12 +5,14 @@ import { AiOutlineTag } from "react-icons/ai";
 import styles from "./index.module.css";
 import { useRouter } from "next/router";
 
-function NpoCard({ organization }) {
+function NpoCard({ org, organization }) {
   const router = useRouter();
   const handleNavigate = () => {
     //redirect
-    router.push("/npo/" + organization.id);
+    router.push("/npo/" + org.id);
   };
+
+  console.log(organization);
   return (
     <Col md={6} lg={4} className='h-100'>
       <div
@@ -21,7 +23,7 @@ function NpoCard({ organization }) {
         }}
         onClick={handleNavigate}
       >
-        <img src={organization.imageUrl} className={styles.NpoCardImage} />
+        <img src={org.imageUrl} className={styles.NpoCardImage} />
         <div className='mt-3'>
           <span className='fs-4 mt-2'>{organization.name}</span>
           <div className='NpoDetails'>
@@ -29,7 +31,7 @@ function NpoCard({ organization }) {
               <span className='fadeColor me-1'>
                 <GoLocation color='#808080' />
               </span>
-              <span className={styles.address}>{organization.address}</span>
+              <span className={styles.address}>{org.address}</span>
             </div>
             <div className='d-flex flex-row '>
               <span className='fadeColor me-1'>

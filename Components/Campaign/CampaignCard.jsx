@@ -84,7 +84,7 @@ export default function CampaignCard({ liked, isBacked, campaign, address }) {
           >
             <div>
               <span className={styles.fadeColor + " me-1"}>Current</span>
-              <span>$ {funds}</span>
+              <span>$ {funds.toFixed()}</span>
             </div>
             <div>
               <span className={styles.fadeColor + " me-1"}>All Time</span>
@@ -99,7 +99,7 @@ export default function CampaignCard({ liked, isBacked, campaign, address }) {
           </button>
         </div>
       </Col>
-      <Fund show={showFundModal} setShow={setShowFundModal} />
+      <Fund show={showFundModal} setShow={setShowFundModal} address={address} />
     </>
   );
 }

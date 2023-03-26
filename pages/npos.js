@@ -12,6 +12,7 @@ export default function NPOs() {
   const [organizations, setOrganizations] = useState();
 
   useEffect(() => {
+    if (organizations) return;
     getOrganizations().then((orgs) => {
       let data = [];
       orgs.map(async (org) => {
@@ -22,15 +23,18 @@ export default function NPOs() {
         //append to state
       });
     });
-  }, []);
-  console.log(organizations.length);
+  }, [organizations]);
+  //console.log(organizations);
   return (
     <div>
       <CampaignHeader npo />
       <Container className='mb-5 pb-3 h-100'>
         <Row className='h-100'>
-          {DummyOrganizations.map((organization) => (
-            <DynamicNpoCard organization={organization} />
+          {organizations?.map((organization, index) => (
+            <DynamicNpoCard
+              org={DummyOrganizations[index]}
+              organization={organization.organization}
+            />
           ))}
         </Row>
       </Container>
