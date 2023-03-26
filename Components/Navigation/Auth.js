@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col, Row } from "react-bootstrap";
 import { useRouter } from "next/router";
-
+import userStore, { login as reduxLogin } from "../../Redux/User";
+import { loginUser, registerUser } from "../../Api/User";
 const userData = { name: "", email: "", password: "" };
 
 function Auth({ show, setShow }) {
@@ -11,8 +12,27 @@ function Auth({ show, setShow }) {
   const [login, setLogin] = useState(true);
 
   const handleLogin = () => {
-    router.push("/user/1");
+    loginUser(user)
+      .then((res) => {
+        console.log(res.data);
+        userStore.dispatch(reduxLogin(res.data));
+        router.push("/user/1");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log("Here");
+    setShow(false);
+  };
+
+  const handleRegister = () => {
+    registerUser(user)
+      .then((res) => {
+        console.log("User Successfully Registered");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setShow(false);
   };
 
@@ -78,7 +98,7 @@ function Auth({ show, setShow }) {
         <div className=' d-flex flex-column align-items-center p-4 pt-2'>
           <Button
             variant='primary'
-            onClick={handleLogin}
+            onClick={login ? handleLogin : handleRegister}
             className='w-25 align-self-end mb-3'
             disabled={login ? isLoginValid() : isRegisterValid()}
           >

@@ -13,7 +13,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const DynamicAuth = dynamic(() => import("./Auth.js"), {
-  ssr: false,
+  ssr: true,
 });
 
 const providerOptions = {
