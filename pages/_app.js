@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Footer from "../Components/Navigation/Footer";
@@ -13,15 +14,20 @@ import { ToastContainer } from "react-toastify";
 //change name of website
 
 function MyApp({ Component, pageProps }) {
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    setIsAuth(String(window.location.href).includes("npo/auth"));
+  }, []);
   return (
     <>
       <Head>
         <title>FundSpirit</title>
       </Head>
       <ToastContainer />
-      <Navbar />
+      {!isAuth && <Navbar />}
       <Component {...pageProps} />
-      <Footer />
+      {!isAuth && <Footer />}
     </>
   );
 }

@@ -113,7 +113,7 @@ export default function Navigationbar() {
                 </button>
 
                 <button
-                  className={[styles.btn]}
+                  className={[styles.btn] + " ms-2"}
                   onClick={(e) => {
                     e.preventDefault();
                     setShow(true);
