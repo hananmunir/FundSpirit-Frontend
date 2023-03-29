@@ -5,34 +5,27 @@ import { AiFillTag, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 
 import { BsFacebook } from "react-icons/bs";
 import { SlShareAlt } from "react-icons/sl";
+import { DummyCampaigns } from "../../../constants/DummyData/Campaigns";
 import Fund from "../Fund/Fund";
-function Header({campaign}) {
+function Header({ campaign }) {
   const [showFund, setShowFund] = useState(false);
   return (
     <Container fluid className={styles.headerContainer}>
       <Row>
         <Col lg={6}>
           <img
-            src={campaign?.imageUrl}
+            src={DummyCampaigns[0]?.imageUrl}
             loading='lazy'
             className={styles.headerImage}
           />
-          <div className='ms-2 mt-3 w-50 d-flex align-items-center justify-content-around'>
-            <span className='fs-7 d-flex align-items-center'>
-              {" "}
-              <AiFillTag className='me-1' />
-              Climate Change
-            </span>
-            <span className='fs-7'>
-              {" "}
-              <AiFillTag className='me-1' />
-              Education
-            </span>
-            <span className='fs-7'>
-              {" "}
-              <AiFillTag className='me-1' />
-              Water
-            </span>
+          <div className='ms-2 mt-3 w-50 d-flex align-items-center justify-content-start'>
+            {campaign.tags.map((tag) => (
+              <span className='fs-7'>
+                {" "}
+                <AiFillTag className='me-1' />
+                {tag}
+              </span>
+            ))}
           </div>
         </Col>
         <Col
@@ -43,12 +36,8 @@ function Header({campaign}) {
           }
         >
           <div className={styles.headerContent + " mt-4"}>
-            <span className={styles.heading + " fs-1"}>
-              {campaign?.name}
-            </span>
-            <span className={styles.subHeading}>
-             {campaign?.subTitle}
-            </span>
+            <span className={styles.heading + " fs-1"}>{campaign?.name}</span>
+            <span className={styles.subHeading}>{campaign?.subTitle}</span>
           </div>
           <div className={styles.CTA}>
             <button
@@ -81,7 +70,7 @@ function Header({campaign}) {
           </div>
         </Col>
       </Row>
-      <Fund show={showFund} setShow={setShowFund} />
+      <Fund show={showFund} setShow={setShowFund} address={campaign.address} />
     </Container>
   );
 }

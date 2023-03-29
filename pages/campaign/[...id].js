@@ -6,7 +6,7 @@ import { DummyCampaigns } from "../../constants/DummyData/Campaigns";
 import CampaignFactory from "../../artifacts/contracts/CampaignFactory.sol/CampaignFactory.json";
 import Campain from "../../artifacts/contracts/Campaign.sol/Campaign.json";
 import Web3 from "web3";
-
+import useCampaignStore from "../../Redux/Campaigns";
 const web3 = new Web3("http://localhost:8545");
 const provider = new Web3.providers.HttpProvider("http://localhost:8545");
 const myContract = new web3.eth.Contract(
@@ -39,26 +39,26 @@ export default function Campaign() {
   const [state, setState] = useState();
 
   useEffect(() => {
-    setCampaign(
-      DummyCampaigns?.filter((campaign) => campaign.id === parseInt(id))[0]
-    );
-    const getCampaigns = async () => {
-      const address = await myContract.methods.getAllCampaigns().call();
+    setCampaign(useCampaignStore.getState().find((c) => c._id === id[0]));
+    // const getCampaigns = async () => {
+    //   const address = await myContract.methods.getAllCampaigns().call();
 
-      //this code can be improved, contains technical debt
-      if (!state) setState(new web3.eth.Contract(Campain.abi, address[0]));
+    //   //this code can be improved, contains technical debt
+    //   if (!state) setState(new web3.eth.Contract(Campain.abi, address[0]));
 
-      if (state)
-        console.log(
-          //convert to ether
-          web3.utils.fromWei(
-            (await state?.methods?.getBalance().call()) || 0,
-            "ether"
-          )
-        );
-    };
-    getCampaigns();
+    //   if (state)
+    //     console.log(
+    //       //convert to ether
+    //       web3.utils.fromWei(
+    //         (await state?.methods?.getBalance().call()) || 0,
+    //         "ether"
+    //       )
+    //     );
+    // };
+    // getCampaigns();
   }, [state]);
+
+  console.log(campaign);
 
   return (
     <div>

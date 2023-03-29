@@ -10,7 +10,7 @@ import {
 import styles from "./Fund.module.css";
 import EthRate from "../../../Utilities/EthRate";
 import { fundCampaign } from "../../../Web3/Campaign";
-
+import { toast } from "react-toastify";
 const AmountField = ({ amount, amountState, setAmount }) => {
   const ref = useRef(null);
   useEffect(() => {
@@ -47,10 +47,29 @@ export default function Fund({ show, setShow, address }) {
   const handleShow = () => setShow(true);
   const handleFund = () => {
     if (amount <= 0) return alert("Please choose an amount to give");
-    EthRate().then((res) => {
-      let eth = amount / res;
-      console.log(fundCampaign(address, eth));
-    });
+    EthRate()
+      .then((res) => {
+        let eth = amount / res;
+        fundCampaign(address, eth).then((res) => {
+          if (res) {
+            toast(
+              "You have successfully funded this campaign, thank you for your support",
+              {
+                type: "success",
+                pauseOnHover: false,
+                autoClose: 5000,
+              }
+            );
+            setShow(false);
+          }
+        });
+      })
+      .catch((err) => {
+        toast("Something went wrong, please try again later", {
+          type: "error",
+        });
+        setShow(false);
+      });
   };
   return (
     <>

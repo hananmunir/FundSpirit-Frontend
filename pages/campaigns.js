@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 import { DummyCampaigns } from "../constants/DummyData/Campaigns";
 import Filter from "../Components/Filter/Filter";
 import { getCampaigns } from "../Web3/Campaign";
+import useCampaignStore from "../Redux/Campaigns";
+import { fetchAllCampaigns } from "../Api/Campaigns";
+import { fetchAllCampaigns as fetchCampaignsRedux } from "../Redux/Campaigns";
 const DynamicCampaignCard = dynamic(
   () => import("../Components/Campaign/CampaignCard"),
   {
@@ -13,24 +16,31 @@ const DynamicCampaignCard = dynamic(
 );
 
 export default function Campaigns() {
-  const [campaigns, setCampaigns] = useState();
+  const [campaigns, setCampaigns] = useState(
+    useCampaignStore.getState().campaigns
+  );
+
   useEffect(() => {
-    const getAllCampaigns = async () => {
-      const campaigns = await getCampaigns();
-      setCampaigns(campaigns);
-    };
-    getAllCampaigns();
-  }, []);
+    // useCampaignStore.dispatch(
+    //   fetchCampaignsRedux(fetchAllCampaigns().then((res) => res.data))
+    // );
+    fetchAllCampaigns().then((res) => {
+      useCampaignStore.dispatch(fetchCampaignsRedux(res.data));
+      setCampaigns(res.data);
+    });
+  }, [useCampaignStore]);
+  console.log(campaigns);
   return (
     <>
       <CampaignHeader />
       {/* <Filter /> */}
       <Container className='mb-5'>
         <Row className='gx-5'>
-          {DummyCampaigns?.map((campaign, index) => (
+          {campaigns?.map((campaign, index) => (
             <DynamicCampaignCard
-              campaign={campaign}
+              cam={DummyCampaigns[index]}
               address={campaigns ? campaigns[index] : ""}
+              campaign={campaign}
             />
           ))}
         </Row>

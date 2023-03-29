@@ -7,7 +7,13 @@ import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { getCampaign, getBalance } from "../../Web3/Campaign";
 import Web3 from "web3";
-export default function CampaignCard({ liked, isBacked, campaign, address }) {
+export default function CampaignCard({
+  liked,
+  isBacked,
+  cam,
+  address,
+  campaign,
+}) {
   const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
   const [campaignData, setCampaignData] = useState();
@@ -16,36 +22,38 @@ export default function CampaignCard({ liked, isBacked, campaign, address }) {
   const handleFundClick = () => {
     setShowFundModal(true);
   };
-  const handleNavigate = () => {
-    router.push("/campaign/" + campaign.id);
+  const handleClick = (e) => {
+    //check if clicked on fund button
+    if (e.target.className.includes("btn")) {
+      handleFundClick();
+    } else {
+      router.push("/campaign/" + campaign._id);
+    }
   };
 
   useEffect(() => {
-    if (address) {
-      getCampaign(address).then((res) => {
-        setCampaignData({
-          name: res.name,
-          description: res.description,
-          // imageUrl: res.imageUrl,
-          // currentFunds: res.currentFunds,
-          // totalFunds: res.totalFunds,
-          tags: res.tags,
-          tagline: res.tagline,
-        });
-      });
-      getBalance(address).then((res) => {
+    if (campaign.address) {
+      getBalance(campaign.address).then((res) => {
         //still have to make conversion dynamic
         setFunds(Web3.utils.fromWei(res.toString(), "ether") * 1800.2);
       });
     }
-  }, [address]);
+  }, [showFundModal]);
   return (
     <>
-      <Col md={6} lg={4} className='mt-3 h-100'>
+      <Col
+        md={6}
+        lg={4}
+        className='mt-3 h-100'
+        style={{
+          zIndex: 1,
+        }}
+      >
         <div
           className={
             "d-flex flex-column p-3 border h-100 " + styles.cardContainer
           }
+          onClick={handleClick}
         >
           {isLiked ? (
             <FaHeart
@@ -63,14 +71,13 @@ export default function CampaignCard({ liked, isBacked, campaign, address }) {
             />
           )}
 
-          <img src={campaign?.imageUrl} className={styles.cardImage} />
+          <img src={cam?.imageUrl} className={styles.cardImage} />
 
-          <span className='fs-4 mt-2'>{campaignData?.name}</span>
+          <span className='fs-4 mt-2'>{campaign?.name}</span>
           <span className={styles.cardDesc}>
-            {campaignData?.description.slice(0, 130)}
+            {campaign?.description.slice(0, 130)}
             <span
               style={{ color: "#1d1ce5", fontWeight: 400, cursor: "pointer" }}
-              onClick={handleNavigate}
             >
               {" "}
               read more ...
@@ -88,18 +95,19 @@ export default function CampaignCard({ liked, isBacked, campaign, address }) {
             </div>
             <div>
               <span className={styles.fadeColor + " me-1"}>All Time</span>
-              <span>$ {campaign?.totalFunds}</span>
+              <span>$ {cam?.totalFunds}</span>
             </div>
           </div>
-          <button
-            className={styles.btn + " mx-1 mt-3"}
-            onClick={handleFundClick}
-          >
+          <button className={styles.btn + " mx-1 mt-3"}>
             {isBacked ? "Fund Again" : "Fund Now"}
           </button>
         </div>
       </Col>
-      <Fund show={showFundModal} setShow={setShowFundModal} address={address} />
+      <Fund
+        show={showFundModal}
+        setShow={setShowFundModal}
+        address={campaign?.address}
+      />
     </>
   );
 }
