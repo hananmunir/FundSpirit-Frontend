@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import { Form as BootstrapForm, Button } from "react-bootstrap";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { createNPO } from "../../Api/NPOs";
+import { toast } from "react-toastify";
 const initialState = {
   name: "",
   category: "",
@@ -17,7 +19,7 @@ const initialState = {
   ceoEmail: "",
   ceoPhone: "",
   goals: "",
-  RequestedBy: "",
+  requestedBy: "",
   foundThrough: "",
 };
 
@@ -57,6 +59,18 @@ export default function Form() {
   const [step, setStep] = useState(1);
   const TOTAL_STEPS = 4;
 
+  const isValid = () => {
+    for (let key in formData) {
+      if (key === "logo" || key === "coverImage" || key === "secpCert")
+        continue;
+      if (formData[key] === "") {
+        console.log(key);
+        return false;
+      }
+    }
+
+    return true;
+  };
   const handleNext = () => {
     setStep(step + 1);
   };
@@ -67,6 +81,22 @@ export default function Form() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    createNPO(formData)
+      .then((response) => {
+        toast("NPO created successfully", {
+          type: "success",
+        });
+        console.log(response);
+        setFormData(initialState);
+      })
+      .catch((error) => {
+        toast("Error creating NPO, please try again later", {
+          type: "error",
+        });
+      });
   };
 
   return (
@@ -89,7 +119,7 @@ export default function Form() {
         </a>
       </span>
 
-      <div className='d-flex flex-column mt-5 pt-5'>
+      <div className='d-flex flex-column mt-3 pt-3'>
         <span className={styles.headerTitle}>Join Us!</span>
         <span className={styles.headerSubtitle}>
           Create an account to start fundraising
@@ -199,7 +229,7 @@ export default function Form() {
               </BootstrapForm.Label>
               <BootstrapForm.Control
                 placeholder='What are your goals'
-                value={formData.description}
+                value={formData.goals}
                 //increase height
                 as='textarea'
                 rows={4}
@@ -306,8 +336,8 @@ export default function Form() {
               <BootstrapForm.Control
                 type='text'
                 placeholder='Enter Your Name'
-                value={formData.RequestedBy}
-                name='RequestedBy'
+                value={formData.requestedBy}
+                name='requestedBy'
                 onChange={(event) => handleInputChange(event)}
               />
             </BootstrapForm.Group>
@@ -318,8 +348,8 @@ export default function Form() {
               <BootstrapForm.Control
                 as='select'
                 required
-                value={formData.category}
-                name='category'
+                value={formData.foundThrough}
+                name='foundThrough'
                 onChange={(event) => handleInputChange(event)}
               >
                 <option value=''>Select category</option>
@@ -369,6 +399,8 @@ export default function Form() {
               width: "8rem",
             }}
             className='ms-3'
+            disabled={!isValid()}
+            onClick={handleSubmit}
           >
             Submit
           </Button>

@@ -13,10 +13,10 @@ const ItemContent = [
   },
   {
     title: "Raise",
-    description: "Nonprofits ready to fundraise can start a project here",
+    description: "Nonprofits ready to fundraise can register here",
     svg: "/SVG/raise.svg",
     btnText: "Fundraise",
-    url: "/npo",
+    url: "/npo/auth",
   },
 ];
 
