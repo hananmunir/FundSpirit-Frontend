@@ -3,35 +3,60 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    role: "",
-    name: "",
-    email: "",
-    id: "",
-    token: "",
+    user: { role: "", name: "", email: "", id: "", token: "", loggedIn: false },
+    npo: {
+      loggedIn: false,
+    },
   },
   reducers: {
     login: (state, action) => {
-      console.log("We are at store.js", action);
       state = {
-        ...action.payload,
+        ...state,
+        user: {
+          ...action.payload,
+          loggedIn: true,
+        },
       };
-      console.log("State here is", state);
+
+      return state;
+    },
+    loginNPO: (state, action) => {
+      state = {
+        ...state,
+        npo: {
+          ...action.payload,
+          loggedIn: true,
+        },
+      };
       return state;
     },
     logout: (state) => {
       state = {
-        role: "",
-        name: "",
-        email: "",
-        id: "",
-        token: "",
+        ...state,
+        user: {
+          role: "",
+          name: "",
+          email: "",
+          id: "",
+          token: "",
+          loggedIn: false,
+        },
+      };
+      return state;
+    },
+    logoutNPO: (state) => {
+      state = {
+        ...state,
+        npo: {
+          loggedIn: false,
+        },
       };
       return state;
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, loginNPO, logout, logoutNPO } = userSlice.actions;
 
 const store = configureStore({
   reducer: userSlice.reducer,

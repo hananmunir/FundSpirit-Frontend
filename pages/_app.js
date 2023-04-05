@@ -17,8 +17,11 @@ function MyApp({ Component, pageProps }) {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    setIsAuth(String(window.location.href).includes("npo/auth"));
-  }, []);
+    setIsAuth(
+      String(window.location.href).includes("npo/auth") ||
+        String(window.location.href).includes("npo/login")
+    );
+  });
   return (
     <>
       <Head>

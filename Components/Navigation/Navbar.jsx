@@ -8,7 +8,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 import styles from "./Navigation.module.css";
 import { useEffect } from "react";
-import Modal from "./Auth.js";
+import UserStore from "../../Redux/User";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -38,6 +38,9 @@ export default function Navigationbar() {
   const [show, setShow] = useState(false);
   const [account, setAccount] = React.useState("");
   const [connected, setConnected] = React.useState(false);
+  const isNPO = UserStore.getState().npo.loggedIn;
+  const isUser = UserStore.getState().user.loggedIn;
+
   let web3Modal;
   useEffect(() => {
     web3Modal = new Web3Modal({
@@ -104,28 +107,39 @@ export default function Navigationbar() {
                   <span className='link pointer'>Contact</span>
                 </Link>
               </Nav>
-              <div className={[styles.btnContainer]}>
-                <button
-                  className={styles.btn + " " + styles.walletBtn}
-                  onClick={connected ? () => {} : () => connectWallet()}
-                >
-                  {connected ? "Disconnect" : "Connect Wallet"}
-                </button>
 
-                <button
-                  className={[styles.btn] + " ms-2"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShow(true);
-                  }}
-                >
-                  Login
-                </button>
+              <div className={[styles.btnContainer]}>
+                {!isNPO && (
+                  <button
+                    className={styles.btn + " " + styles.walletBtn}
+                    onClick={connected ? () => {} : () => connectWallet()}
+                  >
+                    {connected ? "Disconnect" : "Connect Wallet"}
+                  </button>
+                )}
+
+                {!isNPO && !isUser && (
+                  <button
+                    className={[styles.btn] + " ms-2"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Login
+                  </button>
+                )}
+                {(isNPO || isUser) && (
+                  <div>
+                    <span>Circle here</span>
+                  </div>
+                )}
               </div>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <DynamicAuth show={show} setShow={setShow} />
     </>
   );

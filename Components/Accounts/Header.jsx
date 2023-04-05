@@ -3,10 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Index.module.css";
 import userStore from "../../Redux/User";
 export default function Header() {
-  const [user, setUser] = useState(userStore.getState());
+  const [user, setUser] = useState(userStore.getState().user.user);
   useEffect(() => {
+    console.log(user);
     const unsubscribe = userStore.subscribe(() => {
-      setUser(userStore.getState().user);
+      setUser(userStore.getState().user.user);
     });
     return () => {
       unsubscribe();
@@ -24,7 +25,7 @@ export default function Header() {
         </Col>
         <Col lg={"auto"} className='d-flex flex-column align-items-start ms-3'>
           <span className='fs-2'>
-            {user?.name.charAt(0).toUpperCase() + user?.name.slice(1)}
+            {user?.name?.charAt(0).toUpperCase() + user?.name?.slice(1)}
           </span>
           <div className='d-flex flex-row align-items-center '>
             <div className='me-4'>

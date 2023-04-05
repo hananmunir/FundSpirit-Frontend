@@ -1,36 +1,55 @@
 import React, { useEffect, useState } from "react";
+import Web3 from "web3";
 import { Col } from "react-bootstrap";
-import styles from "./index.module.css";
-import Fund from "./Fund/Fund";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { getCampaign, getBalance } from "../../Web3/Campaign";
-import Web3 from "web3";
-export default function CampaignCard({
-  liked,
-  isBacked,
-  cam,
-  address,
-  campaign,
-}) {
+import { toast } from "react-toastify";
+import loadingStore from "../../Redux/User";
+import styles from "./index.module.css";
+import Fund from "./Fund/Fund";
+import { getBalance } from "../../Web3/Campaign";
+import { enrollCampaign } from "../../Api/NPOs";
+
+export default function CampaignCard({ liked, isBacked, cam, campaign }) {
   const router = useRouter();
   const [showFundModal, setShowFundModal] = useState(false);
   const [campaignData, setCampaignData] = useState();
   const [funds, setFunds] = useState(0);
   const [isLiked, setIsLiked] = useState(liked);
+  const isNPO = loadingStore.getState().npo.loggedIn;
   const handleFundClick = () => {
     setShowFundModal(true);
   };
   const handleClick = (e) => {
     //check if clicked on fund button
     if (e.target.className.includes("btn")) {
-      handleFundClick();
+      if (isNPO) {
+        handleEnroll();
+      } else {
+        handleFundClick();
+      }
     } else {
       router.push("/campaign/" + campaign._id);
     }
   };
 
+  const handleEnroll = () => {
+    enrollCampaign({
+      campaignId: campaign._id,
+      id: loadingStore.getState().npo._id,
+    })
+      .then((res) => {
+        toast("Campaign enrolled successfully", {
+          type: "success",
+        });
+      })
+      .catch((err) => {
+        toast("Error enrolling campaign", {
+          type: "error",
+        });
+      });
+  };
   useEffect(() => {
     if (campaign.address) {
       getBalance(campaign.address).then((res) => {
@@ -98,8 +117,9 @@ export default function CampaignCard({
               <span>$ {cam?.totalFunds}</span>
             </div>
           </div>
+
           <button className={styles.btn + " mx-1 mt-3"}>
-            {isBacked ? "Fund Again" : "Fund Now"}
+            {isNPO ? "Enroll" : isBacked ? "Fund Again" : "Fund Now"}
           </button>
         </div>
       </Col>

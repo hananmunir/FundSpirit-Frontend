@@ -6,8 +6,7 @@ export default function User() {
   return (
     <div>
       <Header />
-      <UserSectionHeader />
+      {/* <UserSectionHeader /> */}
     </div>
   );
 }
-

@@ -4,6 +4,7 @@ import { Form as BootstrapForm, Button } from "react-bootstrap";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { createNPO } from "../../Api/NPOs";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 const initialState = {
   name: "",
   category: "",
@@ -55,16 +56,19 @@ const FormTitle = ({ step, totalSteps }) => {
   );
 };
 export default function Form() {
+  const router = useRouter();
   const [formData, setFormData] = useState(initialState);
   const [step, setStep] = useState(1);
   const TOTAL_STEPS = 4;
 
+  const handleRedirect = () => {
+    router.push("/npo/login");
+  };
   const isValid = () => {
     for (let key in formData) {
       if (key === "logo" || key === "coverImage" || key === "secpCert")
         continue;
       if (formData[key] === "") {
-        console.log(key);
         return false;
       }
     }
@@ -109,14 +113,15 @@ export default function Form() {
         }}
       >
         Already have an account?{" "}
-        <a
-          href='/login'
+        <span
+          onClick={handleRedirect}
           style={{
-            textDecoration: "none",
+            color: "#1d1cef",
+            cursor: "pointer",
           }}
         >
           Login
-        </a>
+        </span>
       </span>
 
       <div className='d-flex flex-column mt-3 pt-3'>
