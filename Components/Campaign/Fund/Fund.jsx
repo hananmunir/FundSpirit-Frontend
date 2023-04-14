@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Modal,
-  Button,
-  Row,
-  Col,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import { Modal, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import styles from "./Fund.module.css";
 import EthRate from "../../../Utilities/EthRate";
 import { fundCampaign } from "../../../Web3/Campaign";
 import { toast } from "react-toastify";
+import UserStore from "../../../Redux/User";
+import { addTransaction } from "../../../Api/User";
 const AmountField = ({ amount, amountState, setAmount }) => {
   const ref = useRef(null);
   useEffect(() => {
@@ -40,8 +35,9 @@ const AmountField = ({ amount, amountState, setAmount }) => {
   );
 };
 
-export default function Fund({ show, setShow, address }) {
+export default function Fund({ show, setShow, campaign }) {
   const [amount, setAmount] = useState(25);
+  const user = UserStore.getState().user;
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
@@ -50,8 +46,18 @@ export default function Fund({ show, setShow, address }) {
     EthRate()
       .then((res) => {
         let eth = amount / res;
-        fundCampaign(address, eth).then((res) => {
+        fundCampaign(campaign.address, eth).then((res) => {
           if (res) {
+            console.log(res);
+            console.log(user);
+            addTransaction(user.user._id, {
+              campaign: {
+                name: campaign.name,
+                id: campaign._id,
+              },
+              amount: amount,
+              hash: res.transactionHash,
+            });
             toast(
               "You have successfully funded this campaign, thank you for your support",
               {
@@ -142,7 +148,11 @@ export default function Fund({ show, setShow, address }) {
             </Col>
           </Row>
         </Modal.Body>
-        <button className={styles.btn} onClick={handleFund}>
+        <button
+          className={styles.btn}
+          disabled={!user.loggedIn}
+          onClick={handleFund}
+        >
           Fund Now
         </button>
       </Modal>

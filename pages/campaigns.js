@@ -4,7 +4,7 @@ import CampaignHeader from "../Components/Campaign/SearchContainer";
 import dynamic from "next/dynamic";
 import { DummyCampaigns } from "../constants/DummyData/Campaigns";
 import Filter from "../Components/Filter/Filter";
-import { getCampaigns } from "../Web3/Campaign";
+
 import useCampaignStore from "../Redux/Campaigns";
 import { fetchAllCampaigns } from "../Api/Campaigns";
 import { fetchAllCampaigns as fetchCampaignsRedux } from "../Redux/Campaigns";

@@ -31,7 +31,7 @@ function NpoCard({ org, organization }) {
               <span className='fadeColor me-1'>
                 <GoLocation color='#808080' />
               </span>
-              <span className={styles.address}>{org.address}</span>
+              <span className={styles.address}>{organization?.address}</span>
             </div>
             <div className='d-flex flex-row '>
               <span className='fadeColor me-1'>

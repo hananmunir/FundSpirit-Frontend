@@ -40,12 +40,12 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
       id: loadingStore.getState().npo._id,
     })
       .then((res) => {
-        toast("Campaign enrolled successfully", {
+        toast("You are Successfully Enrolled in this Campaign", {
           type: "success",
         });
       })
       .catch((err) => {
-        toast("Error enrolling campaign", {
+        toast("Error Enrolling", {
           type: "error",
         });
       });
@@ -126,7 +126,7 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
       <Fund
         show={showFundModal}
         setShow={setShowFundModal}
-        address={campaign?.address}
+        campaign={campaign}
       />
     </>
   );

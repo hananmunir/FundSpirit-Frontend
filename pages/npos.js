@@ -3,7 +3,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import CampaignHeader from "../Components/Campaign/SearchContainer";
 import dynamic from "next/dynamic";
 import { DummyOrganizations } from "../constants/DummyData/Organization";
-import { getOrganizations, getOrganization } from "../Web3/Organizations";
+import { getOrganization } from "../Web3/Organizations";
+import { fetchAllNPOs } from "../Api/NPOs";
 const DynamicNpoCard = dynamic(() => import("../Components/Npo/NpoCard"), {
   ssr: true,
 });
@@ -12,18 +13,13 @@ export default function NPOs() {
   const [organizations, setOrganizations] = useState();
 
   useEffect(() => {
-    if (organizations) return;
-    getOrganizations().then((orgs) => {
-      let data = [];
-      orgs.map(async (org) => {
-        getOrganization(org).then((organization) => {
-          data.push({ organization });
-          setOrganizations(data);
-        });
-        //append to state
-      });
-    });
-  }, [organizations]);
+    fetchAllNPOs()
+      .then((res) => {
+        setOrganizations(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log("Error"));
+  }, []);
   //console.log(organizations);
   return (
     <div>
@@ -33,7 +29,7 @@ export default function NPOs() {
           {organizations?.map((organization, index) => (
             <DynamicNpoCard
               org={DummyOrganizations[index]}
-              organization={organization.organization}
+              organization={organization}
             />
           ))}
         </Row>

@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import UserStore from "../../Redux/User";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import { logout, logoutNPO } from "../../Redux/User";
 
 const DynamicAuth = dynamic(() => import("./Auth.js"), {
   ssr: true,
@@ -34,12 +36,73 @@ const providerOptions = {
   },
 };
 
+const Account = () => {
+  const [show, setShow] = useState(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setShow(false);
+  }, [router.pathname]);
+
+  const handleShow = () => setShow(!show);
+
+  const handleProfileNavigation = (link) => {
+    setShow(false);
+    router.push("/user/1");
+  };
+  const handleLogout = () => {
+    setShow(false);
+    UserStore.dispatch(logout());
+    router.push("/");
+  };
+  return (
+    <>
+      <div
+        className={"d-flex flex-column align-items-center " + styles.account}
+      >
+        <img
+          className={"rounded-circle " + styles.accountImg}
+          onClick={handleShow}
+          src='https://pbs.twimg.com/profile_images/1354432287971147777/kIB1SPsA_400x400.jpg'
+        />
+        <div
+          className={
+            "d-flex flex-column " +
+            styles.accountOptions +
+            " " +
+            (show && styles.showAccountOptions)
+          }
+        >
+          <span
+            className={styles.accountOption}
+            onClick={handleProfileNavigation}
+          >
+            Profile
+          </span>
+          <span className={styles.accountOption} onClick={handleLogout}>
+            Logout
+          </span>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default function Navigationbar() {
   const [show, setShow] = useState(false);
   const [account, setAccount] = React.useState("");
   const [connected, setConnected] = React.useState(false);
-  const isNPO = UserStore.getState().npo.loggedIn;
-  const isUser = UserStore.getState().user.loggedIn;
+  const [isMobile, setIsMobile] = useState(false);
+
+  const [isNPO, setIsNPO] = useState(UserStore.getState().npo.loggedIn);
+  const [isUser, setIsUser] = useState(UserStore.getState().user.loggedIn);
+
+  useEffect(() => {
+    console.log("Initiated");
+    setIsNPO(UserStore.getState().npo.loggedIn);
+    setIsUser(UserStore.getState().user.loggedIn);
+  }, [UserStore.getState().npo.loggedIn, UserStore.getState().user.loggedIn]);
 
   let web3Modal;
   useEffect(() => {
@@ -48,8 +111,15 @@ export default function Navigationbar() {
       providerOptions,
     });
   }, []);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 786);
+  }, []);
 
-  async function connectWallet() {
+  const handleLogout = () => {
+    UserStore.dispatch(logout());
+    setIsUser(false);
+  };
+  const connectWallet = async () => {
     try {
       //web3Modal.clearCachedProvider();
       const web3ModalInstance = await web3Modal.connect();
@@ -61,7 +131,7 @@ export default function Navigationbar() {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <>
@@ -78,7 +148,7 @@ export default function Navigationbar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto align-items-center justify-content-between'>
+            <Nav className='ms-auto align-items-center text-align-center justify-content-between'>
               <Nav className='ms-3'>
                 <Link href='/'>
                   <span className='link pointer'>Home</span>
@@ -102,39 +172,52 @@ export default function Navigationbar() {
                 </Link>
               </Nav>
 
-              <Nav className='mx-3'>
+              <Nav className='ms-3'>
                 <Link href='/contact'>
                   <span className='link pointer'>Contact</span>
                 </Link>
               </Nav>
+              {isMobile && (isUser || isNPO) && (
+                <>
+                  <Nav className='ms-3'>
+                    <Link href='/user/1'>
+                      <span className='link pointer'>Profile</span>
+                    </Link>
+                  </Nav>
+                  <Nav className='ms-3'>
+                    <Link href='/' onClick={handleLogout}>
+                      <span className='link pointer'>Logout</span>
+                    </Link>
+                  </Nav>
+                </>
+              )}
 
-              <div className={[styles.btnContainer]}>
-                {!isNPO && (
-                  <button
-                    className={styles.btn + " " + styles.walletBtn}
-                    onClick={connected ? () => {} : () => connectWallet()}
-                  >
-                    {connected ? "Disconnect" : "Connect Wallet"}
-                  </button>
-                )}
+              {isNPO || isUser ? (
+                !isMobile && <Account />
+              ) : (
+                <div className={" " + styles.btnContainer}>
+                  {!isNPO && (
+                    <button
+                      className={styles.btn + " " + styles.walletBtn}
+                      onClick={connected ? () => {} : () => connectWallet()}
+                    >
+                      {connected ? "Disconnect" : "Connect Wallet"}
+                    </button>
+                  )}
 
-                {!isNPO && !isUser && (
-                  <button
-                    className={[styles.btn] + " ms-2"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShow(true);
-                    }}
-                  >
-                    Login
-                  </button>
-                )}
-                {(isNPO || isUser) && (
-                  <div>
-                    <span>Circle here</span>
-                  </div>
-                )}
-              </div>
+                  {!isNPO && !isUser && (
+                    <button
+                      className={[styles.btn] + " " + (!isMobile && " ms-2 ")}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShow(true);
+                      }}
+                    >
+                      Login
+                    </button>
+                  )}
+                </div>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

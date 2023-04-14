@@ -3,16 +3,7 @@ import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { DummyCampaigns } from "../../constants/DummyData/Campaigns";
-import CampaignFactory from "../../artifacts/contracts/CampaignFactory.sol/CampaignFactory.json";
-import Campain from "../../artifacts/contracts/Campaign.sol/Campaign.json";
-import Web3 from "web3";
 import useCampaignStore from "../../Redux/Campaigns";
-const web3 = new Web3("http://localhost:8545");
-const provider = new Web3.providers.HttpProvider("http://localhost:8545");
-const myContract = new web3.eth.Contract(
-  CampaignFactory.abi,
-  "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-);
 
 const DyanmicHeader = dynamic(
   () => import("../../Components/Campaign/Details/Header"),
