@@ -1,0 +1,111 @@
+.container {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .productColumn {
+    flex-basis: 45%;
+    margin-right: 2rem;
+  }
+  
+  .formColumn {
+    flex-basis: 45%;
+  }
+  
+  .productTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .productImage {
+    width: 80%;
+    margin-bottom: 1rem;
+  }
+  
+  .productName {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .productPrice {
+    margin-bottom: 0.5rem;
+  }
+  
+  .productDescription {
+    margin-bottom: 1rem;
+  }
+  
+  .checkoutTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 1rem;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-bottom-color: #1d1ce5;
+  }
+  
+  
+  .submitButton {
+    background-color: #1d1ce5;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .quantityContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .quantityContainer label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .quantityContainer input {
+    width: 50px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+  }
+  
+  .quantityContainer input:focus {
+    border-color: #3b82f6;
+  }
+  
