@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import userStore from "../../../Redux/User";
 import BackedSection from "./BackedSection";
 import LikedSection from "./LikedSection";
 import TransactionsSection from "./FundHistory";
@@ -8,6 +9,15 @@ import styles from "./index.module.css";
 const headers = ["backed", "liked", "transactions", "stats"];
 export default function UserSectionHeader() {
   const [activeSection, setActiveSection] = useState("backed");
+  const [user, setUser] = useState(userStore.getState().user.user);
+  useEffect(() => {
+    const unsubscribe = userStore.subscribe(() => {
+      setUser(userStore.getState().user.user);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
   useEffect(() => {
     //add class on active section
 
@@ -33,7 +43,10 @@ export default function UserSectionHeader() {
       <Row className=' d-flex flex-col'>
         <Col
           lg={6}
-          className='  d-flex flex-row align-items-center justify-content-between mb-4'
+          className={
+            styles.headerTitles +
+            "  d-flex flex-row align-items-center justify-content-between mb-4 flex-wrap"
+          }
         >
           <div
             className={
@@ -44,7 +57,7 @@ export default function UserSectionHeader() {
           >
             <span id='backed'>Backed</span>
             <span className={styles.count} id='backedCount'>
-              12
+              {user?.campaignsFunded.length}
             </span>
           </div>
           <div
@@ -56,7 +69,7 @@ export default function UserSectionHeader() {
           >
             <span id='liked'>Liked</span>
             <span className={styles.count} id='likedCount'>
-              12
+              {user?.campaignsLiked.length}
             </span>
           </div>
           <div
@@ -68,7 +81,7 @@ export default function UserSectionHeader() {
           >
             <span id='transactions'>Transactions</span>
             <span className={styles.count} id='transactionsCount'>
-              12
+              {user?.transactions.length}
             </span>
           </div>
           <div
@@ -81,13 +94,14 @@ export default function UserSectionHeader() {
             <span id='stats'>Statistics</span>
           </div>
         </Col>
+
         <Col lg={12}>
           {activeSection === "backed" ? (
-            <BackedSection />
+            <BackedSection campaignIds={user?.campaignsFunded} />
           ) : activeSection === "liked" ? (
-            <LikedSection />
+            <LikedSection campaignIds={user?.campaignsLiked} />
           ) : activeSection === "transactions" ? (
-            <TransactionsSection />
+            <TransactionsSection transactions={user?.transactions} />
           ) : (
             <StatisticsSection />
           )}

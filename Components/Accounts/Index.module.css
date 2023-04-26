@@ -16,3 +16,43 @@
     right: 8%;
 
 }
+
+
+@media screen and (max-width: 768px) {
+    .headerImg {
+        width: 150px;
+        height: 150px;
+
+
+    }
+
+    .headerDataContainer {
+        flex-direction: column !important;
+
+    }
+
+    .editBtn {
+        width: 15%;
+        right: 5%;
+    }
+
+    .userData {
+        flex-direction: column;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        align-items: center !important;
+    }
+
+    .userFundData {
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-top: .4rem;
+
+    }
+
+    .editBtn {
+        width: 20%;
+        right: 40%;
+        top: 100%;
+    }
+}

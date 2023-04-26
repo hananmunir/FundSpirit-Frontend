@@ -40,3 +40,19 @@
     justify-content: center;
     align-items: center;
 }
+
+
+.customTable {
+    border: none;
+    margin-bottom: 0;
+    background-color: #343a40;
+    color: white;
+    padding: 1rem;
+}
+
+.tableHeader {
+
+    font-weight: bold;
+    color: white;
+    padding: .8rem !important;
+}
