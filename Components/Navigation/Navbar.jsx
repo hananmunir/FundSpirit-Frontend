@@ -12,7 +12,7 @@ import UserStore from "../../Redux/User";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { logout, logoutNPO } from "../../Redux/User";
+import { logout, logoutNPO} from "../../Redux/User";
 
 const DynamicAuth = dynamic(() => import("./Auth.js"), {
   ssr: true,
@@ -38,7 +38,7 @@ const providerOptions = {
 
 const Account = () => {
   const [show, setShow] = useState(false);
-
+  const [isUser, setIsUser] = useState(UserStore.getState().user.loggedIn);
   const router = useRouter();
 
   useEffect(() => {
@@ -74,12 +74,14 @@ const Account = () => {
             (show && styles.showAccountOptions)
           }
         >
-          <span
-            className={styles.accountOption}
-            onClick={handleProfileNavigation}
-          >
-            Profile
-          </span>
+          {isUser &&
+            <span
+              className={styles.accountOption}
+              onClick={handleProfileNavigation}
+            >
+              Profile
+            </span>
+          }
           <span className={styles.accountOption} onClick={handleLogout}>
             Logout
           </span>
@@ -94,16 +96,28 @@ export default function Navigationbar() {
   const [account, setAccount] = React.useState("");
   const [connected, setConnected] = React.useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const router = useRouter();
   const [isNPO, setIsNPO] = useState(UserStore.getState().npo.loggedIn);
   const [isUser, setIsUser] = useState(UserStore.getState().user.loggedIn);
+
+
+ 
 
   useEffect(() => {
     console.log("Initiated");
     setIsNPO(UserStore.getState().npo.loggedIn);
     setIsUser(UserStore.getState().user.loggedIn);
   }, [UserStore.getState().npo.loggedIn, UserStore.getState().user.loggedIn]);
+  
+  useEffect(() => {
+    console.log("Initiated login");
+    if(!isNPO || !isUser){
+      router.push("/");
+    }
+    console.log(isNPO, isUser);
+  }, [isNPO, isUser]);
 
+  
   let web3Modal;
   useEffect(() => {
     web3Modal = new Web3Modal({
@@ -160,9 +174,10 @@ export default function Navigationbar() {
                 </Link>
               </Nav>
 
+
               <Nav className='ms-3'>
-                <Link href='/npos'>
-                  <span className='link pointer'>NPO Partners</span>
+              <Link href={isNPO ? '/estoreHome' : '/npos'}>
+                  <span className='link pointer'>{isNPO ? 'EStore' : 'NPO Partners'}</span>
                 </Link>
               </Nav>
 
