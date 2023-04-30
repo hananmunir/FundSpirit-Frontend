@@ -78,12 +78,14 @@ const Account = () => {
             (show && styles.showAccountOptions)
           }
         >
-          <span
-            className={styles.accountOption}
-            onClick={handleProfileNavigation}
-          >
-            Profile
-          </span>
+          {isUser &&
+            <span
+              className={styles.accountOption}
+              onClick={handleProfileNavigation}
+            >
+              Profile
+            </span>
+          }
           <span className={styles.accountOption} onClick={handleLogout}>
             Logout
           </span>
@@ -161,9 +163,10 @@ export default function Navigationbar() {
                 </Link>
               </Nav>
 
+
               <Nav className='ms-3'>
-                <Link href='/npos'>
-                  <span className='link pointer'>NPO Partners</span>
+              <Link href={isNPO ? '/estoreHome' : '/npos'}>
+                  <span className='link pointer'>{isNPO ? 'EStore' : 'NPO Partners'}</span>
                 </Link>
               </Nav>
 
