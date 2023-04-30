@@ -8,11 +8,13 @@ export default function BackendSection({ campaignIds }) {
   const [backedCampaigns, setBackedCampaigns] = useState([]);
 
   useEffect(() => {
-    setBackedCampaigns(
-      campaigns.filter((campaign) => campaignIds.includes(campaign._id))
-    );
+    if (campaignIds)
+      setBackedCampaigns(
+        campaigns.filter((campaign) => campaignIds.includes(campaign._id))
+      );
   }, [campaigns]);
-
+  console.log(campaignIds);
+  campaigns.map((campaign) => console.log(campaign._id));
   return (
     <Container>
       <Row>

@@ -12,7 +12,7 @@ const campaignSlice = createSlice({
 });
 
 export const { fetchAllCampaigns } = campaignSlice.actions;
-
+export { campaignSlice };
 const store = configureStore({
   reducer: campaignSlice.reducer,
 });

@@ -42,6 +42,7 @@ const userSlice = createSlice({
           loggedIn: false,
         },
       };
+
       return state;
     },
     logoutNPO: (state) => {
@@ -51,18 +52,11 @@ const userSlice = createSlice({
           loggedIn: false,
         },
       };
+
       return state;
     },
   },
 });
 
 export const { login, loginNPO, logout, logoutNPO } = userSlice.actions;
-
-const store = configureStore({
-  reducer: userSlice.reducer,
-});
-
-export default store;
-
-// Can still subscribe to the store
-store.subscribe(() => console.log("Subscribed", store.getState()));
+export { userSlice };

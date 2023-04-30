@@ -13,6 +13,12 @@ import { fetchAllCampaigns } from "../Api/Campaigns";
 import { fetchAllCampaigns as reduxFetchCampaigns } from "../Redux/Campaigns";
 import { fetchAllNPOs } from "../Api/NPOs";
 import { fetchAllNPOs as reduxFetchNPOs } from "../Redux/NPOs";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { makeStore } from "../Redux/Index";
+
+const { store, persistor } = makeStore();
 // const Navbar = dynamic(() => import("../Components/Navigation/Navbar"), {
 //   ssr: false,
 // });
@@ -40,9 +46,14 @@ function MyApp({ Component, pageProps }) {
         <title>FundSpirit</title>
       </Head>
       <ToastContainer />
-      {!isAuth && <Navbar />}
-      <Component {...pageProps} />
-      {!isAuth && <Footer />}
+
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          {!isAuth && <Navbar />}
+          <Component {...pageProps} />
+          {!isAuth && <Footer />}
+        </PersistGate>
+      </Provider>
     </>
   );
 }

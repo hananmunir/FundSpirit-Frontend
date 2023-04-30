@@ -5,7 +5,7 @@ import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import loadingStore from "../../Redux/User";
+import { useSelector } from "react-redux";
 import styles from "./index.module.css";
 import Fund from "./Fund/Fund";
 import { getBalance } from "../../Web3/Campaign";
@@ -13,11 +13,12 @@ import { enrollCampaign } from "../../Api/NPOs";
 
 export default function CampaignCard({ liked, isBacked, cam, campaign }) {
   const router = useRouter();
+  const state = useSelector((state) => state.user);
   const [showFundModal, setShowFundModal] = useState(false);
   const [campaignData, setCampaignData] = useState();
   const [funds, setFunds] = useState(0);
   const [isLiked, setIsLiked] = useState(liked);
-  const isNPO = loadingStore.getState().npo.loggedIn;
+  const isNPO = state.npo.loggedIn;
   const handleFundClick = () => {
     setShowFundModal(true);
   };
@@ -118,9 +119,13 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
             </div>
           </div>
 
-          <button className={styles.btn + " mx-1 mt-3"}>
-            {isNPO ? "Enroll" : isBacked ? "Fund Again" : "Fund Now"}
-          </button>
+          {isBacked && isNPO ? (
+            ""
+          ) : (
+            <button className={styles.btn + " mx-1 mt-3"}>
+              {isNPO ? "Enroll" : isBacked ? "Fund Again" : "Fund Now"}
+            </button>
+          )}
         </div>
       </Col>
       <Fund

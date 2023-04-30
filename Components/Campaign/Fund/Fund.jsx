@@ -4,7 +4,7 @@ import styles from "./Fund.module.css";
 import EthRate from "../../../Utilities/EthRate";
 import { fundCampaign } from "../../../Web3/Campaign";
 import { toast } from "react-toastify";
-import UserStore from "../../../Redux/User";
+import { useSelector } from "react-redux";
 import { addTransaction } from "../../../Api/User";
 const AmountField = ({ amount, amountState, setAmount }) => {
   const ref = useRef(null);
@@ -37,7 +37,8 @@ const AmountField = ({ amount, amountState, setAmount }) => {
 
 export default function Fund({ show, setShow, campaign }) {
   const [amount, setAmount] = useState(25);
-  const user = UserStore.getState().user;
+  const state = useSelector((state) => state.user);
+  const user = state.user;
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);

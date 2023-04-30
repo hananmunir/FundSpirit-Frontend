@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col, Row } from "react-bootstrap";
 import { useRouter } from "next/router";
-import userStore, { login as reduxLogin } from "../../Redux/User";
+import { login as reduxLogin } from "../../Redux/User";
+import { useDispatch } from "react-redux";
 import { loginUser, registerUser } from "../../Api/User";
 import { toast } from "react-toastify";
 const userData = { name: "", email: "", password: "" };
@@ -9,6 +10,7 @@ const userData = { name: "", email: "", password: "" };
 function Auth({ show, setShow }) {
   const router = useRouter();
   const handleClose = () => setShow(false);
+  const dispatch = useDispatch();
   const [user, setUser] = useState(userData);
   const [login, setLogin] = useState(true);
 
@@ -17,7 +19,7 @@ function Auth({ show, setShow }) {
       .then((res) => {
         console.log(res.data);
         toast("Login Successful", { type: "success" });
-        userStore.dispatch(reduxLogin(res.data));
+        dispatch(reduxLogin(res.data));
         router.push("/user/1");
         setShow(false);
       })

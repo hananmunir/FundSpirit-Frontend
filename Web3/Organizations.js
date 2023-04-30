@@ -8,3 +8,8 @@ export const getOrganization = async (address) => {
   const organizationDetails = await organization.methods.getDetails().call();
   return { ...organizationDetails, address: address };
 };
+
+export const getBalance = async (address) => {
+  const balance = await web3.eth.getBalance(address);
+  return balance;
+};

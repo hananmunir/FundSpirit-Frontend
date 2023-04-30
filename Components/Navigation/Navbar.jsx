@@ -8,11 +8,11 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 import styles from "./Navigation.module.css";
 import { useEffect } from "react";
-import UserStore from "../../Redux/User";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { logout, logoutNPO } from "../../Redux/User";
+import { useSelector, useDispatch } from "react-redux";
 
 const DynamicAuth = dynamic(() => import("./Auth.js"), {
   ssr: true,
@@ -38,7 +38,8 @@ const providerOptions = {
 
 const Account = () => {
   const [show, setShow] = useState(false);
-
+  const state = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
@@ -51,10 +52,13 @@ const Account = () => {
     setShow(false);
     router.push("/user/1");
   };
+
+  console.log(state.npo.loggedIn, "NPO State");
   const handleLogout = () => {
     setShow(false);
-    UserStore.dispatch(logout());
-    router.push("/");
+    console.log("actually its here");
+    dispatch(state.npo.loggedIn ? logoutNPO() : logout());
+    // window.location.href = "/";
   };
   return (
     <>
@@ -94,16 +98,12 @@ export default function Navigationbar() {
   const [account, setAccount] = React.useState("");
   const [connected, setConnected] = React.useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.user);
 
-  const [isNPO, setIsNPO] = useState(UserStore.getState().npo.loggedIn);
-  const [isUser, setIsUser] = useState(UserStore.getState().user.loggedIn);
-
-  useEffect(() => {
-    console.log("Initiated");
-    setIsNPO(UserStore.getState().npo.loggedIn);
-    setIsUser(UserStore.getState().user.loggedIn);
-  }, [UserStore.getState().npo.loggedIn, UserStore.getState().user.loggedIn]);
-
+  const [isNPO, setIsNPO] = useState(state.npo.loggedIn);
+  const [isUser, setIsUser] = useState(state.user.loggedIn);
+  console.log(isNPO, isUser);
   let web3Modal;
   useEffect(() => {
     web3Modal = new Web3Modal({
@@ -116,8 +116,9 @@ export default function Navigationbar() {
   }, []);
 
   const handleLogout = () => {
-    UserStore.dispatch(logout());
+    dispatch(logout());
     setIsUser(false);
+    window.location.href = "/";
   };
   const connectWallet = async () => {
     try {

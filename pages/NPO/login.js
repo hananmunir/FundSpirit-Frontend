@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import { Container, Form, Button } from "react-bootstrap";
 import { npoLogin } from "../../Api/NPOs";
 import { toast } from "react-toastify";
-import authStore from "../../Redux/User";
 import { loginNPO } from "../../Redux/User";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -19,9 +20,9 @@ const Login = () => {
     npoLogin(loginData)
       .then((res) => {
         console.log(res.data);
-        authStore.dispatch(loginNPO(res.data));
+        dispatch(loginNPO(res.data));
         toast("Login Successful", { type: "success" });
-        router.push("/campaigns");
+        router.push("/account");
       })
       .catch((err) => {
         console.log(err);

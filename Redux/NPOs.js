@@ -12,7 +12,7 @@ const npoSlice = createSlice({
 });
 
 export const { fetchAllNPOs } = npoSlice.actions;
-
+export { npoSlice };
 const store = configureStore({
   reducer: npoSlice.reducer,
 });
