@@ -2,8 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
 
-function SearchContainer({ npo }) {
-  const [searchQuery, setSearchQuery] = React.useState("");
+function SearchContainer({ npo, searchQuery, setSearchQuery }) {
   return (
     <Container fluid className={styles.campaignHeader}>
       <Row className='w-100'>

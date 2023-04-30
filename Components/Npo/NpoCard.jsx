@@ -9,7 +9,7 @@ function NpoCard({ org, organization }) {
   const router = useRouter();
   const handleNavigate = () => {
     //redirect
-    router.push("/npo/" + org.id);
+    router.push("/npo/" + organization._id);
   };
 
   console.log(organization);

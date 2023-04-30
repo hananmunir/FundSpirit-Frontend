@@ -16,7 +16,6 @@ export default function NPOs() {
     fetchAllNPOs()
       .then((res) => {
         setOrganizations(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log("Error"));
   }, []);

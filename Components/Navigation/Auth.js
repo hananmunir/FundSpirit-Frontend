@@ -22,6 +22,7 @@ function Auth({ show, setShow }) {
         dispatch(reduxLogin(res.data));
         router.push("/user/1");
         setShow(false);
+        setUser(userData);
       })
       .catch((err) => {
         toast("Login Failed", { type: "error" });
@@ -36,6 +37,7 @@ function Auth({ show, setShow }) {
         console.log("User Successfully Registered");
         toast("User Successfully Registered", { type: "success" });
         setShow(false);
+        setUser(userData);
       })
       .catch((err) => {
         toast("User Registration Failed", { type: "error" });
@@ -46,9 +48,11 @@ function Auth({ show, setShow }) {
   //function to change boolean var
   const handleLoginLink = () => {
     setLogin(false);
+    setUser(userData);
   };
   const handleRegisterLink = () => {
     setLogin(true);
+    setUser(userData);
   };
 
   const handleNPOLogin = () => {

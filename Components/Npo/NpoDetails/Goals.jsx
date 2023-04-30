@@ -3,15 +3,29 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
 import { TbFileDescription } from "react-icons/tb";
 import { GiBullseye } from "react-icons/gi";
+
 function Goals({ organization }) {
   return (
     <>
       <Container>
         <Row className='mt-5'>
-          <Col lg={12} className='d-flex flex-column'>
+          <Col lg={12} className='d-flex flex-column border'>
             <div className='d-flex flex-row align-items-center justifty-content-center mb-2'>
               <span className={styles.orgGoals}>Organization Overview</span>
             </div>
+            <span>Organization Ceo: {organization.ceoName}</span>
+            <span>Organization Email: {organization.email}</span>
+            <span>Organization Phone: {organization.phone}</span>
+            <span>Organization Address: {organization.address}</span>
+            <span>Organization Website: {organization.website}</span>
+            <span>Organization Registration Number: {organization.secp}</span>
+            <span>
+              Organization Operating Category: {organization.category}
+            </span>
+            <span>Funds Collected</span>
+            <span>Campaigns Enrolled</span>
+            <span>Funds Disbursed</span>
+            <br />
             <span className='w-50'>{organization?.description}</span>
           </Col>
           <Col className='d-flex flex-column mt-5 mb-3'>

@@ -19,6 +19,8 @@ export default function Campaigns() {
   const [campaigns, setCampaigns] = useState(
     useCampaignStore.getState().campaigns
   );
+  const [fetchedCampaigns, setFetchedCampaigns] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     // useCampaignStore.dispatch(
@@ -26,13 +28,23 @@ export default function Campaigns() {
     // );
     fetchAllCampaigns().then((res) => {
       useCampaignStore.dispatch(fetchCampaignsRedux(res.data));
+      setFetchedCampaigns(res.data);
       setCampaigns(res.data);
     });
   }, [useCampaignStore]);
-  console.log(campaigns);
+  useEffect(() => {
+    setCampaigns(
+      fetchedCampaigns?.filter((campaign) =>
+        campaign.name.includes(searchQuery)
+      )
+    );
+  }, [searchQuery]);
   return (
     <>
-      <CampaignHeader />
+      <CampaignHeader
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       {/* <Filter /> */}
       <Container className='mb-5'>
         <Row className='gx-5'>

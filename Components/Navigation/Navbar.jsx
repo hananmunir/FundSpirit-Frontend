@@ -50,13 +50,13 @@ const Account = () => {
 
   const handleProfileNavigation = (link) => {
     setShow(false);
-    router.push("/user/1");
+
+    router.push(state.npo.loggedIn ? "/account" : "/user/1");
   };
 
-  console.log(state.npo.loggedIn, "NPO State");
   const handleLogout = () => {
     setShow(false);
-    console.log("actually its here");
+
     dispatch(state.npo.loggedIn ? logoutNPO() : logout());
     // window.location.href = "/";
   };
@@ -78,14 +78,13 @@ const Account = () => {
             (show && styles.showAccountOptions)
           }
         >
-          {isUser &&
-            <span
-              className={styles.accountOption}
-              onClick={handleProfileNavigation}
-            >
-              Profile
-            </span>
-          }
+          <span
+            className={styles.accountOption}
+            onClick={handleProfileNavigation}
+          >
+            Account
+          </span>
+
           <span className={styles.accountOption} onClick={handleLogout}>
             Logout
           </span>
@@ -105,7 +104,7 @@ export default function Navigationbar() {
 
   const [isNPO, setIsNPO] = useState(state.npo.loggedIn);
   const [isUser, setIsUser] = useState(state.user.loggedIn);
-  console.log(isNPO, isUser);
+
   let web3Modal;
   useEffect(() => {
     web3Modal = new Web3Modal({
@@ -163,10 +162,11 @@ export default function Navigationbar() {
                 </Link>
               </Nav>
 
-
               <Nav className='ms-3'>
-              <Link href={isNPO ? '/estoreHome' : '/npos'}>
-                  <span className='link pointer'>{isNPO ? 'EStore' : 'NPO Partners'}</span>
+                <Link href={isNPO ? "/estoreHome" : "/npos"}>
+                  <span className='link pointer'>
+                    {isNPO ? "EStore" : "NPO Partners"}
+                  </span>
                 </Link>
               </Nav>
 

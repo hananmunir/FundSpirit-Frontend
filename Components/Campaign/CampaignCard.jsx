@@ -19,11 +19,17 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
   const [funds, setFunds] = useState(0);
   const [isLiked, setIsLiked] = useState(liked);
   const isNPO = state.npo.loggedIn;
+  const [user, setUser] = useState(state.user.user);
   const handleFundClick = () => {
     setShowFundModal(true);
   };
   const handleClick = (e) => {
     //check if clicked on fund button
+    console.log();
+    if (typeof e.target.className === "object") {
+      console.log("Call Like Dislike");
+      return;
+    }
     if (e.target.className.includes("btn")) {
       if (isNPO) {
         handleEnroll();
@@ -75,21 +81,22 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
           }
           onClick={handleClick}
         >
-          {isLiked ? (
-            <FaHeart
-              className={styles.heartIcon}
-              color='#e31b23'
-              size={30}
-              onClick={() => setIsLiked(!isLiked)}
-            />
-          ) : (
-            <FiHeart
-              className={styles.heartIcon}
-              color='#fff'
-              size={30}
-              onClick={() => setIsLiked(!isLiked)}
-            />
-          )}
+          {user &&
+            (isLiked ? (
+              <FaHeart
+                className={styles.heartIcon}
+                color='#e31b23'
+                size={30}
+                onClick={() => setIsLiked(!isLiked)}
+              />
+            ) : (
+              <FiHeart
+                className={styles.heartIcon}
+                color='#fff'
+                size={30}
+                onClick={() => setIsLiked(!isLiked)}
+              />
+            ))}
 
           <img src={cam?.imageUrl} className={styles.cardImage} />
 

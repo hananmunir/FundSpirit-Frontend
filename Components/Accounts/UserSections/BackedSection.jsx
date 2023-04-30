@@ -18,9 +18,27 @@ export default function BackendSection({ campaignIds }) {
   return (
     <Container>
       <Row>
-        {backedCampaigns.map((campaign, index) => (
-          <CampaignCard key={index} campaign={campaign} isBacked />
-        ))}
+        {backedCampaigns.length > 0 ? (
+          backedCampaigns.map((campaign, index) => (
+            <CampaignCard key={index} campaign={campaign} isBacked />
+          ))
+        ) : (
+          <div
+            className='w-100  d-flex align-items-center justify-content-center'
+            style={{
+              height: "30vh",
+            }}
+          >
+            <span
+              style={{
+                color: "gray",
+              }}
+              className='fs-3'
+            >
+              No Campaigns Funded Yet
+            </span>
+          </div>
+        )}
       </Row>
     </Container>
   );

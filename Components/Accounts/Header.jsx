@@ -70,7 +70,7 @@ export default function Header() {
               </span>{" "}
               <span>{npo ? "Campaigns Enrolled" : "Campaigns Funded"}</span>
             </div>
-            {npo && (
+            {npo.loggedIn && (
               <div>
                 <span className=' ms-lg-4 fs-4 fw-bold'>
                   {npo?.totalDisbursed}
