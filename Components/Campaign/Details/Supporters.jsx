@@ -40,10 +40,6 @@ function Supporters() {
         <SupporterCard />
         <SupporterCard />
         <SupporterCard />
-        <SupporterCard />
-        <SupporterCard />
-        <SupporterCard />
-        <SupporterCard />
       </Row>
     </Container>
   );

@@ -92,3 +92,15 @@
     width: 70px;
     height: 70px;
 }
+
+.campaignTitle{
+    font-size: 2rem;
+  color: #1d1ce5;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.infoTitle{
+    font-weight: bold;
+}
