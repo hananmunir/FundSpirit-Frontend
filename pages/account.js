@@ -5,17 +5,21 @@ import Header from "../Components/Accounts/Header";
 import UserSectionHeader from "../Components/Accounts/UserSections/UserSectionHeader";
 
 export default function account() {
-  const state = useSelector((state) => state.user);
-  const [npo, setNpo] = useState(state.npo);
+  const loggedIn = useSelector((state) => state.user.npo.loggedIn);
+
   const router = useRouter();
-  useEffect(() => {
-    console.log(npo);
-    if (!npo.loggedIn) router.push("/");
-  }, [npo]);
+
+  if (!npo.loggedIn) router.push("/");
+
   return (
     <div>
-      <Header />
-      <UserSectionHeader />
+      {loggedIn && (
+        <>
+          {" "}
+          <Header />
+          <UserSectionHeader />
+        </>
+      )}
     </div>
   );
 }

@@ -16,17 +16,15 @@ const Login = () => {
     setLoginData({ ...loginData, [name]: value });
   };
   const handleLogin = () => {
-    console.log("Here");
     npoLogin(loginData)
       .then((res) => {
-        console.log(res.data);
         dispatch(loginNPO(res.data));
         toast("Login Successful", { type: "success" });
         router.push("/account");
       })
       .catch((err) => {
         console.log(err);
-        toast("Login Failed", { type: "error" });
+        toast(err.response.data, { type: "error" });
       });
   };
 
@@ -40,7 +38,7 @@ const Login = () => {
       }}
       className=' d-flex flex-column justify-content-center align-items-center '
     >
-      <h1>Welcome! Login here</h1>{" "}
+      <h1 className='mb-5'>Welcome! Login here</h1>{" "}
       <Form
         style={{
           width: "30vw",
@@ -82,10 +80,11 @@ const Login = () => {
           Login
         </Button>
       </Form>
-      <span>
+      <span className='mt-4'>
         Don't Have an Account?{" "}
         <span
-          style={{ color: "#1d1cef", cursor: "pointer", alignSelf: "flex-end" }}
+          className='align-self-end'
+          style={{ color: "#1d1cef", cursor: "pointer" }}
         >
           Register Here
         </span>

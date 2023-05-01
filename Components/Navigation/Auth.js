@@ -5,43 +5,49 @@ import { login as reduxLogin } from "../../Redux/User";
 import { useDispatch } from "react-redux";
 import { loginUser, registerUser } from "../../Api/User";
 import { toast } from "react-toastify";
-const userData = { name: "", email: "", password: "" };
+const userData = { name: "", email: "", password: "", confirmPassword: "" };
 
 function Auth({ show, setShow }) {
   const router = useRouter();
-  const handleClose = () => setShow(false);
   const dispatch = useDispatch();
   const [user, setUser] = useState(userData);
   const [login, setLogin] = useState(true);
 
+  const handleClose = () => {
+    setUser(userData);
+    setShow(false);
+  };
   const handleLogin = () => {
     loginUser(user)
       .then((res) => {
-        console.log(res.data);
         toast("Login Successful", { type: "success" });
         dispatch(reduxLogin(res.data));
-        router.push("/user/1");
         setShow(false);
         setUser(userData);
+        router.push("/user/1");
       })
       .catch((err) => {
-        toast("Login Failed", { type: "error" });
-        console.log(err);
+        toast(err.response.data, { type: "error" });
       });
-    console.log("Here");
   };
 
   const handleRegister = () => {
+    if (user.password !== user.confirmPassword) {
+      toast("Passwords do not match", { type: "error" });
+      return;
+    }
+
     registerUser(user)
       .then((res) => {
-        console.log("User Successfully Registered");
         toast("User Successfully Registered", { type: "success" });
         setShow(false);
         setUser(userData);
+        setLogin(true);
       })
       .catch((err) => {
-        toast("User Registration Failed", { type: "error" });
-        console.log(err);
+        toast(err.response.data, {
+          type: "error",
+        });
       });
   };
 
@@ -66,7 +72,8 @@ function Auth({ show, setShow }) {
     return (
       user.name.trim() === "" ||
       user.email.trim() === "" ||
-      user.password.trim() === ""
+      user.password.trim() === "" ||
+      user.confirmPassword.trim() === ""
     );
   };
   return (
@@ -110,13 +117,26 @@ function Auth({ show, setShow }) {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type='password'
-                placeholder='Password'
+                placeholder='Enter Password'
                 onChange={(e) =>
                   setUser({ ...user, password: e.target.value.trim() })
                 }
                 value={user.password}
               />
             </Form.Group>
+            {!login && (
+              <Form.Group className='mb-3' controlId='formBasicPassword'>
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type='password'
+                  placeholder='Enter Password Again'
+                  onChange={(e) =>
+                    setUser({ ...user, confirmPassword: e.target.value.trim() })
+                  }
+                  value={user.confirmPassword}
+                />
+              </Form.Group>
+            )}
           </Form>
         </Modal.Body>
 

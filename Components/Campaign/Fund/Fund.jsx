@@ -6,6 +6,7 @@ import { fundCampaign } from "../../../Web3/Campaign";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { addTransaction } from "../../../Api/User";
+
 const AmountField = ({ amount, amountState, setAmount }) => {
   const ref = useRef(null);
   useEffect(() => {
@@ -43,7 +44,9 @@ export default function Fund({ show, setShow, campaign }) {
 
   const handleShow = () => setShow(true);
   const handleFund = () => {
-    if (amount <= 0) return alert("Please choose an amount to give");
+    if (!user.loggedIn)
+      return toast("Please login to fund this campaign", { type: "error" });
+    if (amount <= 0) return toast("Please choose an amount to give");
     EthRate()
       .then((res) => {
         let eth = amount / res;
@@ -149,11 +152,7 @@ export default function Fund({ show, setShow, campaign }) {
             </Col>
           </Row>
         </Modal.Body>
-        <button
-          className={styles.btn}
-          disabled={!user.loggedIn}
-          onClick={handleFund}
-        >
+        <button className={styles.btn} onClick={handleFund}>
           Fund Now
         </button>
       </Modal>
