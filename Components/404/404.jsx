@@ -3,7 +3,9 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import ParticlesConfig from "./ParticlesConfig.json";
 import styles from "./404.module.css";
+import { useRouter } from "next/router";
 export default function Error() {
+  const router = useRouter();
   const particlesInit = useCallback(async (engine) => {
     console.log(engine);
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
@@ -29,8 +31,18 @@ export default function Error() {
           WE ARE SORRY BUT THE PAGE YOU REQUESTED WAS NOT FOUND
         </span>
         <div className={styles.btnContainer}>
-          <button className={styles.btn + " " + styles.homeBtn}>Go Home</button>
-          <button className={styles.btn}>Contact Us</button>
+          <button
+            className={styles.btn + " " + styles.homeBtn}
+            onClick={() => router.push("/")}
+          >
+            Go Home
+          </button>
+          <button
+            className={styles.btn}
+            onClick={() => router.push("/contact")}
+          >
+            Contact Us
+          </button>
         </div>
       </div>
     </>
