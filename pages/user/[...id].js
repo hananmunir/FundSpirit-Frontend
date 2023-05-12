@@ -8,7 +8,10 @@ export default function User() {
   const router = useRouter();
 
   if (!loggedIn) {
-    router.push("/");
+    if (window) window.location.href = "/";
+    else {
+      router.push("/");
+    }
   }
 
   return (

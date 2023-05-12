@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import { DummyOrganizations } from "../constants/DummyData/Organization";
 import { getOrganization } from "../Web3/Organizations";
 import { fetchAllNPOs } from "../Api/NPOs";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 const DynamicNpoCard = dynamic(() => import("../Components/Npo/NpoCard"), {
   ssr: true,
 });
@@ -14,6 +16,11 @@ export default function NPOs() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredOrganizations, setFilteredOrganizations] = useState([]);
   const [searched, setSearched] = useState(false);
+  const state = useSelector((state) => state.user.npo.loggedIn);
+
+  if (state) {
+    router.push("/");
+  }
 
   useEffect(() => {
     fetchAllNPOs()
@@ -23,6 +30,8 @@ export default function NPOs() {
       })
       .catch((err) => console.log("Error"));
   }, []);
+
+  useEffect(() => {}, []);
 
   const handleSearch = (e) => {
     if (organizations) {

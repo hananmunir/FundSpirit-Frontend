@@ -19,7 +19,7 @@ function Header({ campaign }) {
             className={styles.headerImage}
           />
           <div className='ms-2 mt-3 w-50 d-flex align-items-center justify-content-start'>
-            {campaign.tags.map((tag) => (
+            {campaign?.tags.map((tag) => (
               <span className='fs-7'>
                 {" "}
                 <AiFillTag className='me-1' />
@@ -70,7 +70,7 @@ function Header({ campaign }) {
           </div>
         </Col>
       </Row>
-      <Fund show={showFund} setShow={setShowFund} address={campaign.address} />
+      <Fund show={showFund} setShow={setShowFund} address={campaign?.address} />
     </Container>
   );
 }

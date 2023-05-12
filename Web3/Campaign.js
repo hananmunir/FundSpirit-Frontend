@@ -14,14 +14,16 @@ export const getBalance = async (address) => {
 };
 
 //fund campaign
-export const fundCampaign = async (address, amount) => {
+export const fundCampaign = async (address, amount, account) => {
   const campaign = await new web3.eth.Contract(Campaign.abi, address);
-  const accounts = await web3.eth.getAccounts();
+  const gasPrice = await web3.eth.getGasPrice();
+  const gasLimit = await campaign.methods.fund().estimateGas({ from: account });
 
-  console.log("accounts", accounts, "amount", amount);
   const response = await campaign.methods.fund().send({
-    from: accounts[0],
+    from: account,
     value: web3.utils.toWei(String(amount), "ether"),
+    gas: gasLimit,
+    gasPrice: gasPrice,
   });
 
   return response;

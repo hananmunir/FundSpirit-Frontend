@@ -3,7 +3,15 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: { role: "", name: "", email: "", id: "", token: "", loggedIn: false },
+    user: {
+      role: "",
+      name: "",
+      email: "",
+      id: "",
+      token: "",
+      loggedIn: false,
+      walletAddress: "",
+    },
     npo: {
       loggedIn: false,
     },
@@ -13,6 +21,7 @@ const userSlice = createSlice({
       state = {
         ...state,
         user: {
+          walletAddress: state.user.walletAddress,
           ...action.payload,
           loggedIn: true,
         },
@@ -34,6 +43,7 @@ const userSlice = createSlice({
       state = {
         ...state,
         user: {
+          ...state.user,
           role: "",
           name: "",
           email: "",
@@ -55,8 +65,31 @@ const userSlice = createSlice({
 
       return state;
     },
+    addWallet: (state, action) => {
+      state = {
+        ...state,
+        user: {
+          ...state.user,
+          walletAddress: action.payload,
+        },
+      };
+
+      return state;
+    },
+
+    removeWallet: (state) => {
+      state = {
+        ...state,
+        user: {
+          ...state.user,
+          walletAddress: "",
+        },
+      };
+      return state;
+    },
   },
 });
 
-export const { login, loginNPO, logout, logoutNPO } = userSlice.actions;
+export const { login, loginNPO, logout, logoutNPO, addWallet, removeWallet } =
+  userSlice.actions;
 export { userSlice };

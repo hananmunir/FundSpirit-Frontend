@@ -67,6 +67,7 @@ export default function Campaigns() {
                 cam={DummyCampaigns[index]}
                 address={campaigns ? campaigns[index] : ""}
                 campaign={campaign}
+                key={index}
               />
             ))
           ) : (

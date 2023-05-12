@@ -13,8 +13,6 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import { userSlice } from "./User";
-import { npoSlice } from "./NPOs";
-import { campaignSlice } from "./Campaigns";
 
 const persistConfig = {
   key: "root",
@@ -22,9 +20,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  campaigns: campaignSlice.reducer,
   user: userSlice.reducer,
-  npo: npoSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

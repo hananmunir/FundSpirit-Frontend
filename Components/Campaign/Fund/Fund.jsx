@@ -41,43 +41,44 @@ export default function Fund({ show, setShow, campaign }) {
   const state = useSelector((state) => state.user);
   const user = state.user;
   const handleClose = () => setShow(false);
-
-  const handleShow = () => setShow(true);
   const handleFund = () => {
     if (!user.loggedIn)
       return toast("Please login to fund this campaign", { type: "error" });
+    if (user.walletAddress === "")
+      return toast("Please Connect to a wallet", { type: "error" });
     if (amount <= 0) return toast("Please choose an amount to give");
     EthRate()
       .then((res) => {
         let eth = amount / res;
-        fundCampaign(campaign.address, eth).then((res) => {
-          if (res) {
-            console.log(res);
-            console.log(user);
-            addTransaction(user.user._id, {
-              campaign: {
-                name: campaign.name,
-                id: campaign._id,
-              },
-              amount: amount,
-              hash: res.transactionHash,
-            });
-            toast(
-              "You have successfully funded this campaign, thank you for your support",
-              {
-                type: "success",
-                pauseOnHover: false,
-                autoClose: 5000,
-              }
-            );
-            setShow(false);
+        fundCampaign(campaign.address, eth, state.user.walletAddress).then(
+          (res) => {
+            if (res) {
+              addTransaction(user.user._id, {
+                campaign: {
+                  name: campaign.name,
+                  id: campaign._id,
+                },
+                amount: amount,
+                hash: res.transactionHash,
+              });
+              toast(
+                "You have successfully funded this campaign, thank you for your support",
+                {
+                  type: "success",
+                  pauseOnHover: false,
+                  autoClose: 5000,
+                }
+              );
+              setShow(false);
+            }
           }
-        });
+        );
       })
       .catch((err) => {
         toast("Something went wrong, please try again later", {
           type: "error",
         });
+        setAmount(25);
         setShow(false);
       });
   };

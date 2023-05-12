@@ -51,7 +51,7 @@ export default function FundHistory({ transactions }) {
             </tr>
           ) : (
             transactions?.map((transaction, index) => (
-              <tr key={transaction.id} className={styles.tableRow}>
+              <tr key={transaction._id} className={styles.tableRow}>
                 <td>{index + 1}</td>
                 <td>{transaction.campaign.name}</td>
                 <td>{transaction.amount}</td>

@@ -13,10 +13,10 @@ export default function UserSectionHeader() {
   const [activeSection, setActiveSection] = useState("backed");
   const [user, setUser] = useState(state.user.user);
   const [npo, setNpo] = useState(state.npo);
-  console.log(npo);
+
   useEffect(() => {
     setUser(state.user.user);
-  }, [user]);
+  }, [state]);
   useEffect(() => {
     //add class on active section
 

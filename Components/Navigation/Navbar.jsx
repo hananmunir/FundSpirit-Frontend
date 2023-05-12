@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { logout, logoutNPO } from "../../Redux/User";
+import { addWallet, logout, logoutNPO, removeWallet } from "../../Redux/User";
 import { useSelector, useDispatch } from "react-redux";
 
 const DynamicAuth = dynamic(() => import("./Auth.js"), {
@@ -58,7 +58,6 @@ const Account = () => {
     setShow(false);
 
     dispatch(state.npo.loggedIn ? logoutNPO() : logout());
-    // window.location.href = "/";
   };
   return (
     <>
@@ -104,8 +103,8 @@ export default function Navigationbar() {
 
   const [isNPO, setIsNPO] = useState(state.npo.loggedIn);
   const [isUser, setIsUser] = useState(state.user.loggedIn);
-
-  let web3Modal;
+  console.log(isNPO);
+  let web3Modal, web3ModalInstance;
   useEffect(() => {
     web3Modal = new Web3Modal({
       cacheProvider: true,
@@ -113,26 +112,62 @@ export default function Navigationbar() {
     });
   }, []);
   useEffect(() => {
-    setIsMobile(window.innerWidth < 786);
+    const checkMobile = () => setIsMobile(window.innerWidth < 786);
+
+    checkMobile();
+
+    window.addEventListener("resize", checkMobile);
   }, []);
 
   const handleLogout = () => {
     dispatch(logout());
     setIsUser(false);
-    window.location.href = "/";
+    // window.location.href = "/";
   };
+  useEffect(() => {
+    if (web3ModalInstance?.on) {
+      const handleAccountsChanged = (accounts) => {
+        dispatch(addWallet());
+      };
+
+      const handleChainChanged = (chainId) => {};
+
+      const handleDisconnect = () => {
+        dispatch(removeWallet());
+      };
+
+      web3ModalInstance.on("accountsChanged", handleAccountsChanged);
+      web3ModalInstance.on("chainChanged", handleChainChanged);
+      web3ModalInstance.on("disconnect", handleDisconnect);
+
+      return () => {
+        if (web3ModalInstance.removeListener) {
+          web3ModalInstance.removeListener(
+            "accountsChanged",
+            handleAccountsChanged
+          );
+          web3ModalInstance.removeListener("chainChanged", handleChainChanged);
+          web3ModalInstance.removeListener("disconnect", handleDisconnect);
+        }
+      };
+    }
+  }, [web3ModalInstance]);
   const connectWallet = async () => {
     try {
-      //web3Modal.clearCachedProvider();
       const web3ModalInstance = await web3Modal.connect();
       const web3Provider = new ethers.providers.Web3Provider(web3ModalInstance);
       const signer = web3Provider.getSigner();
       const address = await signer.getAddress();
+      dispatch(addWallet(address));
       // setAccount(address);
       setConnected(true);
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const disConnectWallet = () => {
+    dispatch(removeWallet());
   };
 
   return (
@@ -189,39 +224,45 @@ export default function Navigationbar() {
                     </Link>
                   </Nav>
                   <Nav className='ms-3'>
-                    <Link href='/' onClick={handleLogout}>
-                      <span className='link pointer'>Logout</span>
-                    </Link>
+                    <span className='link pointer' onClick={handleLogout}>
+                      Logout
+                    </span>
                   </Nav>
                 </>
               )}
 
-              {isNPO || isUser ? (
-                !isMobile && <Account />
-              ) : (
-                <div className={" " + styles.btnContainer}>
-                  {!isNPO && (
-                    <button
-                      className={styles.btn + " " + styles.walletBtn}
-                      onClick={connected ? () => {} : () => connectWallet()}
-                    >
-                      {connected ? "Disconnect" : "Connect Wallet"}
-                    </button>
-                  )}
+              <div
+                className={`ms-3 ${styles.btnContainer} ${
+                  (isUser || isNPO) && styles.lessWidth
+                } `}
+              >
+                {!isNPO && (
+                  <button
+                    className={styles.btn + " " + styles.walletBtn}
+                    onClick={
+                      state.user.walletAddress
+                        ? () => disConnectWallet()
+                        : () => connectWallet()
+                    }
+                  >
+                    {state.user.walletAddress ? "Disconnect" : "Connect Wallet"}
+                  </button>
+                )}
 
-                  {!isNPO && !isUser && (
-                    <button
-                      className={[styles.btn] + " " + (!isMobile && " ms-2 ")}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setShow(true);
-                      }}
-                    >
-                      Login
-                    </button>
-                  )}
-                </div>
-              )}
+                {!isNPO && !isUser ? (
+                  <button
+                    className={[styles.btn] + " " + (!isMobile && " ms-2 ")}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Login
+                  </button>
+                ) : (
+                  !isMobile && <Account />
+                )}
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -24,7 +24,7 @@ function Auth({ show, setShow }) {
         dispatch(reduxLogin(res.data));
         setShow(false);
         setUser(userData);
-        router.push("/user/1");
+        window.location.href = "/user/1";
       })
       .catch((err) => {
         toast(err.response.data, { type: "error" });

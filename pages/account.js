@@ -9,7 +9,12 @@ export default function account() {
 
   const router = useRouter();
 
-  if (!npo.loggedIn) router.push("/");
+  if (!loggedIn) {
+    if (window) window.location.href = "/";
+    else {
+      router.push("/");
+    }
+  }
 
   return (
     <div>
