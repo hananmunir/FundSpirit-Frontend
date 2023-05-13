@@ -20,10 +20,10 @@ const Login = () => {
       .then((res) => {
         dispatch(loginNPO(res.data));
         toast("Login Successful", { type: "success" });
+
         router.push("/account");
       })
       .catch((err) => {
-        console.log(err);
         toast(
           err?.response?.data || "Something went wrong, please try again later",
           { type: "error" }

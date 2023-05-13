@@ -58,6 +58,7 @@ const Account = () => {
     setShow(false);
 
     dispatch(state.npo.loggedIn ? logoutNPO() : logout());
+    window.location.href = "/";
   };
   return (
     <>
@@ -67,7 +68,7 @@ const Account = () => {
         <img
           className={"rounded-circle " + styles.accountImg}
           onClick={handleShow}
-          src='https://pbs.twimg.com/profile_images/1354432287971147777/kIB1SPsA_400x400.jpg'
+          src='/Images/account.jpeg'
         />
         <div
           className={
@@ -103,8 +104,9 @@ export default function Navigationbar() {
 
   const [isNPO, setIsNPO] = useState(state.npo.loggedIn);
   const [isUser, setIsUser] = useState(state.user.loggedIn);
-  console.log(isNPO, isUser);
   let web3Modal, web3ModalInstance;
+
+  console.log(state.npo);
   useEffect(() => {
     web3Modal = new Web3Modal({
       cacheProvider: true,
@@ -122,7 +124,7 @@ export default function Navigationbar() {
   const handleLogout = () => {
     dispatch(logout());
     setIsUser(false);
-    // window.location.href = "/";
+    window.location.href = "/";
   };
   useEffect(() => {
     if (web3ModalInstance?.on) {

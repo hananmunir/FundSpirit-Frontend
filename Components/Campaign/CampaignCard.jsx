@@ -42,16 +42,20 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
   };
 
   const handleEnroll = () => {
-    enrollCampaign({
-      campaignId: campaign._id,
-      id: loadingStore.getState().npo._id,
-    })
+    enrollCampaign(
+      {
+        campaignId: campaign._id,
+        id: state.npo._id,
+      },
+      state.npo.token
+    )
       .then((res) => {
         toast("You are Successfully Enrolled in this Campaign", {
           type: "success",
         });
       })
       .catch((err) => {
+        console.log(err);
         toast("Error Enrolling", {
           type: "error",
         });

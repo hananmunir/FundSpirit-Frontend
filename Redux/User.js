@@ -33,7 +33,8 @@ const userSlice = createSlice({
       state = {
         ...state,
         npo: {
-          ...action.payload,
+          ...action.payload.npo,
+          token: action.payload.token,
           loggedIn: true,
         },
       };
@@ -43,7 +44,7 @@ const userSlice = createSlice({
       state = {
         ...state,
         user: {
-          ...state.user,
+          walletAddress: state.user.walletAddress,
           role: "",
           name: "",
           email: "",

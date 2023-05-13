@@ -8,4 +8,7 @@ export const createNPO = async (formData) => api.post("/npos", formData);
 
 export const npoLogin = async (formData) => api.post("/npos/login", formData);
 
-export const enrollCampaign = async (ids) => api.put("/npos/enroll", ids);
+export const enrollCampaign = async (ids, token) => {
+  api.defaults.headers.common["Authorization"] = `${token}`;
+  return api.put("/npos/enroll", ids);
+};
