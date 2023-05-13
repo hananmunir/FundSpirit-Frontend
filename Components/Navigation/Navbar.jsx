@@ -103,7 +103,7 @@ export default function Navigationbar() {
 
   const [isNPO, setIsNPO] = useState(state.npo.loggedIn);
   const [isUser, setIsUser] = useState(state.user.loggedIn);
-  console.log(isNPO);
+  console.log(isNPO, isUser);
   let web3Modal, web3ModalInstance;
   useEffect(() => {
     web3Modal = new Web3Modal({
@@ -151,7 +151,7 @@ export default function Navigationbar() {
         }
       };
     }
-  }, [web3ModalInstance]);
+  }, []);
   const connectWallet = async () => {
     try {
       const web3ModalInstance = await web3Modal.connect();

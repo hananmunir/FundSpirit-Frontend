@@ -90,9 +90,12 @@ export default function Form() {
   const handleSubmit = (event) => {
     createNPO(formData)
       .then((response) => {
-        toast("NPO created successfully", {
-          type: "success",
-        });
+        toast(
+          "NPO Registration request send to admin, please wait for Apporval!",
+          {
+            type: "success",
+          }
+        );
         console.log(response);
         setFormData(initialState);
       })

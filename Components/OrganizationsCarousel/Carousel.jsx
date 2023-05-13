@@ -20,8 +20,8 @@ function OrgCarousel() {
     setWindowWidth(window.innerWidth);
   });
   const renderLogos = () =>
-    imagesArray.map((image) => (
-      <div className={styles.carouselItemContainer}>
+    imagesArray.map((image, index) => (
+      <div key={index} className={styles.carouselItemContainer}>
         <img src={image} className={styles.carouselImage} />
       </div>
     ));

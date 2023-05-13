@@ -27,7 +27,10 @@ function Auth({ show, setShow }) {
         window.location.href = "/user/1";
       })
       .catch((err) => {
-        toast(err.response.data, { type: "error" });
+        toast(
+          err?.response?.data || "Something went wrong, please try again later",
+          { type: "error" }
+        );
       });
   };
 
@@ -45,9 +48,12 @@ function Auth({ show, setShow }) {
         setLogin(true);
       })
       .catch((err) => {
-        toast(err.response.data, {
-          type: "error",
-        });
+        toast(
+          err?.response?.data || "Something went wrong, please try again later",
+          {
+            type: "error",
+          }
+        );
       });
   };
 

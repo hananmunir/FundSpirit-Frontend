@@ -24,7 +24,10 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast(err.response.data, { type: "error" });
+        toast(
+          err?.response?.data || "Something went wrong, please try again later",
+          { type: "error" }
+        );
       });
   };
 
@@ -85,6 +88,7 @@ const Login = () => {
         <span
           className='align-self-end'
           style={{ color: "#1d1cef", cursor: "pointer" }}
+          onClick={() => router.push("/npo/auth")}
         >
           Register Here
         </span>
