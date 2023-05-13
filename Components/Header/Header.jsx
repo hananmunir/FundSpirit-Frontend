@@ -66,10 +66,9 @@ export default function Header() {
               </span>
             </span>
             <span className={styles.headerSubText}>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque
-              quas ipsa repellat numquam omnis neque eos dolorum eum hic aliquam
-              dolorem velit ea rerum adipisci officiis, atque iure quibusdam
-              quod.
+            Want to make a difference in the world? Join our community of donors and help 
+            support meaningful projects that are changing lives. Your donation can make a 
+            real impact, from education and healthcare to the environment and beyond.
             </span>
             <div className={styles.btnContainer}>
               <button className={styles.btn} onClick={explore}>

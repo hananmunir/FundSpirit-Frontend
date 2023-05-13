@@ -21,10 +21,9 @@ function Footer() {
             <div className={styles.footerAbout}>
               <span className={styles.footerAboutTitle}>About FundSpirit</span>
               <span className={styles.footerAboutDescription}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                dolorem magnam nam architecto quod aliquid, et officia, quis,
-                quidem eveniet corrupti similique ea? Provident ullam
-                perferendis expedita commodi vitae repellendus.
+              FundSpirit is a blockchain-powered crowdfunding platform for Non-Profit 
+              Organizations (NPOs) in Pakistan, offering transparency and accountability 
+              to donors. Join us in revolutionizing philanthropy in Pakistan.
               </span>
             </div>
           </Col>
@@ -87,7 +86,7 @@ function Footer() {
                 Subscribe Newsletter
               </span>
               <span className={styles.footerSubsLetterDescription}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
+              Stay up-to-date with the latest news and updates by subscribing to our newsletter today.
               </span>
               <div className={styles.footerEmail}>
                 <input
