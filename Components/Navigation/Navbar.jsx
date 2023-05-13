@@ -106,7 +106,6 @@ export default function Navigationbar() {
   const [isUser, setIsUser] = useState(state.user.loggedIn);
   let web3Modal, web3ModalInstance;
 
-  console.log(state.npo);
   useEffect(() => {
     web3Modal = new Web3Modal({
       cacheProvider: true,
@@ -235,8 +234,8 @@ export default function Navigationbar() {
 
               <div
                 className={`ms-3 ${styles.btnContainer} ${
-                  (isUser || isNPO) && styles.lessWidth
-                } `}
+                  isUser && styles.lessWidth
+                } ${isNPO && "w-100"}`}
               >
                 {!isNPO && (
                   <button

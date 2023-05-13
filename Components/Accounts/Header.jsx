@@ -55,17 +55,39 @@ export default function Header() {
           </span>
           <div
             className={
-              styles.userFundData + " d-flex flex-row align-items-center    "
+              styles.userFundData + " d-flex flex-row align-items-center   "
             }
           >
-            <div className='me-lg-4'>
-              <span className='fs-4 fw-bold'>
-                {user?.totalFunding || npo?.balance}
-              </span>{" "}
-              <span>{npo.loggedIn ? "Funds" : "Donated"}</span>
+            <div className='me-lg-4  '>
+              <div>
+                <span
+                  style={{
+                    fontWeight: "500",
+                  }}
+                  className='fs-4 '
+                >
+                  {" "}
+                  {user?.totalFunding || npo?.balance}
+                </span>
+                <span
+                  style={{
+                    fontWeight: "400",
+                  }}
+                  className='fs-4 '
+                >
+                  $
+                </span>
+                {"  "}
+                <span>{npo.loggedIn ? "Funds" : "Donated"}</span>
+              </div>
             </div>
             <div>
-              <span className=' fs-4 fw-bold'>
+              <span
+                style={{
+                  fontWeight: "500",
+                }}
+                className=' fs-4 '
+              >
                 {user?.campaignsFunded?.length || npo?.campaigns?.length}
               </span>{" "}
               <span>

@@ -24,7 +24,7 @@ export default function Header() {
       {
         y: 0,
         opacity: 1,
-        delay: 1.5,
+        delay: 1,
         duration: 2,
         ease: "power2.easeOut",
       }
@@ -36,7 +36,7 @@ export default function Header() {
       {
         opacity: 1,
         delay: 1,
-        duration: 2,
+        duration: 4,
         ease: "power2.easeOut",
       }
     );
@@ -66,9 +66,10 @@ export default function Header() {
               </span>
             </span>
             <span className={styles.headerSubText}>
-            Want to make a difference in the world? Join our community of donors and help 
-            support meaningful projects that are changing lives. Your donation can make a 
-            real impact, from education and healthcare to the environment and beyond.
+              Want to make a difference in the world? Join our community of
+              donors and help support meaningful projects that are changing
+              lives. Your donation can make a real impact, from education and
+              healthcare to the environment and beyond.
             </span>
             <div className={styles.btnContainer}>
               <button className={styles.btn} onClick={explore}>

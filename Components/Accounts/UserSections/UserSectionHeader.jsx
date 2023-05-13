@@ -13,7 +13,7 @@ export default function UserSectionHeader() {
   const [activeSection, setActiveSection] = useState("backed");
   const [user, setUser] = useState(state.user.user);
   const [npo, setNpo] = useState(state.npo);
-
+  console.log(user);
   useEffect(() => {
     setUser(state.user.user);
   }, [state]);

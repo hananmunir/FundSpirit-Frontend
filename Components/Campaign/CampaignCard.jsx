@@ -55,8 +55,7 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
         });
       })
       .catch((err) => {
-        console.log(err);
-        toast("Error Enrolling", {
+        toast(err.response?.data?.message || "Error Enrolling", {
           type: "error",
         });
       });
