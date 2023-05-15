@@ -1,5 +1,5 @@
 import Campaign from "../artifacts/contracts/Campaign.sol/Campaign.json";
-import web3 from "./index";
+import web3 from "./Index";
 
 //get campaign details
 export const getCampaign = async (address) => {

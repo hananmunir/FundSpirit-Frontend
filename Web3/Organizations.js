@@ -1,6 +1,6 @@
 //0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6
 import Organization from "../artifacts/contracts/Organization.sol/Organization.json";
-import web3 from "./index";
+import web3 from "./Index";
 
 //get organization details
 export const getOrganization = async (address) => {
