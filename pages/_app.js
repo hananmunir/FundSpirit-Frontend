@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "../styles/globals.css";
 import { useEffect, useState } from "react";
 import Head from "next/head";
