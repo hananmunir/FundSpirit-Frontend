@@ -125,7 +125,7 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
             </div>
             <div>
               <span className={styles.fadeColor + " me-1"}>All Time</span>
-              <span>$ {cam?.totalFunds}</span>
+              <span>$ {campaign?.totalFundings}</span>
             </div>
           </div>
 

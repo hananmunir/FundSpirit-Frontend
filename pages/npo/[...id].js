@@ -5,6 +5,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import { DummyOrganizations } from "../../constants/DummyData/Organization";
 import { useRouter } from "next/router";
 import { fetchNPO } from "../../Api/NPOs";
+import Loader from "../../Components/Loader/Loader";
 const DynamicGoals = dynamic(
   () => import("../../Components/Npo/NpoDetails/Goals"),
   {
@@ -61,7 +62,7 @@ export default function NPO() {
           <span className='ms-5 fw-bold'>{organization?.name}</span>
         </div>
       </Row>
-      <Suspense>
+      <Suspense fallback={<Loader />}>
         <DynamicGoals organization={organization} />
         <DynamicUpdates organization={organization} />
         <DynamicPurchases organization={organization} />

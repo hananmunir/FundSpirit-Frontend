@@ -1,8 +1,8 @@
 import api from "./Index.js";
 
-export const fetchAllNPOs = async () => api.get("/npos");
+export const fetchAllNPOs = async () => await api.get("/npos");
 
-export const fetchNPO = async (id) => api.get(`/npos/${id}`);
+export const fetchNPO = async (id) => await api.get(`/npos/${id}`);
 
 export const createNPO = async (formData) => api.post("/npos", formData);
 

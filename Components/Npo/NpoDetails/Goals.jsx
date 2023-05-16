@@ -30,7 +30,7 @@ function Goals({ organization }) {
               </div>
               <div className='d-flex flex-row justify-content-between align-items-center'>
                 <div className={styles.infoTitle}>Address</div>
-                <div>{organization?.address}</div>
+                <div className='self-start'>{organization?.address}</div>
               </div>
               <div className='d-flex flex-row justify-content-between align-items-center'>
                 <div className={styles?.infoTitle}>Website</div>
@@ -41,8 +41,6 @@ function Goals({ organization }) {
                 <div>{organization?.secp}</div>
               </div>
               <hr />
-              <div className={styles.infoTitle}>Description</div>
-              <div>{organization?.description}</div>
             </div>
           </Col>
           <Col
@@ -69,7 +67,15 @@ function Goals({ organization }) {
               </div>
             </div>
           </Col>
-
+        </Row>
+        <Row className=' d-flex flex-column'>
+          <Col className='d-flex flex-column mt-5 mb-3'>
+            <div className='d-flex flex-row align-items-center justifty-content-center mb-2'>
+              <GiBullseye color='#1d1ce5' className='me-1' size={30} />{" "}
+              <span className={styles.projectSubtitle}>Description</span>
+            </div>
+            <span className='w-50'>{organization?.description}</span>
+          </Col>
           <Col className='d-flex flex-column mt-5 mb-3'>
             <div className='d-flex flex-row align-items-center justifty-content-center mb-2'>
               <GiBullseye color='#1d1ce5' className='me-1' size={30} />{" "}
@@ -77,8 +83,13 @@ function Goals({ organization }) {
             </div>
             <span className='w-50'>{organization?.goals}</span>
           </Col>
+          <Col className='d-flex flex-column mt-5 mb-3'>
+            <div className='d-flex flex-row align-items-center justifty-content-center mb-2'>
+              <span className={styles.projectSubtitle}>Enrolled Campaigns</span>
+            </div>
+            <BackedSection campaignIds={organization?.campaigns} npoDisplay />
+          </Col>
         </Row>
-        <BackedSection campaignIds={organization?.campaigns} npoDisplay />
       </Container>
     </>
   );

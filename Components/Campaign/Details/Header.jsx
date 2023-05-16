@@ -9,6 +9,7 @@ import { DummyCampaigns } from "../../../constants/DummyData/Campaigns";
 import Fund from "../Fund/Fund";
 function Header({ campaign }) {
   const [showFund, setShowFund] = useState(false);
+  console.log(campaign);
   return (
     <Container fluid className={styles.headerContainer}>
       <Row>
@@ -18,9 +19,9 @@ function Header({ campaign }) {
             loading='lazy'
             className={styles.headerImage}
           />
-          <div className='ms-2 mt-3 w-50 d-flex align-items-center justify-content-start'>
+          <div className='ms-2 mt-3 d-flex align-items-center justify-content-start'>
             {campaign?.tags.map((tag) => (
-              <span className='fs-7'>
+              <span className='fs-7  me-2'>
                 {" "}
                 <AiFillTag className='me-1' />
                 {tag}
@@ -37,7 +38,7 @@ function Header({ campaign }) {
         >
           <div className={styles.headerContent + " mt-4"}>
             <span className={styles.heading + " fs-1"}>{campaign?.name}</span>
-            <span className={styles.subHeading}>{campaign?.subTitle}</span>
+            <span className={styles.subHeading}>{campaign?.subtitle}</span>
           </div>
           <div className={styles.CTA}>
             <button

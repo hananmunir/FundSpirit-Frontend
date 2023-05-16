@@ -1,11 +1,11 @@
 import React from "react";
-import "./loader.css";
+import styles from "./loader.module.css";
 import { Spinner } from "react-bootstrap";
 
 const Loader = () => (
-  <div className='fallback-spinner'>
-    <div className='loading'>
-      <Spinner animation='grow' variant='danger' />
+  <div className={styles.fallbackSpinner}>
+    <div className={styles.loading}>
+      <Spinner animation='grow' variant='primary' />
     </div>
   </div>
 );

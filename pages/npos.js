@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import CampaignHeader from "../Components/Campaign/SearchContainer";
 import dynamic from "next/dynamic";
@@ -7,6 +7,7 @@ import { getOrganization } from "../Web3/Organizations";
 import { fetchAllNPOs } from "../Api/NPOs";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import Loader from "../Components/Loader/Loader";
 const DynamicNpoCard = dynamic(() => import("../Components/Npo/NpoCard"), {
   ssr: true,
 });
@@ -61,34 +62,36 @@ export default function NPOs() {
         handleClear={handleClear}
         searched={searched}
       />
-      <Container className='mb-5 pb-3 h-100'>
-        <Row className='h-100'>
-          {filteredOrganizations.length > 0 ? (
-            filteredOrganizations.map((organization, index) => (
-              <DynamicNpoCard
-                org={DummyOrganizations[index]}
-                organization={organization}
-              />
-            ))
-          ) : (
-            <div
-              className='w-100  d-flex align-items-center justify-content-center'
-              style={{
-                height: "30vh",
-              }}
-            >
-              <span
+      <Suspense fallback={<Loader />}>
+        <Container className='mb-5 pb-3 h-100'>
+          <Row className='h-100'>
+            {filteredOrganizations?.length > 0 ? (
+              filteredOrganizations.map((organization, index) => (
+                <DynamicNpoCard
+                  org={DummyOrganizations[index]}
+                  organization={organization}
+                />
+              ))
+            ) : (
+              <div
+                className='w-100  d-flex align-items-center justify-content-center'
                 style={{
-                  color: "gray",
+                  height: "30vh",
                 }}
-                className='fs-3'
               >
-                No NPO's Found
-              </span>
-            </div>
-          )}
-        </Row>
-      </Container>
+                <span
+                  style={{
+                    color: "gray",
+                  }}
+                  className='fs-3'
+                >
+                  No NPO's Found
+                </span>
+              </div>
+            )}
+          </Row>
+        </Container>
+      </Suspense>
     </div>
   );
 }

@@ -91,7 +91,7 @@ export default function Form() {
     createNPO(formData)
       .then((response) => {
         toast(
-          "NPO Registration request send to admin, please wait for Apporval!",
+          "Registration request send to admin, please wait for Apporval!",
           {
             type: "success",
           }

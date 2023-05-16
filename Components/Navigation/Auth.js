@@ -18,29 +18,40 @@ function Auth({ show, setShow }) {
     setShow(false);
   };
   const handleLogin = () => {
-    loginUser(user)
+    //trimming the user object
+    const reqData = {
+      email: user.email.trim(),
+      password: user.password.trim(),
+    };
+    loginUser(reqData)
       .then((res) => {
         toast("Login Successful", { type: "success" });
         dispatch(reduxLogin(res.data));
         setShow(false);
         setUser(userData);
+
         window.location.href = "/user/1";
       })
       .catch((err) => {
-        toast(
-          err?.response?.data || "Something went wrong, please try again later",
-          { type: "error" }
-        );
+        const message = err.response.data || "Something went wrong";
+        toast(message, { type: "error" });
       });
   };
 
   const handleRegister = () => {
-    if (user.password !== user.confirmPassword) {
+    if (user.password.trim() !== user.confirmPassword.trim()) {
       toast("Passwords do not match", { type: "error" });
       return;
     }
 
-    registerUser(user)
+    //trimming the user object
+    const reqData = {
+      name: user.name.trim(),
+      email: user.email.trim(),
+      password: user.password.trim(),
+    };
+
+    registerUser(reqData)
       .then((res) => {
         toast("User Successfully Registered", { type: "success" });
         setShow(false);
@@ -72,14 +83,14 @@ function Auth({ show, setShow }) {
   };
 
   const isLoginValid = () => {
-    return user.email.trim() === "" || user.password.trim() === "";
+    return user.email.length <= 0 || user.password.length <= 0;
   };
   const isRegisterValid = () => {
     return (
-      user.name.trim() === "" ||
-      user.email.trim() === "" ||
-      user.password.trim() === "" ||
-      user.confirmPassword.trim() === ""
+      user.name.trim().length <= 0 ||
+      user.email.trim().length <= 0 ||
+      user.password.trim().length <= 0 ||
+      user.confirmPassword.trim().length <= 0
     );
   };
   return (
@@ -98,9 +109,7 @@ function Auth({ show, setShow }) {
                 <Form.Control
                   type='name'
                   placeholder='Enter name'
-                  onChange={(e) =>
-                    setUser({ ...user, name: e.target.value.trim() })
-                  }
+                  onChange={(e) => setUser({ ...user, name: e.target.value })}
                   value={user.name}
                 />
                 <Form.Text className='text-muted'></Form.Text>
@@ -124,9 +133,7 @@ function Auth({ show, setShow }) {
               <Form.Control
                 type='password'
                 placeholder='Enter Password'
-                onChange={(e) =>
-                  setUser({ ...user, password: e.target.value.trim() })
-                }
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
                 value={user.password}
               />
             </Form.Group>
@@ -137,7 +144,7 @@ function Auth({ show, setShow }) {
                   type='password'
                   placeholder='Enter Password Again'
                   onChange={(e) =>
-                    setUser({ ...user, confirmPassword: e.target.value.trim() })
+                    setUser({ ...user, confirmPassword: e.target.value })
                   }
                   value={user.confirmPassword}
                 />

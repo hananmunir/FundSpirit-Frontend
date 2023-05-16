@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import Loader from "../Components/Loader/Loader";
 
 const DynamicHeader = dynamic(() => import("../Components/Header/Header"), {
   suspense: true,
@@ -39,7 +40,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Suspense>
+      <Suspense fallback={<Loader />}>
         <DynamicHeader />
         <DynamicStats />
         <DynamicCampaigns />

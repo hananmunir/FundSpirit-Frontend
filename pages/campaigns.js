@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Container, Row } from "react-bootstrap";
 import CampaignHeader from "../Components/Campaign/SearchContainer";
 import dynamic from "next/dynamic";
@@ -8,6 +8,7 @@ import Filter from "../Components/Filter/Filter";
 import useCampaignStore from "../Redux/Campaigns";
 import { fetchAllCampaigns } from "../Api/Campaigns";
 import { fetchAllCampaigns as fetchCampaignsRedux } from "../Redux/Campaigns";
+import Loader from "../Components/Loader/Loader";
 const DynamicCampaignCard = dynamic(
   () => import("../Components/Campaign/CampaignCard"),
   {
@@ -59,36 +60,38 @@ export default function Campaigns() {
         searched={searched}
       />
       {/* <Filter /> */}
-      <Container className='mb-5'>
-        <Row className='gx-5'>
-          {filteredCampaigns.length > 0 ? (
-            filteredCampaigns.map((campaign, index) => (
-              <DynamicCampaignCard
-                cam={DummyCampaigns[index]}
-                address={campaigns ? campaigns[index] : ""}
-                campaign={campaign}
-                key={index}
-              />
-            ))
-          ) : (
-            <div
-              className='w-100  d-flex align-items-center justify-content-center'
-              style={{
-                height: "30vh",
-              }}
-            >
-              <span
+      <Suspense fallback={<Loader />}>
+        <Container className='mb-5'>
+          <Row className='gx-5'>
+            {filteredCampaigns?.length > 0 ? (
+              filteredCampaigns.map((campaign, index) => (
+                <DynamicCampaignCard
+                  cam={DummyCampaigns[index]}
+                  address={campaigns ? campaigns[index] : ""}
+                  campaign={campaign}
+                  key={index}
+                />
+              ))
+            ) : (
+              <div
+                className='w-100  d-flex align-items-center justify-content-center'
                 style={{
-                  color: "gray",
+                  height: "30vh",
                 }}
-                className='fs-3'
               >
-                No Campaigns Found
-              </span>
-            </div>
-          )}
-        </Row>
-      </Container>
+                <span
+                  style={{
+                    color: "gray",
+                  }}
+                  className='fs-3'
+                >
+                  No Campaigns Found
+                </span>
+              </div>
+            )}
+          </Row>
+        </Container>
+      </Suspense>
     </>
   );
 }

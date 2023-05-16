@@ -16,7 +16,7 @@ function NpoCard({ org, organization }) {
   return (
     <Col md={6} lg={4} className='h-100'>
       <div
-        className='d-flex flex-column mt-3 p-3  border h-100  '
+        className='d-flex flex-column mt-3 p-3  border h-100 rounded  '
         style={{
           position: "relative",
           cursor: "pointer",

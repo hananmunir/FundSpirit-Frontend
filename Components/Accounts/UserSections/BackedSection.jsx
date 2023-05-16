@@ -4,7 +4,7 @@ import CampaignStore from "../../../Redux/Campaigns";
 import CampaignCard from "../../Campaign/CampaignCard";
 import { fetchAllCampaigns } from "../../../Api/Campaigns";
 
-export default function BackendSection({ campaignIds, npoDisplay }) {
+export default function BackendSection({ campaignIds, npoDisplay, campaignSection }) {
   const [backedCampaigns, setBackedCampaigns] = useState([]);
 
   useEffect(() => {

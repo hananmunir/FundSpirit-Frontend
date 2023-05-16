@@ -29,12 +29,16 @@ const { store, persistor } = makeStore();
 function MyApp({ Component, pageProps }) {
   const [isAuth, setIsAuth] = useState(false);
   useEffect(() => {
-    fetchAllCampaigns().then((res) => {
-      useCampaignStore.dispatch(reduxFetchCampaigns(res.data));
-    });
-    fetchAllNPOs().then((res) => {
-      useNPOStore.dispatch(reduxFetchNPOs(res.data));
-    });
+    fetchAllCampaigns()
+      .then((res) => {
+        useCampaignStore.dispatch(reduxFetchCampaigns(res.data));
+      })
+      .catch((err) => console.log(err));
+    fetchAllNPOs()
+      .then((res) => {
+        useNPOStore.dispatch(reduxFetchNPOs(res.data));
+      })
+      .catch((err) => console.log(err));
   }, [useCampaignStore]);
   useEffect(() => {
     setIsAuth(
