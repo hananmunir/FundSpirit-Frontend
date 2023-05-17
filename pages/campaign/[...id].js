@@ -58,11 +58,7 @@ export default function Campaign() {
   console.log(campaign);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-      }}
-    >
+    <div>
       <Suspense fallback={<Loader />}>
         <DyanmicHeader campaign={campaign} />
         <div

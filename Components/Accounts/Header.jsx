@@ -3,19 +3,33 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Index.module.css";
 import { getBalance } from "../../Web3/Organizations";
 import { useSelector } from "react-redux";
+import Web3 from "web3";
+import EthRate from "../../Utilities/EthRate";
 export default function Header() {
   const state = useSelector((state) => state);
   const [user, setUser] = useState(state.user.user.user);
   const [npo, setNpo] = useState(state.user.npo);
-
+  const [ethRate, setEthRate] = useState(0);
   useEffect(() => {
     setUser(state.user.user.user);
   }, [user]);
 
   useEffect(() => {
+    EthRate()
+      .then((res) => {
+        setEthRate(res);
+      })
+      .catch((err) => setEthRate(1800.2));
+  }, []);
+
+  useEffect(() => {
     if (npo.loggedIn) {
       getBalance(npo.addressHash).then((res) => {
-        setNpo({ ...npo, balance: res, totalDisbursed: 0 });
+        setNpo({
+          ...npo,
+          balance: Web3.utils.fromWei(res.toString(), "ether"),
+          totalDisbursed: 0,
+        });
       });
     }
   }, []);
@@ -67,7 +81,9 @@ export default function Header() {
                   className='fs-4 '
                 >
                   {" "}
-                  {user?.totalFunding || npo?.balance}
+                  {user?.totalFunding ||
+                    (npo?.balance * ethRate).toFixed(0) ||
+                    0}
                 </span>
                 <span
                   style={{
@@ -88,7 +104,7 @@ export default function Header() {
                 }}
                 className=' fs-4 '
               >
-                {user?.campaignsFunded?.length || npo?.campaigns?.length}
+                {user?.campaignsFunded?.length || npo?.campaigns?.length || 0}
               </span>{" "}
               <span>
                 {npo.loggedIn ? "Campaigns Enrolled" : "Campaigns Funded"}

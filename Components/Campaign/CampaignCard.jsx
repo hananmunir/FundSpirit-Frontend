@@ -10,12 +10,12 @@ import styles from "./index.module.css";
 import Fund from "./Fund/Fund";
 import { getBalance } from "../../Web3/Campaign";
 import { enrollCampaign } from "../../Api/NPOs";
+import EthRate from "../../Utilities/EthRate";
 
 export default function CampaignCard({ liked, isBacked, cam, campaign }) {
   const router = useRouter();
   const state = useSelector((state) => state.user);
   const [showFundModal, setShowFundModal] = useState(false);
-  const [campaignData, setCampaignData] = useState();
   const [funds, setFunds] = useState(0);
   const [isLiked, setIsLiked] = useState(liked);
   const isNPO = state.npo.loggedIn;
@@ -64,7 +64,13 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
     if (campaign.address) {
       getBalance(campaign.address).then((res) => {
         //still have to make conversion dynamic
-        setFunds(Web3.utils.fromWei(res.toString(), "ether") * 1800.2);
+        EthRate()
+          .then((rate) => {
+            setFunds(Web3.utils.fromWei(res.toString(), "ether") * rate);
+          })
+          .catch((err) => {
+            setFunds(Web3.utils.fromWei(res.toString(), "ether") * 1800.2);
+          });
       });
     }
   }, [showFundModal]);

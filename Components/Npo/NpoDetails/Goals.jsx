@@ -5,9 +5,25 @@ import { TbFileDescription } from "react-icons/tb";
 import { GiBullseye } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import BackedSection from "../../Accounts/UserSections/BackedSection";
-
+import { getBalance } from "../../../Web3/Organizations";
+import Web3 from "web3";
+import EthRate from "../../../Utilities/EthRate";
 function Goals({ organization }) {
-  console.log(organization);
+  const [balance, setBalance] = useState(0);
+  useEffect(() => {
+    if (organization)
+      getBalance(organization.addressHash)
+        .then((res) => {
+          EthRate()
+            .then((rate) =>
+              setBalance(Web3.utils.fromWei(res.toString(), "ether") * rate)
+            )
+            .catch(() =>
+              setBalance(Web3.utils.fromWei(res.toString(), "ether") * 1800.2)
+            );
+        })
+        .catch((err) => console.log(err));
+  }, [organization]);
 
   return (
     <>
@@ -24,13 +40,10 @@ function Goals({ organization }) {
                 <div className={styles.infoTitle}>Email</div>
                 <div>{organization?.email}</div>
               </div>
-              <div className='d-flex flex-row justify-content-between align-items-center'>
-                <div className={styles.infoTitle}>Phone</div>
-                <div>{organization?.phone}</div>
-              </div>
-              <div className='d-flex flex-row justify-content-between align-items-center'>
+
+              <div className='d-flex  flex-row justify-content-between align-items-center'>
                 <div className={styles.infoTitle}>Address</div>
-                <div className='self-start'>{organization?.address}</div>
+                <div className='ms-auto text-end'>{organization?.address}</div>
               </div>
               <div className='d-flex flex-row justify-content-between align-items-center'>
                 <div className={styles?.infoTitle}>Website</div>
@@ -40,7 +53,6 @@ function Goals({ organization }) {
                 <div className={styles.infoTitle}>Registration Number</div>
                 <div>{organization?.secp}</div>
               </div>
-              <hr />
             </div>
           </Col>
           <Col
@@ -51,15 +63,18 @@ function Goals({ organization }) {
             <div className='d-flex flex-column'>
               <div className='d-flex flex-row justify-content-between align-items-center'>
                 <div className={styles.infoTitle}>Operating Category</div>
-                <div>{organization?.category}</div>
+                <div>
+                  {organization?.category[0].toUpperCase() +
+                    organization?.category.slice(1)}
+                </div>
               </div>
               <div className='d-flex flex-row justify-content-between align-items-center'>
                 <div className={styles.infoTitle}>Funds Collected</div>
-                <div>some value</div>
+                <div>{balance.toFixed(0)}$</div>
               </div>
               <div className='d-flex flex-row justify-content-between align-items-center'>
                 <div className={styles.infoTitle}>Campaigns Enrolled</div>
-                <div>some value</div>
+                <div>{organization?.campaigns.length}</div>
               </div>
               <div className='d-flex flex-row justify-content-between align-items-center'>
                 <div className={styles.infoTitle}>Funds Disbursed</div>

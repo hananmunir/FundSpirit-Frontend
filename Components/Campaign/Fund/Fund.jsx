@@ -6,6 +6,7 @@ import { fundCampaign } from "../../../Web3/Campaign";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { addTransaction } from "../../../Api/User";
+import { addFundingAmount } from "../../../Api/Campaigns";
 
 const AmountField = ({ amount, amountState, setAmount }) => {
   const ref = useRef(null);
@@ -50,29 +51,35 @@ export default function Fund({ show, setShow, campaign }) {
     EthRate()
       .then((res) => {
         let eth = amount / res;
-        fundCampaign(campaign.address, eth, state.user.walletAddress).then(
-          (res) => {
-            if (res) {
-              addTransaction(user.user._id, {
-                campaign: {
-                  name: campaign.name,
-                  id: campaign._id,
-                },
-                amount: amount,
-                hash: res.transactionHash,
-              });
-              toast(
-                "You have successfully funded this campaign, thank you for your support",
-                {
-                  type: "success",
-                  pauseOnHover: false,
-                  autoClose: 5000,
-                }
-              );
-              setShow(false);
-            }
+        fundCampaign(
+          campaign.address,
+          eth.toFixed(8),
+          state.user.walletAddress
+        ).then((res) => {
+          if (res) {
+            addTransaction(user.user._id, {
+              campaign: {
+                name: campaign.name,
+                id: campaign._id,
+              },
+              amount: amount,
+              hash: res.transactionHash,
+            }).catch((err) => console.log(err));
+
+            addFundingAmount(campaign._id, amount).catch((err) =>
+              console.log(err)
+            );
+            toast(
+              "You have successfully funded this campaign, thank you for your support",
+              {
+                type: "success",
+                pauseOnHover: false,
+                autoClose: 5000,
+              }
+            );
+            setShow(false);
           }
-        );
+        });
       })
       .catch((err) => {
         toast("Something went wrong, please try again later", {

@@ -11,5 +11,7 @@ export const getOrganization = async (address) => {
 
 export const getBalance = async (address) => {
   const balance = await web3.eth.getBalance(address);
+
+  //convert from 
   return balance;
 };

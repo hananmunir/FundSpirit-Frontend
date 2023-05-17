@@ -55,7 +55,7 @@ export default function NPO() {
             position: "absolute",
             backgroundColor: "rgba(0,0,0,0.5)",
             color: "white",
-            zIndex: 19,
+            zIndex: 0,
           }}
           className='top-0 left-0 h-100 w-100 d-flex align-items-center fs-2 ms'
         >

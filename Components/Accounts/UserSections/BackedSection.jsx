@@ -4,14 +4,17 @@ import CampaignStore from "../../../Redux/Campaigns";
 import CampaignCard from "../../Campaign/CampaignCard";
 import { fetchAllCampaigns } from "../../../Api/Campaigns";
 
-export default function BackendSection({ campaignIds, npoDisplay, campaignSection }) {
+export default function BackendSection({
+  campaignIds,
+  npoDisplay,
+  campaignSection,
+}) {
   const [backedCampaigns, setBackedCampaigns] = useState([]);
 
   useEffect(() => {
     if (campaignIds) {
       fetchAllCampaigns()
         .then((campaigns) => {
-          console.log(campaignIds);
           setBackedCampaigns(
             campaigns.data.filter((campaign) =>
               campaignIds.includes(campaign._id)
@@ -21,7 +24,7 @@ export default function BackendSection({ campaignIds, npoDisplay, campaignSectio
         .catch(() => {});
     }
   }, [campaignIds]);
-  console.log(backedCampaigns);
+
   return (
     <Container>
       <Row>

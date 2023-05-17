@@ -106,12 +106,7 @@ export default function Navigationbar() {
   const [isUser, setIsUser] = useState(state.user.loggedIn);
   let web3Modal, web3ModalInstance;
 
-  useEffect(() => {
-    web3Modal = new Web3Modal({
-      cacheProvider: true,
-      providerOptions,
-    });
-  }, []);
+  useEffect(() => {}, []);
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 786);
 
@@ -154,6 +149,10 @@ export default function Navigationbar() {
     }
   }, []);
   const connectWallet = async () => {
+    web3Modal = new Web3Modal({
+      cacheProvider: true,
+      providerOptions,
+    });
     try {
       const web3ModalInstance = await web3Modal.connect();
       const web3Provider = new ethers.providers.Web3Provider(web3ModalInstance);

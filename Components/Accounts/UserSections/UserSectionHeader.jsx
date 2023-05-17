@@ -66,7 +66,7 @@ export default function UserSectionHeader() {
           >
             <span id='backed'>{npo.loggedIn ? "Enrolled" : "Backed"}</span>
             <span className={styles.count} id='backedCount'>
-              {user?.campaignsFunded?.length || npo?.campaigns?.length}
+              {user?.campaignsFunded?.length || npo?.campaigns?.length || 0}
             </span>
           </div>
           {user && (

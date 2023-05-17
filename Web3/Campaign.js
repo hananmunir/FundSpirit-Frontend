@@ -18,7 +18,7 @@ export const fundCampaign = async (address, amount, account) => {
   const campaign = await new web3.eth.Contract(Campaign.abi, address);
   const gasPrice = await web3.eth.getGasPrice();
   const gasLimit = await campaign.methods.fund().estimateGas({ from: account });
-
+  console.log(amount);
   const response = await campaign.methods.fund().send({
     from: account,
     value: web3.utils.toWei(String(amount), "ether"),
