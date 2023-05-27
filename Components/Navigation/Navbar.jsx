@@ -51,7 +51,7 @@ const Account = () => {
   const handleProfileNavigation = (link) => {
     setShow(false);
 
-    router.push(state.npo.loggedIn ? "/account" : "/user/1");
+    router.push(state.npo.loggedIn ? "/account" : "/user");
   };
 
   const handleLogout = () => {
@@ -219,7 +219,7 @@ export default function Navigationbar() {
               {isMobile && (isUser || isNPO) && (
                 <>
                   <Nav className='ms-3'>
-                    <Link href='/user/1'>
+                    <Link href='/user'>
                       <span className='link pointer'>Profile</span>
                     </Link>
                   </Nav>

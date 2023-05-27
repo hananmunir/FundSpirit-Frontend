@@ -30,7 +30,7 @@ function Auth({ show, setShow }) {
         setShow(false);
         setUser(userData);
 
-        window.location.href = "/user/1";
+        window.location.href = "/user";
       })
       .catch((err) => {
         const message = err.response.data || "Something went wrong";

@@ -47,7 +47,7 @@ export default function Fund({ show, setShow, campaign }) {
       return toast("Please login to fund this campaign", { type: "error" });
     if (user.walletAddress === "")
       return toast("Please Connect to a wallet", { type: "error" });
-    if (amount <= 0) return toast("Please choose an amount to give");
+    if (amount < 25) return toast("The Minimum Funding Amount is 25$");
     EthRate()
       .then((res) => {
         let eth = amount / res;

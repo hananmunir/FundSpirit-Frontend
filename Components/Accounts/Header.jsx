@@ -5,11 +5,13 @@ import { getBalance } from "../../Web3/Organizations";
 import { useSelector } from "react-redux";
 import Web3 from "web3";
 import EthRate from "../../Utilities/EthRate";
+import { useRouter } from "next/router";
 export default function Header() {
   const state = useSelector((state) => state);
   const [user, setUser] = useState(state.user.user.user);
   const [npo, setNpo] = useState(state.user.npo);
   const [ethRate, setEthRate] = useState(0);
+  const router = useRouter();
   useEffect(() => {
     setUser(state.user.user.user);
   }, [user]);
@@ -33,6 +35,10 @@ export default function Header() {
       });
     }
   }, []);
+
+  const handleEdit = () => {
+    router.push("/user/edit");
+  };
 
   return (
     <Container fluid className='px-5 mt-4' style={{ position: "relative" }}>
@@ -120,7 +126,11 @@ export default function Header() {
             )}
           </div>
         </Col>
-        {user && <button className={styles.editBtn}>Edit</button>}
+        {user && (
+          <button className={styles.editBtn} onClick={handleEdit}>
+            Edit
+          </button>
+        )}
       </Row>
     </Container>
   );

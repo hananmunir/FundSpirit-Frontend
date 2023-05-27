@@ -29,7 +29,7 @@ function OrgCarousel() {
   return (
     <div className={styles.carouselContainer}>
       <center className={styles.carouselHeading + " fs-1"}>
-        <span>Our Tursted Organisations</span>
+        <span>Our Trusted Organisations</span>
       </center>
 
       <Slider
