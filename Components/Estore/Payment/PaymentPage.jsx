@@ -11,7 +11,7 @@ function PaymentPage() {
 
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(19.99);
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState(100);
      //to get npo id from redux store
     // const npoId = useSelector((state) => state.user.npo._id);
     // console.log(npoId);
@@ -21,22 +21,24 @@ function PaymentPage() {
     console.log(npo);
 
     //to get balance of npo
-    useEffect(() => {
-      if (npo)
-        getBalance(npo.addressHash)
-          .then((res) => {
-            EthRate()
-              .then((rate) =>
-                setBalance(Web3.utils.fromWei(res.toString(), "ether") * rate)
-              )
-              .catch(() =>
-                setBalance(Web3.utils.fromWei(res.toString(), "ether") * 1800.2)
-              );
-          })
-          .catch((err) => console.log(err));
-    }, [npo]);
-    console.log(balance);
+    // useEffect(() => {
+    //   if (npo)
+    //     getBalance(npo.addressHash)
+    //       .then((res) => {
+    //         EthRate()
+    //           .then((rate) =>
+    //             setBalance(Web3.utils.fromWei(res.toString(), "ether") * rate)
+    //           )
+    //           .catch(() =>
+    //             setBalance(Web3.utils.fromWei(res.toString(), "ether") * 1800.2)
+    //           );
+    //       })
+    //       .catch((err) => console.log(err));
+    // }, [npo]);
+    // console.log(balance);
 
+    //to convert eth to dollar
+    
     
   
     const handleQuantityChange = (event) => {
@@ -45,7 +47,15 @@ function PaymentPage() {
       setPrice(newQuantity * 19.99); // assuming the initial price is $19.99
     };
   
-
+    //to enable payment button if balance is greater than price
+    const isPaymentEnabled = () => {
+      if (balance >= price) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+    
   return (
     <div className={styles.container}>
       <Head>
@@ -71,9 +81,16 @@ function PaymentPage() {
         <span className={styles.checkoutAddress}>Organization Address: </span>
         <p className={styles.checkoutInfoText}>{npo.address}</p>
         <span className={styles.checkoutBalance}>Organization Balance: </span>
-        <p className={styles.checkoutInfoText}>{balance.toFixed(2)} ETH</p>
+        <p className={styles.checkoutInfoText}>{balance}$ </p>
         <div className={styles.checkoutButtonContainer}>
-        <button className={styles.payNow}>Pay Now</button>
+        <button
+          className={styles.payNow}
+          disabled={!isPaymentEnabled()}
+          style={{ opacity: isPaymentEnabled() ? 1 : 0.5 }}
+        >
+          Pay Now
+        </button>
+
         </div>
         </div>
         
