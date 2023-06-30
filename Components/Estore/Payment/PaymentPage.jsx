@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { getBalance } from "../../../Web3/Organizations";
 import Web3 from "web3";
 import EthRate from "../../../Utilities/EthRate";
+import { placeOrder } from '../../../Api/Estore';
 
 function PaymentPage() {
 
 
     const [quantity, setQuantity] = useState(1);
-    const [price, setPrice] = useState(19.99);
+    const [price, setPrice] = useState(10);
     const [balance, setBalance] = useState(100);
      //to get npo id from redux store
     const npoId = useSelector((state) => state.user.npo._id);
@@ -19,6 +20,37 @@ function PaymentPage() {
     //to get all details of npoId
     const npo = useSelector((state) => state.user.npo);
     console.log(npo);
+
+    //calling placeOrder function from api
+    const handlePayment = () => {
+      console.log(npoId, price);
+      placeOrder(npoId, price, quantity)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    
+
+    //function to send product price and npo id to backend
+    // const handlePayment = () => {
+    //   const data = {
+    //     npoId,
+    //     amount: price
+    //   };
+  
+    //   // Send data to the backend
+    //   axios.post('/deduct-funds', data)
+    //     .then((response) => {
+    //       const { remainingBalance } = response.data;
+    //       console.log('Remaining balance:', remainingBalance);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // };
 
     //to get balance of npo
     // useEffect(() => {
@@ -87,6 +119,7 @@ function PaymentPage() {
           className={styles.payNow}
           disabled={!isPaymentEnabled()}
           style={{ opacity: isPaymentEnabled() ? 1 : 0.5 }}
+          onClick={handlePayment}
         >
           Pay Now
         </button>

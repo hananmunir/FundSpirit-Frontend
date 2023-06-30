@@ -133,3 +133,18 @@
 
 
 }
+
+@media screen and (max-width: 768px) {
+    .campaignHeader {
+        height: 40vh;
+    }
+
+    .searchBarContainer {
+        width: 85%;
+    }
+
+    .campaignHeaderSearchBtn {
+        width: 30%;
+    }
+
+    }
