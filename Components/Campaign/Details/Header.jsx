@@ -7,6 +7,8 @@ import { BsFacebook } from "react-icons/bs";
 import { SlShareAlt } from "react-icons/sl";
 import { DummyCampaigns } from "../../../constants/DummyData/Campaigns";
 import Fund from "../Fund/Fund";
+
+const BASE_URL_DEV = "http://localhost:8800/api/campaigns/images/";
 function Header({ campaign }) {
   const [showFund, setShowFund] = useState(false);
   console.log(campaign);
@@ -15,7 +17,11 @@ function Header({ campaign }) {
       <Row>
         <Col lg={6}>
           <img
-            src={DummyCampaigns[0]?.imageUrl}
+            src={
+              campaign.image
+                ? BASE_URL_DEV + campaign.image
+                : DummyCampaigns[0]?.imageUrl
+            }
             loading='lazy'
             className={styles.headerImage}
           />

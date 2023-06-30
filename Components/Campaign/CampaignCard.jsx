@@ -11,7 +11,7 @@ import Fund from "./Fund/Fund";
 import { getBalance } from "../../Web3/Campaign";
 import { enrollCampaign } from "../../Api/NPOs";
 import EthRate from "../../Utilities/EthRate";
-
+const BASE_URL_DEV = "http://localhost:8800/api/campaigns/images/";
 export default function CampaignCard({ liked, isBacked, cam, campaign }) {
   const router = useRouter();
   const state = useSelector((state) => state.user);
@@ -107,7 +107,10 @@ export default function CampaignCard({ liked, isBacked, cam, campaign }) {
               />
             ))}
 
-          <img src={cam?.imageUrl} className={styles.cardImage} />
+          <img
+            src={campaign.image ? BASE_URL_DEV + campaign.image : cam?.imageUrl}
+            className={styles.cardImage}
+          />
 
           <span className='fs-4 mt-2'>{campaign?.name}</span>
           <span className={styles.cardDesc}>
