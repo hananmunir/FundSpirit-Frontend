@@ -13,8 +13,8 @@ function PaymentPage() {
     const [price, setPrice] = useState(19.99);
     const [balance, setBalance] = useState(100);
      //to get npo id from redux store
-    // const npoId = useSelector((state) => state.user.npo._id);
-    // console.log(npoId);
+    const npoId = useSelector((state) => state.user.npo._id);
+    console.log(npoId);
 
     //to get all details of npoId
     const npo = useSelector((state) => state.user.npo);
