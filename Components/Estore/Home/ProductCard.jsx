@@ -9,7 +9,7 @@ export default function ProductCard(props) {
 
   return (
     <Col md={4}>
-      <Card style={{ width: '100%' }}>
+      <Card style={{ width: '100%', marginBottom: "10px" }}>
         <Card.Img variant="top" src={props.image} />
         <Card.Body>
           <Card.Title className='text-center' >{props.title}</Card.Title>
