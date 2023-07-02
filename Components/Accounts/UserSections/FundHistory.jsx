@@ -10,7 +10,7 @@ export default function FundHistory({ transactions }) {
   useEffect(() => {
     setNpo(state.npo.loggedIn);
   }, [transactions]);
-  console.log(transactions);
+
   return (
     <div>
       <Table striped hover responsive>

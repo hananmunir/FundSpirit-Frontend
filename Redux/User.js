@@ -11,6 +11,8 @@ const userSlice = createSlice({
       token: "",
       loggedIn: false,
       walletAddress: "",
+      transactions: [],
+      campaigns: [],
     },
     npo: {
       loggedIn: false,
@@ -29,6 +31,22 @@ const userSlice = createSlice({
 
       return state;
     },
+    updateUser: (state, action) => {
+      console.log("Here");
+      state = {
+        ...state,
+        user: {
+          walletAddress: state.user.walletAddress,
+          ...action.payload,
+          loggedIn: true,
+        },
+      };
+
+      console.log(state.user);
+
+      return state;
+    },
+
     loginNPO: (state, action) => {
       state = {
         ...state,
@@ -51,6 +69,8 @@ const userSlice = createSlice({
           id: "",
           token: "",
           loggedIn: false,
+          transactions: [],
+          campaigns: [],
         },
       };
 
@@ -91,6 +111,14 @@ const userSlice = createSlice({
   },
 });
 
-export const { login, loginNPO, logout, logoutNPO, addWallet, removeWallet } =
-  userSlice.actions;
+export const {
+  login,
+  loginNPO,
+
+  updateUser,
+  logout,
+  logoutNPO,
+  addWallet,
+  removeWallet,
+} = userSlice.actions;
 export { userSlice };

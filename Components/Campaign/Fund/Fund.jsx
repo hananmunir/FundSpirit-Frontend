@@ -4,12 +4,14 @@ import styles from "./Fund.module.css";
 import EthRate from "../../../Utilities/EthRate";
 import { fundCampaign } from "../../../Web3/Campaign";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addTransaction } from "../../../Api/User";
 import { addFundingAmount } from "../../../Api/Campaigns";
+import { updateUser } from "../../../Redux/User";
 
 const AmountField = ({ amount, amountState, setAmount }) => {
   const ref = useRef(null);
+
   useEffect(() => {
     if (amountState === amount && ref.current) {
       ref.current.style.backgroundColor = "#1d1ce5";
@@ -40,14 +42,16 @@ const AmountField = ({ amount, amountState, setAmount }) => {
 export default function Fund({ show, setShow, campaign }) {
   const [amount, setAmount] = useState(25);
   const state = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const user = state.user;
+
   const handleClose = () => setShow(false);
   const handleFund = () => {
     if (!user.loggedIn)
       return toast("Please login to fund this campaign", { type: "error" });
     if (user.walletAddress === "")
       return toast("Please Connect to a wallet", { type: "error" });
-    if (amount < 25) return toast("The Minimum Funding Amount is 25$");
+    if (amount < 10) return toast("The Minimum Funding Amount is 25$");
     EthRate()
       .then((res) => {
         let eth = amount / res;
@@ -64,7 +68,12 @@ export default function Fund({ show, setShow, campaign }) {
               },
               amount: amount,
               hash: res.transactionHash,
-            }).catch((err) => console.log(err));
+            })
+              .then((res) => {
+                console.log(res.data);
+                dispatch(updateUser(res.data));
+              })
+              .catch((err) => console.log(err));
 
             addFundingAmount(campaign._id, amount).catch((err) =>
               console.log(err)
@@ -85,6 +94,7 @@ export default function Fund({ show, setShow, campaign }) {
         toast("Something went wrong, please try again later", {
           type: "error",
         });
+        console.log("Here");
         setAmount(25);
         setShow(false);
       });
